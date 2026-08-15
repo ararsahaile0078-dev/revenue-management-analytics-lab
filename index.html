@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Revenue Management Analytics Lab</title>
+
+    <meta
+        name="description"
+        content="An interactive Revenue Management Analytics Lab exploring airline economics, KPIs, forecasting, capacity, competition and commercial decision-making."
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b121b;
+            color: #e8edf3;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px 5%;
+
+            background: rgba(11, 18, 27, 0.95);
+            border-bottom: 1px solid #263241;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .brand span {
+            color: #f2a65a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #aeb9c7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #f2a65a;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 85vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 80px 8%;
+
+            border-bottom: 1px solid #263241;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .eyebrow {
+            color: #8fa9c4;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(52px, 7vw, 92px);
+
+            line-height: 0.98;
+
+            font-weight: 400;
+
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            color: #f2a65a;
+        }
+
+        .hero-description {
+            max-width: 720px;
+
+            color: #9eafc2;
+
+            font-size: 20px;
+
+            margin-bottom: 40px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 16px 25px;
+
+            text-decoration: none;
+
+            border: 1px solid #415061;
+
+            color: #e8edf3;
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .button.primary {
+            background: #f2a65a;
+            color: #101820;
+            border-color: #f2a65a;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-label {
+            color: #8fa9c4;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 18px;
+        }
+
+        h2 {
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(40px, 5vw, 64px);
+
+            font-weight: 400;
+
+            line-height: 1.05;
+
+            margin-bottom: 25px;
+        }
+
+        .section-intro {
+            max-width: 800px;
+
+            color: #9eafc2;
+
+            font-size: 18px;
+
+            margin-bottom: 60px;
+        }
+
+        /* =========================
+           DECISION PROBLEM
+        ========================= */
+
+        .decision-section {
+            background: #101a26;
+        }
+
+        .decision-flow {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 12px;
+
+            margin-top: 50px;
+        }
+
+        .flow-card {
+            padding: 28px 20px;
+
+            min-height: 150px;
+
+            border: 1px solid #354454;
+
+            background: #0d1620;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .flow-number {
+            color: #f2a65a;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+        .flow-card h3 {
+            font-size: 18px;
+
+            font-weight: 500;
+        }
+
+        .decision-statement {
+            margin-top: 55px;
+
+            padding: 35px;
+
+            border-left: 3px solid #f2a65a;
+
+            background: #0c141e;
+        }
+
+        .decision-statement strong {
+            display: block;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 30px;
+
+            font-weight: 400;
+
+            margin-bottom: 15px;
+        }
+
+        .decision-statement p {
+            color: #9eafc2;
+
+            max-width: 850px;
+        }
+
+        /* =========================
+           SIGNAL TO DECISION
+        ========================= */
+
+        .stages {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 15px;
+        }
+
+        .stage {
+            padding: 30px;
+
+            border: 1px solid #354454;
+
+            background: #0d1620;
+        }
+
+        .stage-number {
+            color: #f2a65a;
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .stage h3 {
+            margin-bottom: 12px;
+
+            font-size: 19px;
+        }
+
+        .stage p {
+            color: #899bad;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 40px 8%;
+
+            border-top: 1px solid #263241;
+
+            color: #708094;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .decision-flow,
+            .stages {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 75vh;
+
+                padding: 70px 6%;
+            }
+
+            section {
+                padding: 75px 6%;
+            }
+
+            h1 {
+                font-size: 55px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <div class="brand">
+            RM <span>Analytics Lab</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#decision">RM Problem</a></li>
+            <li><a href="#framework">Framework</a></li>
+            <li><a href="#laboratory">Laboratory</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                Revenue Management Analytics Lab
+            </div>
+
+            <h1>
+                Revenue Management,
+                <span>built as a decision science.</span>
+            </h1>
+
+            <p class="hero-description">
+                An interactive analytical environment exploring the economics,
+                measurement, forecasting, competition and commercial decisions
+                behind airline Revenue Management.
+            </p>
+
+            <div class="button-group">
+
+                <a href="#decision" class="button primary">
+                    Explore the RM Problem →
+                </a>
+
+                <a href="#framework" class="button">
+                    Explore the Framework →
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         RM DECISION PROBLEM
+    ========================= -->
+
+    <section id="decision" class="decision-section">
+
+        <div class="section-label">
+            01 — The Commercial Problem
+        </div>
+
+        <h2>
+            Revenue Management begins
+            with a constrained resource.
+        </h2>
+
+        <p class="section-intro">
+            Airline capacity is limited, perishable and time-sensitive.
+            The analyst therefore has to continuously balance uncertain demand,
+            price, capacity, customer value and competitive pressure.
+        </p>
+
+
+        <div class="decision-flow">
+
+            <div class="flow-card">
+                <div class="flow-number">01</div>
+                <h3>Limited Capacity</h3>
+            </div>
+
+            <div class="flow-card">
+                <div class="flow-number">02</div>
+                <h3>Uncertain Demand</h3>
+            </div>
+
+            <div class="flow-card">
+                <div class="flow-number">03</div>
+                <h3>Customer Value</h3>
+            </div>
+
+            <div class="flow-card">
+                <div class="flow-number">04</div>
+                <h3>Competition</h3>
+            </div>
+
+            <div class="flow-card">
+                <div class="flow-number">05</div>
+                <h3>Time to Departure</h3>
+            </div>
+
+        </div>
+
+
+        <div class="decision-statement">
+
+            <strong>
+                Revenue Management is not simply about filling seats.
+            </strong>
+
+            <p>
+                It is about deciding which demand to accept, at what price,
+                at what time, given limited and perishable capacity.
+                The objective is to improve the economic value generated
+                from constrained inventory.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SIGNAL TO DECISION
+    ========================= -->
+
+    <section id="framework">
+
+        <div class="section-label">
+            02 — Analytical Framework
+        </div>
+
+        <h2>
+            From signal to decision.
+        </h2>
+
+        <p class="section-intro">
+            A strong Revenue Management analyst does more than calculate KPIs.
+            The analyst connects measurement, explanation, forecasting and
+            optimization before making a commercial decision.
+        </p>
+
+
+        <div class="stages">
+
+            <div class="stage">
+                <div class="stage-number">01 — MEASURE</div>
+
+                <h3>Measure</h3>
+
+                <p>
+                    KPIs reveal what is happening across demand,
+                    capacity, revenue and customer mix.
+                </p>
+            </div>
+
+
+            <div class="stage">
+                <div class="stage-number">02 — UNDERSTAND</div>
+
+                <h3>Understand</h3>
+
+                <p>
+                    Identify the economic and competitive factors
+                    explaining the observed performance.
+                </p>
+            </div>
+
+
+            <div class="stage">
+                <div class="stage-number">03 — FORECAST</div>
+
+                <h3>Forecast</h3>
+
+                <p>
+                    Estimate future demand, booking behavior and
+                    expected commercial outcomes.
+                </p>
+            </div>
+
+
+            <div class="stage">
+                <div class="stage-number">04 — OPTIMIZE</div>
+
+                <h3>Optimize</h3>
+
+                <p>
+                    Evaluate alternative pricing, inventory and
+                    capacity decisions under uncertainty.
+                </p>
+            </div>
+
+
+            <div class="stage">
+                <div class="stage-number">05 — DECIDE</div>
+
+                <h3>Decide</h3>
+
+                <p>
+                    Select the commercial action with the strongest
+                    expected economic outcome.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LABORATORY
+    ========================= -->
+
+    <section id="laboratory" class="decision-section">
+
+        <div class="section-label">
+            03 — Analytics Laboratory
+        </div>
+
+        <h2>
+            Where assumptions become scenarios.
+        </h2>
+
+        <p class="section-intro">
+            The laboratory will progressively introduce interactive
+            Revenue Management experiments using synthetic data and
+            simplified analytical models.
+        </p>
+
+        <div class="decision-statement">
+
+            <strong>
+                Coming next: KPI Intelligence.
+            </strong>
+
+            <p>
+                Explore how airline Revenue Management KPIs are calculated,
+                interpreted, connected and improved — including the trade-offs
+                an analyst must consider when optimizing commercial performance.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        Educational and portfolio project using synthetic data and
+        simplified analytical models. It does not represent any airline's
+        proprietary Revenue Management system.
+
+    </footer>
+
+</body>
+</html>
