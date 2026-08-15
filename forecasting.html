@@ -6,8 +6,10 @@
 
 <title>Forecasting Laboratory | RM Analytics Lab</title>
 
-<meta name="description"
-content="Interactive airline Revenue Management demand forecasting laboratory covering booking curves, forecasting models, accuracy and commercial decision-making.">
+<meta
+    name="description"
+    content="Interactive airline Revenue Management demand forecasting laboratory covering booking curves, forecasting models, accuracy and commercial decision-making."
+>
 
 <style>
 * {
@@ -45,6 +47,17 @@ a {
     text-decoration: none;
 }
 
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
 nav {
     height: 78px;
     border-bottom: 1px solid var(--border);
@@ -54,7 +67,7 @@ nav {
     padding: 0 4.5%;
     position: sticky;
     top: 0;
-    background: rgba(8,17,29,0.96);
+    background: rgba(8, 17, 29, 0.96);
     backdrop-filter: blur(10px);
     z-index: 20;
 }
@@ -78,6 +91,10 @@ nav {
     color: var(--text);
 }
 
+/* =========================
+   GENERAL
+========================= */
+
 .container {
     width: 90%;
     max-width: 1450px;
@@ -85,7 +102,7 @@ nav {
 }
 
 section {
-    padding: 90px 0;
+    padding: 95px 0;
 }
 
 .eyebrow {
@@ -133,6 +150,15 @@ h3 {
     font-size: 14px;
 }
 
+.section-intro {
+    max-width: 850px;
+    margin-bottom: 55px;
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero {
     min-height: 72vh;
     display: flex;
@@ -157,16 +183,16 @@ h3 {
     font-size: 58px;
     font-family: Georgia, serif;
     color: var(--orange);
+    margin-bottom: 10px;
 }
 
 .hero-card p {
     color: var(--muted);
 }
 
-.section-intro {
-    max-width: 850px;
-    margin-bottom: 55px;
-}
+/* =========================
+   MODEL CARDS
+========================= */
 
 .models {
     display: grid;
@@ -178,7 +204,7 @@ h3 {
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 28px;
-    min-height: 220px;
+    min-height: 230px;
     transition: 0.25s;
 }
 
@@ -199,6 +225,10 @@ h3 {
     font-size: 14px;
 }
 
+/* =========================
+   LAB
+========================= */
+
 .lab {
     background: #09131f;
     border-top: 1px solid var(--border);
@@ -207,7 +237,7 @@ h3 {
 
 .lab-grid {
     display: grid;
-    grid-template-columns: 330px 1fr;
+    grid-template-columns: 340px 1fr;
     gap: 25px;
 }
 
@@ -215,6 +245,7 @@ h3 {
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 28px;
+    align-self: start;
 }
 
 .control {
@@ -222,8 +253,7 @@ h3 {
 }
 
 .control label {
-    display: flex;
-    justify-content: space-between;
+    display: block;
     color: var(--muted);
     font-size: 14px;
     margin-bottom: 9px;
@@ -233,14 +263,10 @@ h3 {
     color: var(--text);
 }
 
+textarea,
 select,
-input[type="range"],
 input[type="number"] {
     width: 100%;
-}
-
-select,
-input[type="number"] {
     background: var(--panel2);
     color: var(--text);
     border: 1px solid var(--border);
@@ -248,8 +274,21 @@ input[type="number"] {
     border-radius: 2px;
 }
 
-input[type="range"] {
-    accent-color: var(--orange);
+textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+textarea:focus,
+select:focus,
+input:focus {
+    outline: 1px solid var(--orange);
+    border-color: var(--orange);
+}
+
+input[type="number"] {
+    appearance: textfield;
 }
 
 button {
@@ -272,6 +311,21 @@ button:hover {
     color: var(--text);
     border: 1px solid var(--border);
 }
+
+.secondary-button:hover {
+    background: var(--panel2);
+    opacity: 1;
+}
+
+.help-text {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard {
     display: grid;
@@ -300,6 +354,21 @@ button:hover {
 .metric .value {
     font-size: 30px;
     margin-top: 8px;
+}
+
+.output-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 25px;
+}
+
+.output-card h3 {
+    color: var(--text);
+}
+
+.output-card p {
+    color: var(--muted);
+    margin: 5px 0;
 }
 
 .chart-card {
@@ -331,6 +400,10 @@ canvas {
     display: block;
 }
 
+/* =========================
+   INSIGHT
+========================= */
+
 .insight {
     border-left: 3px solid var(--orange);
     background: var(--panel);
@@ -340,6 +413,15 @@ canvas {
 .insight strong {
     color: var(--orange);
 }
+
+.insight p {
+    color: var(--muted);
+    margin-top: 10px;
+}
+
+/* =========================
+   TABLE
+========================= */
 
 .table-wrap {
     overflow-x: auto;
@@ -370,6 +452,14 @@ td {
     color: var(--muted);
 }
 
+tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+/* =========================
+   BOOKING CURVES
+========================= */
+
 .booking-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -397,13 +487,9 @@ td {
     float: right;
 }
 
-footer {
-    border-top: 1px solid var(--border);
-    padding: 50px 5%;
-    color: var(--muted);
-    text-align: center;
-    font-size: 13px;
-}
+/* =========================
+   STATUS
+========================= */
 
 .status {
     margin-top: 15px;
@@ -414,23 +500,45 @@ footer {
     font-size: 13px;
 }
 
-@media(max-width: 1000px) {
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 50px 5%;
+    color: var(--muted);
+    text-align: center;
+    font-size: 13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+    .models {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .hero-grid,
     .lab-grid,
     .booking-layout {
         grid-template-columns: 1fr;
     }
 
-    .models {
-        grid-template-columns: repeat(2, 1fr);
+    .hero {
+        padding: 80px 0;
     }
+}
 
+@media (max-width: 800px) {
     .metrics {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media(max-width: 650px) {
+@media (max-width: 650px) {
     nav {
         padding: 0 20px;
     }
@@ -451,11 +559,23 @@ footer {
     h1 {
         font-size: 50px;
     }
+
+    .lead {
+        font-size: 17px;
+    }
+
+    .chart-wrap {
+        height: 300px;
+    }
 }
 </style>
 </head>
 
 <body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
     <a href="index.html" class="logo">
@@ -470,11 +590,18 @@ footer {
     </div>
 </nav>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
     <div class="container hero-grid">
 
         <div>
-            <div class="eyebrow">Revenue Management Analytics Lab</div>
+            <div class="eyebrow">
+                Revenue Management Analytics Lab
+            </div>
 
             <h1>
                 Demand <span>Forecasting</span>
@@ -490,7 +617,11 @@ footer {
 
         <div class="hero-card">
             <div class="number">RM</div>
-            <h3>Forecasting Laboratory</h3>
+
+            <h3>
+                Forecasting Laboratory
+            </h3>
+
             <p>
                 Interactive forecasting environment for airline Revenue
                 Management analysis.
@@ -500,187 +631,262 @@ footer {
     </div>
 </section>
 
+
+<!-- =========================
+     FORECASTING METHODS
+========================= -->
+
 <section id="models">
+
     <div class="container">
 
         <div class="section-intro">
-            <div class="eyebrow">01 / Forecasting Methods</div>
 
-            <h2>Four useful ways to estimate future demand.</h2>
+            <div class="eyebrow">
+                01 / Forecasting Methods
+            </div>
+
+            <h2>
+                Four useful ways to estimate future demand.
+            </h2>
 
             <p class="lead">
                 Different forecasting methods can produce different views of
-                future demand. The correct method depends on data quality,
+                future demand. The appropriate method depends on data quality,
                 trend behaviour and commercial context.
             </p>
+
         </div>
+
 
         <div class="models">
 
             <div class="model-card">
-                <div class="model-number">MODEL 01</div>
-                <h3>Moving Average</h3>
+
+                <div class="model-number">
+                    MODEL 01
+                </div>
+
+                <h3>
+                    Moving Average
+                </h3>
+
                 <p>
                     Uses the average of recent observations to smooth short
-                    term fluctuations and establish a stable baseline.
+                    term fluctuations and establish a stable demand baseline.
                 </p>
+
             </div>
 
+
             <div class="model-card">
-                <div class="model-number">MODEL 02</div>
-                <h3>Exponential Smoothing</h3>
+
+                <div class="model-number">
+                    MODEL 02
+                </div>
+
+                <h3>
+                    Exponential Smoothing
+                </h3>
+
                 <p>
                     Gives more importance to recent demand observations and
-                    responds faster when demand changes.
+                    provides a responsive estimate when demand changes.
                 </p>
+
             </div>
 
-            <div class="model-card">
-                <div class="model-number">MODEL 03</div>
-                <h3>Trend Forecast</h3>
-                <p>
-                    Estimates a linear demand trend from historical
-                    observations and projects that trend forward.
-                </p>
-            </div>
 
             <div class="model-card">
-                <div class="model-number">MODEL 04</div>
-                <h3>Growth Scenario</h3>
+
+                <div class="model-number">
+                    MODEL 03
+                </div>
+
+                <h3>
+                    Linear Trend
+                </h3>
+
                 <p>
-                    Applies a commercial growth assumption to the recent
-                    demand level to create a planning scenario.
+                    Estimates a linear relationship from historical demand and
+                    projects that trend into future periods.
                 </p>
+
+            </div>
+
+
+            <div class="model-card">
+
+                <div class="model-number">
+                    MODEL 04
+                </div>
+
+                <h3>
+                    Commercial Scenario
+                </h3>
+
+                <p>
+                    Forecasts can be interpreted as planning scenarios for
+                    capacity, pricing and inventory decisions.
+                </p>
+
             </div>
 
         </div>
+
     </div>
+
 </section>
+
+
+<!-- =========================
+     FORECAST LAB
+========================= -->
 
 <section id="lab" class="lab">
 
     <div class="container">
 
         <div class="section-intro">
-            <div class="eyebrow">02 / Interactive Forecast Lab</div>
 
-            <h2>Build a demand forecast.</h2>
+            <div class="eyebrow">
+                02 / Interactive Forecast Lab
+            </div>
+
+            <h2>
+                Build a demand forecast.
+            </h2>
 
             <p class="lead">
-                Change the assumptions and run the forecasting model.
+                Enter historical demand observations, select a forecasting
+                method and define the number of future periods to estimate.
             </p>
+
         </div>
+
 
         <div class="lab-grid">
 
+
+            <!-- CONTROLS -->
+
             <div class="controls">
 
-                <h3>Forecast Controls</h3>
+                <h3>
+                    Forecast Controls
+                </h3>
 
-                <div class="control">
 
-                    <label for="model">
-                        Forecast Method
-                    </label>
+                <form id="forecastForm">
 
-                    <select id="model">
 
-                        <option value="moving">Moving Average</option>
+                    <div class="control">
 
-                        <option value="exponential">
-                            Exponential Smoothing
-                        </option>
+                        <label for="historicalData">
+                            Historical Demand
+                        </label>
 
-                        <option value="trend">
-                            Trend Forecast
-                        </option>
+                        <textarea
+                            id="historicalData"
+                            name="historicalData"
+                            placeholder="Example: 118, 125, 121, 134, 140, 137, 149, 155, 151, 164, 171, 168"
+                            required
+                        >118, 125, 121, 134, 140, 137, 149, 155, 151, 164, 171, 168</textarea>
 
-                        <option value="growth">
-                            Growth Scenario
-                        </option>
+                        <div class="help-text">
+                            Enter demand observations separated by commas.
+                        </div>
 
-                    </select>
+                    </div>
 
-                </div>
 
-                <div class="control">
+                    <div class="control">
 
-                    <label for="horizon">
-                        Forecast Horizon
-                        <strong>
-                            <span id="horizonValue">6</span> periods
-                        </strong>
-                    </label>
+                        <label for="forecastMethod">
+                            Forecast Method
+                        </label>
 
-                    <input
-                        id="horizon"
-                        type="range"
-                        min="3"
-                        max="12"
-                        value="6"
+                        <select
+                            id="forecastMethod"
+                            name="forecastMethod"
+                        >
+
+                            <option value="moving-average">
+                                Moving Average
+                            </option>
+
+                            <option value="exponential-smoothing">
+                                Exponential Smoothing
+                            </option>
+
+                            <option value="linear-trend">
+                                Linear Trend
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <label for="forecastHorizon">
+                            Forecast Horizon
+                        </label>
+
+                        <input
+                            id="forecastHorizon"
+                            name="forecastHorizon"
+                            type="number"
+                            min="1"
+                            max="24"
+                            value="6"
+                            required
+                        >
+
+                        <div class="help-text">
+                            Number of future periods to forecast.
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit">
+                        Run Forecast
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resetForecast"
+                        class="secondary-button"
                     >
+                        Reset
+                    </button>
 
-                </div>
 
-                <div class="control">
-
-                    <label for="growth">
-                        Growth Assumption
-                        <strong>
-                            <span id="growthValue">5</span>%
-                        </strong>
-                    </label>
-
-                    <input
-                        id="growth"
-                        type="range"
-                        min="-10"
-                        max="20"
-                        value="5"
+                    <div
+                        class="status"
+                        id="status"
                     >
+                        Ready to run forecast.
+                    </div>
 
-                </div>
-
-                <div class="control">
-
-                    <label for="window">
-                        Moving Average Window
-                    </label>
-
-                    <select id="window">
-
-                        <option value="3">3 periods</option>
-
-                        <option value="4">4 periods</option>
-
-                        <option value="5">5 periods</option>
-
-                    </select>
-
-                </div>
-
-                <button id="runForecast">
-                    Run Forecast
-                </button>
-
-                <button
-                    id="resetForecast"
-                    class="secondary-button"
-                >
-                    Reset
-                </button>
-
-                <div class="status" id="status">
-                    Ready to run forecast.
-                </div>
+                </form>
 
             </div>
 
+
+            <!-- DASHBOARD -->
+
             <div class="dashboard">
+
+
+                <!-- METRICS -->
 
                 <div class="metrics">
 
                     <div class="metric">
+
                         <div class="label">
                             Last Actual
                         </div>
@@ -691,9 +897,12 @@ footer {
                         >
                             —
                         </div>
+
                     </div>
 
+
                     <div class="metric">
+
                         <div class="label">
                             Forecast Average
                         </div>
@@ -704,9 +913,12 @@ footer {
                         >
                             —
                         </div>
+
                     </div>
 
+
                     <div class="metric">
+
                         <div class="label">
                             Peak Forecast
                         </div>
@@ -717,9 +929,12 @@ footer {
                         >
                             —
                         </div>
+
                     </div>
 
+
                     <div class="metric">
+
                         <div class="label">
                             Growth vs Last
                         </div>
@@ -730,9 +945,31 @@ footer {
                         >
                             —
                         </div>
+
                     </div>
 
                 </div>
+
+
+                <!-- FORECAST OUTPUT -->
+
+                <div
+                    class="output-card"
+                    id="forecastOutput"
+                >
+
+                    <h3>
+                        Forecast Results
+                    </h3>
+
+                    <p>
+                        Enter historical demand and run the forecast model.
+                    </p>
+
+                </div>
+
+
+                <!-- CHART -->
 
                 <div class="chart-card">
 
@@ -749,18 +986,45 @@ footer {
                     </div>
 
                     <div class="chart-wrap">
-                        <canvas id="forecastChart"></canvas>
+
+                        <canvas
+                            id="forecastChart"
+                        ></canvas>
+
                     </div>
 
                 </div>
 
+
+                <!-- ACCURACY -->
+
+                <div
+                    class="output-card"
+                    id="accuracyOutput"
+                >
+
+                    <h3>
+                        Forecast Accuracy
+                    </h3>
+
+                    <p>
+                        Accuracy metrics will appear after the forecast is run.
+                    </p>
+
+                </div>
+
+
+                <!-- INSIGHT -->
+
                 <div class="insight">
 
-                    <strong>Commercial interpretation</strong>
+                    <strong>
+                        Commercial interpretation
+                    </strong>
 
                     <p id="insightText">
-                        Run the model to generate a commercial
-                        interpretation of the forecast.
+                        Forecasts support decisions about capacity,
+                        pricing, inventory protection and demand monitoring.
                     </p>
 
                 </div>
@@ -772,6 +1036,11 @@ footer {
     </div>
 
 </section>
+
+
+<!-- =========================
+     FORECAST TABLE
+========================= -->
 
 <section>
 
@@ -788,11 +1057,12 @@ footer {
             </h2>
 
             <p class="lead">
-                The forecast output can be used as a starting point for
+                The forecast output provides a quantitative starting point for
                 capacity planning, pricing and inventory decisions.
             </p>
 
         </div>
+
 
         <div class="table-wrap">
 
@@ -802,14 +1072,18 @@ footer {
 
                     <tr>
                         <th>Period</th>
-                        <th>Actual Demand</th>
-                        <th>Forecast</th>
-                        <th>Change</th>
+                        <th>Forecast Demand</th>
                     </tr>
 
                 </thead>
 
                 <tbody id="forecastTable">
+
+                    <tr>
+                        <td colspan="2">
+                            No forecast generated yet.
+                        </td>
+                    </tr>
 
                 </tbody>
 
@@ -820,6 +1094,11 @@ footer {
     </div>
 
 </section>
+
+
+<!-- =========================
+     BOOKING CURVES
+========================= -->
 
 <section id="booking">
 
@@ -843,7 +1122,9 @@ footer {
 
         </div>
 
+
         <div class="booking-layout">
+
 
             <div class="booking-card">
 
@@ -887,6 +1168,7 @@ footer {
 
             </div>
 
+
             <div class="booking-card">
 
                 <h3>
@@ -912,7 +1194,7 @@ footer {
                     </li>
 
                     <li>
-                        Is the forecast bias increasing?
+                        Is forecast bias increasing?
                     </li>
 
                     <li>
@@ -929,6 +1211,11 @@ footer {
 
 </section>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     RM Analytics Lab · Forecasting Laboratory
@@ -939,707 +1226,641 @@ footer {
 
 </footer>
 
+
+<!-- =========================
+     EXISTING FORECASTING JS
+========================= -->
+
+<script src="forecasting.js"></script>
+
+
+<!-- =========================
+     DASHBOARD ENHANCEMENTS
+========================= -->
+
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-const historicalDemand = [
-    118,
-    125,
-    121,
-    134,
-    140,
-    137,
-    149,
-    155,
-    151,
-    164,
-    171,
-    168
-];
+    const form = document.getElementById("forecastForm");
+    const historicalData = document.getElementById("historicalData");
+    const method = document.getElementById("forecastMethod");
+    const horizon = document.getElementById("forecastHorizon");
 
-const modelSelect = document.getElementById("model");
-const horizonInput = document.getElementById("horizon");
-const growthInput = document.getElementById("growth");
-const windowSelect = document.getElementById("window");
+    const lastActual = document.getElementById("lastActual");
+    const forecastAverage = document.getElementById("forecastAverage");
+    const peakForecast = document.getElementById("peakForecast");
+    const forecastGrowth = document.getElementById("forecastGrowth");
 
-const horizonValue = document.getElementById("horizonValue");
-const growthValue = document.getElementById("growthValue");
+    const modelLabel = document.getElementById("modelLabel");
+    const status = document.getElementById("status");
+    const insightText = document.getElementById("insightText");
+    const resetButton = document.getElementById("resetForecast");
 
-const runButton = document.getElementById("runForecast");
-const resetButton = document.getElementById("resetForecast");
+    const canvas = document.getElementById("forecastChart");
 
-const canvas = document.getElementById("forecastChart");
-const ctx = canvas.getContext("2d");
+    if (!form || !canvas) {
+        return;
+    }
 
-const lastActualElement =
-    document.getElementById("lastActual");
+    const ctx = canvas.getContext("2d");
 
-const forecastAverageElement =
-    document.getElementById("forecastAverage");
 
-const peakForecastElement =
-    document.getElementById("peakForecast");
+    function getValues() {
 
-const forecastGrowthElement =
-    document.getElementById("forecastGrowth");
+        return historicalData.value
+            .split(",")
+            .map(Number)
+            .filter(value => Number.isFinite(value));
 
-const forecastTable =
-    document.getElementById("forecastTable");
+    }
 
-const modelLabel =
-    document.getElementById("modelLabel");
 
-const insightText =
-    document.getElementById("insightText");
+    function calculateForecast(values) {
 
-const statusElement =
-    document.getElementById("status");
+        const numberOfPeriods = parseInt(
+            horizon.value,
+            10
+        );
 
-horizonInput.addEventListener("input", function() {
-    horizonValue.textContent = this.value;
-});
+        const selectedMethod = method.value;
 
-growthInput.addEventListener("input", function() {
-    growthValue.textContent = this.value;
-});
 
-function movingAverageForecast(data, horizon, windowSize) {
+        if (selectedMethod === "moving-average") {
 
-    const results = [];
+            const results = [];
 
-    let values = data.slice();
+            let working = values.slice();
 
-    for (let i = 0; i < horizon; i++) {
+            const windowSize = Math.min(
+                3,
+                working.length
+            );
 
-        const recent =
-            values.slice(-windowSize);
+            for (
+                let i = 0;
+                i < numberOfPeriods;
+                i++
+            ) {
 
-        const average =
-            recent.reduce(
+                const recent =
+                    working.slice(-windowSize);
+
+                const average =
+                    recent.reduce(
+                        (sum, value) => sum + value,
+                        0
+                    ) / recent.length;
+
+                results.push(average);
+
+                working.push(average);
+            }
+
+            return results;
+        }
+
+
+        if (selectedMethod === "exponential-smoothing") {
+
+            const alpha = 0.3;
+
+            let level = values[0];
+
+            for (
+                let i = 1;
+                i < values.length;
+                i++
+            ) {
+
+                level =
+                    alpha * values[i] +
+                    (1 - alpha) * level;
+            }
+
+            return Array(
+                numberOfPeriods
+            ).fill(level);
+        }
+
+
+        const n = values.length;
+
+        const xMean = (n - 1) / 2;
+
+        const yMean =
+            values.reduce(
                 (sum, value) => sum + value,
                 0
-            ) / recent.length;
+            ) / n;
 
-        results.push(average);
+        let numerator = 0;
+        let denominator = 0;
 
-        values.push(average);
+        for (
+            let i = 0;
+            i < n;
+            i++
+        ) {
+
+            numerator +=
+                (i - xMean) *
+                (values[i] - yMean);
+
+            denominator +=
+                Math.pow(
+                    i - xMean,
+                    2
+                );
+        }
+
+        const slope =
+            denominator === 0
+                ? 0
+                : numerator / denominator;
+
+        const intercept =
+            yMean -
+            slope * xMean;
+
+        const results = [];
+
+        for (
+            let i = 0;
+            i < numberOfPeriods;
+            i++
+        ) {
+
+            const futureX =
+                n + i;
+
+            results.push(
+                intercept +
+                slope * futureX
+            );
+        }
+
+        return results;
     }
 
-    return results;
-}
 
-function exponentialForecast(data, horizon) {
+    function drawChart(values, forecast) {
 
-    const alpha = 0.35;
+        const rect =
+            canvas.getBoundingClientRect();
 
-    let level = data[0];
+        const width =
+            Math.max(
+                500,
+                Math.floor(rect.width)
+            );
 
-    for (let i = 1; i < data.length; i++) {
+        const height =
+            Math.max(
+                280,
+                Math.floor(rect.height)
+            );
 
-        level =
-            alpha * data[i] +
-            (1 - alpha) * level;
-    }
+        const devicePixelRatio =
+            window.devicePixelRatio || 1;
 
-    return Array(horizon).fill(level);
-}
+        canvas.width =
+            width * devicePixelRatio;
 
-function trendForecast(data, horizon) {
+        canvas.height =
+            height * devicePixelRatio;
 
-    const n = data.length;
-
-    let sumX = 0;
-    let sumY = 0;
-    let sumXY = 0;
-    let sumXX = 0;
-
-    for (let i = 0; i < n; i++) {
-
-        const x = i + 1;
-        const y = data[i];
-
-        sumX += x;
-        sumY += y;
-        sumXY += x * y;
-        sumXX += x * x;
-    }
-
-    const slope =
-        (
-            n * sumXY -
-            sumX * sumY
-        ) /
-        (
-            n * sumXX -
-            sumX * sumX
+        ctx.setTransform(
+            devicePixelRatio,
+            0,
+            0,
+            devicePixelRatio,
+            0,
+            0
         );
 
-    const intercept =
-        (sumY - slope * sumX) / n;
-
-    const results = [];
-
-    for (let i = 1; i <= horizon; i++) {
-
-        const x = n + i;
-
-        results.push(
-            intercept + slope * x
-        );
-    }
-
-    return results;
-}
-
-function growthForecast(data, horizon, growth) {
-
-    const last =
-        data[data.length - 1];
-
-    const rate =
-        1 + growth / 100;
-
-    const results = [];
-
-    for (let i = 1; i <= horizon; i++) {
-
-        results.push(
-            last * Math.pow(rate, i)
-        );
-    }
-
-    return results;
-}
-
-function getForecast() {
-
-    const model =
-        modelSelect.value;
-
-    const horizon =
-        Number(horizonInput.value);
-
-    const growth =
-        Number(growthInput.value);
-
-    const windowSize =
-        Number(windowSelect.value);
-
-    if (model === "moving") {
-
-        return movingAverageForecast(
-            historicalDemand,
-            horizon,
-            windowSize
+        ctx.clearRect(
+            0,
+            0,
+            width,
+            height
         );
 
-    }
 
-    if (model === "exponential") {
+        const allValues =
+            values.concat(forecast);
 
-        return exponentialForecast(
-            historicalDemand,
-            horizon
-        );
+        const maxValue =
+            Math.max(...allValues);
 
-    }
+        const minValue =
+            Math.min(...allValues);
 
-    if (model === "trend") {
+        const range =
+            maxValue - minValue || 1;
 
-        return trendForecast(
-            historicalDemand,
-            horizon
-        );
+        const padding = 45;
 
-    }
+        const chartWidth =
+            width - padding * 2;
 
-    return growthForecast(
-        historicalDemand,
-        horizon,
-        growth
-    );
-}
+        const chartHeight =
+            height - padding * 2;
 
-function modelName() {
 
-    const names = {
-        moving: "Moving Average",
-        exponential: "Exponential Smoothing",
-        trend: "Trend Forecast",
-        growth: "Growth Scenario"
-    };
+        function xPosition(index) {
 
-    return names[modelSelect.value];
-}
+            return padding +
+                (
+                    index /
+                    Math.max(
+                        1,
+                        allValues.length - 1
+                    )
+                ) *
+                chartWidth;
+        }
 
-function drawChart(forecast) {
 
-    const rect =
-        canvas.getBoundingClientRect();
+        function yPosition(value) {
 
-    const ratio =
-        window.devicePixelRatio || 1;
+            return (
+                height -
+                padding -
+                (
+                    (value - minValue) /
+                    range
+                ) *
+                chartHeight
+            );
+        }
 
-    canvas.width =
-        rect.width * ratio;
 
-    canvas.height =
-        rect.height * ratio;
+        /* Grid */
 
-    ctx.setTransform(
-        ratio,
-        0,
-        0,
-        ratio,
-        0,
-        0
-    );
+        ctx.strokeStyle = "#26384b";
+        ctx.lineWidth = 1;
 
-    const width = rect.width;
-    const height = rect.height;
+        for (
+            let i = 0;
+            i <= 4;
+            i++
+        ) {
 
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
+            const y =
+                padding +
+                (i / 4) *
+                chartHeight;
 
-    const allValues =
-        historicalDemand.concat(forecast);
+            ctx.beginPath();
 
-    const maxValue =
-        Math.max(...allValues) * 1.12;
+            ctx.moveTo(
+                padding,
+                y
+            );
 
-    const minValue =
-        Math.min(...allValues) * 0.88;
+            ctx.lineTo(
+                width - padding,
+                y
+            );
 
-    const padding = 45;
+            ctx.stroke();
+        }
 
-    const chartWidth =
-        width - padding * 2;
 
-    const chartHeight =
-        height - padding * 2;
+        /* Historical line */
 
-    function xPosition(index) {
-
-        return padding +
-            (
-                index /
-                (allValues.length - 1)
-            ) *
-            chartWidth;
-    }
-
-    function yPosition(value) {
-
-        return padding +
-            (
-                (maxValue - value) /
-                (maxValue - minValue)
-            ) *
-            chartHeight;
-    }
-
-    ctx.strokeStyle = "#26384b";
-    ctx.lineWidth = 1;
-
-    for (let i = 0; i < 5; i++) {
-
-        const y =
-            padding +
-            i * chartHeight / 4;
+        ctx.strokeStyle = "#8fb9df";
+        ctx.lineWidth = 3;
 
         ctx.beginPath();
 
-        ctx.moveTo(
-            padding,
-            y
-        );
+        values.forEach(
+            (value, index) => {
 
-        ctx.lineTo(
-            width - padding,
-            y
+                const x =
+                    xPosition(index);
+
+                const y =
+                    yPosition(value);
+
+                if (index === 0) {
+
+                    ctx.moveTo(
+                        x,
+                        y
+                    );
+
+                } else {
+
+                    ctx.lineTo(
+                        x,
+                        y
+                    );
+                }
+            }
         );
 
         ctx.stroke();
-    }
 
-    ctx.font = "12px Arial";
-    ctx.fillStyle = "#9eb0c4";
 
-    for (let i = 0; i < 5; i++) {
+        /* Forecast line */
 
-        const value =
-            maxValue -
-            i *
-            (maxValue - minValue) / 4;
+        ctx.strokeStyle = "#f6a54f";
+        ctx.lineWidth = 3;
+        ctx.setLineDash([7, 6]);
 
-        const y =
-            padding +
-            i * chartHeight / 4;
+        ctx.beginPath();
+
+        forecast.forEach(
+            (value, index) => {
+
+                const absoluteIndex =
+                    values.length +
+                    index;
+
+                const x =
+                    xPosition(
+                        absoluteIndex
+                    );
+
+                const y =
+                    yPosition(
+                        Math.max(
+                            0,
+                            value
+                        )
+                    );
+
+                if (index === 0) {
+
+                    const previousX =
+                        xPosition(
+                            values.length - 1
+                        );
+
+                    const previousY =
+                        yPosition(
+                            values[
+                                values.length - 1
+                            ]
+                        );
+
+                    ctx.moveTo(
+                        previousX,
+                        previousY
+                    );
+
+                    ctx.lineTo(
+                        x,
+                        y
+                    );
+
+                } else {
+
+                    ctx.lineTo(
+                        x,
+                        y
+                    );
+                }
+            }
+        );
+
+        ctx.stroke();
+
+        ctx.setLineDash([]);
+
+
+        /* Legend */
+
+        ctx.font =
+            "13px Arial";
+
+        ctx.fillStyle =
+            "#8fb9df";
 
         ctx.fillText(
-            Math.round(value),
-            5,
-            y + 4
+            "Historical",
+            padding,
+            22
+        );
+
+        ctx.fillStyle =
+            "#f6a54f";
+
+        ctx.fillText(
+            "Forecast",
+            padding + 90,
+            22
         );
     }
 
-    ctx.beginPath();
 
-    historicalDemand.forEach(
-        (value, index) => {
+    function updateDashboard() {
 
-            const x =
-                xPosition(index);
+        const values =
+            getValues();
 
-            const y =
-                yPosition(value);
-
-            if (index === 0) {
-                ctx.moveTo(x, y);
-            } else {
-                ctx.lineTo(x, y);
-            }
+        if (values.length < 3) {
+            return;
         }
-    );
-
-    ctx.strokeStyle = "#8fb9df";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    const forecastStart =
-        historicalDemand.length - 1;
-
-    ctx.beginPath();
-
-    forecast.forEach(
-        (value, index) => {
-
-            const x =
-                xPosition(
-                    forecastStart + index
-                );
-
-            const y =
-                yPosition(value);
-
-            if (index === 0) {
-                ctx.moveTo(x, y);
-            } else {
-                ctx.lineTo(x, y);
-            }
-        }
-    );
-
-    ctx.strokeStyle = "#f6a54f";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    historicalDemand.forEach(
-        (value, index) => {
-
-            const x =
-                xPosition(index);
-
-            const y =
-                yPosition(value);
-
-            ctx.beginPath();
-
-            ctx.arc(
-                x,
-                y,
-                4,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fillStyle = "#8fb9df";
-            ctx.fill();
-        }
-    );
-
-    forecast.forEach(
-        (value, index) => {
-
-            const x =
-                xPosition(
-                    forecastStart + index
-                );
-
-            const y =
-                yPosition(value);
-
-            ctx.beginPath();
-
-            ctx.arc(
-                x,
-                y,
-                4,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fillStyle = "#f6a54f";
-            ctx.fill();
-        }
-    );
-
-    const splitX =
-        xPosition(
-            historicalDemand.length - 1
-        );
-
-    ctx.setLineDash([6, 6]);
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        splitX,
-        padding
-    );
-
-    ctx.lineTo(
-        splitX,
-        height - padding
-    );
-
-    ctx.strokeStyle = "#75c69b";
-    ctx.lineWidth = 1;
-
-    ctx.stroke();
-
-    ctx.setLineDash([]);
-
-    ctx.fillStyle = "#75c69b";
-
-    ctx.font = "12px Arial";
-
-    ctx.fillText(
-        "Forecast",
-        Math.min(
-            splitX + 8,
-            width - 100
-        ),
-        padding + 15
-    );
-}
-
-function updateTable(forecast) {
-
-    forecastTable.innerHTML = "";
-
-    historicalDemand.forEach(
-        (value, index) => {
-
-            const row =
-                document.createElement("tr");
-
-            row.innerHTML = `
-                <td>Historical ${index + 1}</td>
-                <td>${Math.round(value)}</td>
-                <td>—</td>
-                <td>—</td>
-            `;
-
-            forecastTable.appendChild(row);
-        }
-    );
-
-    const lastActual =
-        historicalDemand[
-            historicalDemand.length - 1
-        ];
-
-    forecast.forEach(
-        (value, index) => {
-
-            const previous =
-                index === 0
-                    ? lastActual
-                    : forecast[index - 1];
-
-            const change =
-                (
-                    (value - previous) /
-                    previous
-                ) * 100;
-
-            const row =
-                document.createElement("tr");
-
-            row.innerHTML = `
-                <td>Forecast ${index + 1}</td>
-                <td>—</td>
-                <td>${Math.round(value)}</td>
-                <td>${change >= 0 ? "+" : ""}${change.toFixed(1)}%</td>
-            `;
-
-            forecastTable.appendChild(row);
-        }
-    );
-}
-
-function updateInsight(forecast) {
-
-    const last =
-        historicalDemand[
-            historicalDemand.length - 1
-        ];
-
-    const average =
-        forecast.reduce(
-            (sum, value) => sum + value,
-            0
-        ) / forecast.length;
-
-    const change =
-        ((average - last) / last) * 100;
-
-    let message = "";
-
-    if (change > 5) {
-
-        message =
-            "The forecast indicates stronger demand than the latest actual period. Commercial teams may consider tighter inventory controls, stronger price discipline and increased attention to remaining capacity.";
-
-    } else if (change < -5) {
-
-        message =
-            "The forecast indicates softer demand than the latest actual period. This may support more flexible pricing, broader availability or additional demand stimulation.";
-
-    } else {
-
-        message =
-            "The forecast is broadly stable relative to the latest actual period. This suggests maintaining current commercial assumptions while monitoring booking pace and forecast error.";
-    }
-
-    insightText.textContent =
-        message;
-}
-
-function runForecast() {
-
-    const forecast =
-        getForecast();
-
-    const last =
-        historicalDemand[
-            historicalDemand.length - 1
-        ];
-
-    const average =
-        forecast.reduce(
-            (sum, value) => sum + value,
-            0
-        ) / forecast.length;
-
-    const peak =
-        Math.max(...forecast);
-
-    const growth =
-        ((average - last) / last) * 100;
-
-    lastActualElement.textContent =
-        Math.round(last);
-
-    forecastAverageElement.textContent =
-        Math.round(average);
-
-    peakForecastElement.textContent =
-        Math.round(peak);
-
-    forecastGrowthElement.textContent =
-        (growth >= 0 ? "+" : "") +
-        growth.toFixed(1) +
-        "%";
-
-    modelLabel.textContent =
-        modelName();
-
-    statusElement.textContent =
-        "Forecast completed using " +
-        modelName() +
-        ".";
-
-    drawChart(forecast);
-
-    updateTable(forecast);
-
-    updateInsight(forecast);
-}
-
-function resetForecast() {
-
-    modelSelect.value =
-        "moving";
-
-    horizonInput.value =
-        6;
-
-    growthInput.value =
-        5;
-
-    windowSelect.value =
-        3;
-
-    horizonValue.textContent =
-        "6";
-
-    growthValue.textContent =
-        "5";
-
-    lastActualElement.textContent =
-        "—";
-
-    forecastAverageElement.textContent =
-        "—";
-
-    peakForecastElement.textContent =
-        "—";
-
-    forecastGrowthElement.textContent =
-        "—";
-
-    modelLabel.textContent =
-        "Moving Average";
-
-    statusElement.textContent =
-        "Ready to run forecast.";
-
-    insightText.textContent =
-        "Run the model to generate a commercial interpretation of the forecast.";
-
-    forecastTable.innerHTML = "";
-
-    drawChart([]);
-}
-
-runButton.addEventListener(
-    "click",
-    runForecast
-);
-
-resetButton.addEventListener(
-    "click",
-    resetForecast
-);
-
-window.addEventListener(
-    "resize",
-    function() {
 
         const forecast =
-            getForecast();
+            calculateForecast(values);
 
-        drawChart(forecast);
+        const last =
+            values[values.length - 1];
+
+        const average =
+            forecast.reduce(
+                (sum, value) => sum + value,
+                0
+            ) / forecast.length;
+
+        const peak =
+            Math.max(...forecast);
+
+        const growth =
+            last === 0
+                ? 0
+                : (
+                    (average - last) /
+                    Math.abs(last)
+                ) * 100;
+
+
+        lastActual.textContent =
+            last.toFixed(1);
+
+        forecastAverage.textContent =
+            average.toFixed(1);
+
+        peakForecast.textContent =
+            peak.toFixed(1);
+
+        forecastGrowth.textContent =
+            (growth >= 0 ? "+" : "") +
+            growth.toFixed(1) +
+            "%";
+
+
+        const methodNames = {
+            "moving-average":
+                "Moving Average",
+
+            "exponential-smoothing":
+                "Exponential Smoothing",
+
+            "linear-trend":
+                "Linear Trend"
+        };
+
+        modelLabel.textContent =
+            methodNames[
+                method.value
+            ] || "Forecast";
+
+
+        if (growth > 5) {
+
+            insightText.textContent =
+                "Forecast demand is above the latest actual observation. " +
+                "Revenue Management teams may need to monitor capacity " +
+                "availability, booking acceleration and pricing opportunities.";
+
+        } else if (growth < -5) {
+
+            insightText.textContent =
+                "Forecast demand is below the latest actual observation. " +
+                "Commercial teams should monitor booking pace, competitive " +
+                "conditions and potential demand weakness.";
+
+        } else {
+
+            insightText.textContent =
+                "Forecast demand is broadly aligned with the latest actual " +
+                "observation, suggesting relatively stable near-term demand.";
+        }
+
+
+        status.textContent =
+            "Forecast completed successfully using " +
+            methodNames[method.value] +
+            ".";
+
+
+        drawChart(
+            values,
+            forecast
+        );
     }
-);
 
-runForecast();
 
+    form.addEventListener(
+        "submit",
+        function () {
+
+            setTimeout(
+                updateDashboard,
+                20
+            );
+        }
+    );
+
+
+    method.addEventListener(
+        "change",
+        function () {
+
+            const values =
+                getValues();
+
+            if (values.length >= 3) {
+
+                updateDashboard();
+            }
+        }
+    );
+
+
+    horizon.addEventListener(
+        "change",
+        function () {
+
+            const values =
+                getValues();
+
+            if (values.length >= 3) {
+
+                updateDashboard();
+            }
+        }
+    );
+
+
+    resetButton.addEventListener(
+        "click",
+        function () {
+
+            historicalData.value =
+                "118, 125, 121, 134, 140, 137, 149, 155, 151, 164, 171, 168";
+
+            method.value =
+                "moving-average";
+
+            horizon.value = 6;
+
+            lastActual.textContent = "—";
+
+            forecastAverage.textContent = "—";
+
+            peakForecast.textContent = "—";
+
+            forecastGrowth.textContent = "—";
+
+            modelLabel.textContent =
+                "Moving Average";
+
+            status.textContent =
+                "Ready to run forecast.";
+
+            insightText.textContent =
+                "Forecasts support decisions about capacity, " +
+                "pricing, inventory protection and demand monitoring.";
+
+            document.getElementById(
+                "forecastOutput"
+            ).innerHTML =
+                "<h3>Forecast Results</h3>" +
+                "<p>Enter historical demand and run the forecast model.</p>";
+
+            document.getElementById(
+                "accuracyOutput"
+            ).innerHTML =
+                "<h3>Forecast Accuracy</h3>" +
+                "<p>Accuracy metrics will appear after the forecast is run.</p>";
+
+            document.getElementById(
+                "forecastTable"
+            ).innerHTML =
+                "<tr>" +
+                "<td colspan='2'>No forecast generated yet.</td>" +
+                "</tr>";
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+        }
+    );
+
+
+    /* Initial dashboard */
+
+    updateDashboard();
+
+});
 </script>
 
 </body>
