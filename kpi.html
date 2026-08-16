@@ -4,555 +4,460 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KPI Intelligence | RM Analytics Lab</title>
-
-<meta
-    name="description"
-    content="Interactive airline Revenue Management KPI intelligence laboratory covering demand, revenue, cost and profitability."
->
+<title>RM Analytics Lab — KPI Intelligence</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root{
+    --bg:#07111d;
+    --panel:#0d1a29;
+    --panel2:#101f30;
+    --line:#263a4d;
+    --text:#eef3f8;
+    --muted:#9eb1c5;
+    --blue:#8db8e5;
+    --orange:#f7a647;
+    --green:#70d6a0;
+    --red:#ed7d7d;
 }
 
-:root {
-    --bg: #08111d;
-    --panel: #0d1825;
-    --panel2: #101d2b;
-    --border: #26384b;
-    --text: #edf2f7;
-    --muted: #9eb0c4;
-    --blue: #8fb9df;
-    --orange: #f6a54f;
-    --green: #75c69b;
-    --red: #e77c7c;
+*{
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-button,
-input,
-select {
-    font: inherit;
+/* NAVIGATION */
+
+.navbar{
+    height:74px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 34px;
+    background:#08121e;
+    position:sticky;
+    top:0;
+    z-index:20;
 }
 
-.container {
-    width: 90%;
-    max-width: 1450px;
-    margin: 0 auto;
+.logo{
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:-.5px;
 }
 
-nav {
-    height: 78px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 4.5%;
-    position: sticky;
-    top: 0;
-    background: rgba(8,17,29,.97);
-    backdrop-filter: blur(10px);
-    z-index: 20;
+.logo span{
+    color:var(--orange);
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
+.navlinks{
+    display:flex;
+    gap:38px;
+    color:#aebdce;
+    font-size:16px;
 }
 
-.logo span {
-    color: var(--orange);
-}
-
-.nav-links {
-    display: flex;
-    gap: 34px;
-    color: var(--muted);
-}
-
-.nav-links a:hover {
-    color: var(--text);
-}
-
-section {
-    padding: 95px 0;
-}
-
-.eyebrow {
-    color: var(--blue);
-    font-size: 13px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 22px;
-}
-
-h1,
-h2 {
-    font-family: Georgia, serif;
-    font-weight: 400;
-}
-
-h1 {
-    font-size: clamp(48px, 7vw, 88px);
-    line-height: .98;
-}
-
-h1 span,
-h2 span {
-    color: var(--orange);
-}
-
-h2 {
-    font-size: clamp(38px, 5vw, 62px);
-    line-height: 1.05;
-}
-
-.lead {
-    color: var(--muted);
-    font-size: 19px;
-    max-width: 900px;
-    margin-top: 30px;
+.navlinks a:hover{
+    color:var(--orange);
 }
 
 /* HERO */
 
-.hero {
-    min-height: 610px;
-    display: flex;
-    align-items: center;
+.hero{
+    max-width:1450px;
+    margin:auto;
+    padding:90px 42px 55px;
 }
 
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.45fr .75fr;
-    gap: 60px;
-    align-items: center;
+.eyebrow{
+    color:var(--blue);
+    letter-spacing:6px;
+    font-size:13px;
+    margin-bottom:25px;
 }
 
-.hero-card {
-    border: 1px solid var(--border);
-    background: var(--panel);
-    padding: 42px;
+.hero h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;
+    font-size:clamp(55px,7vw,105px);
+    line-height:.94;
+    max-width:1050px;
+    margin:0;
 }
 
-.hero-card .number {
-    color: var(--orange);
-    font-family: Georgia, serif;
-    font-size: 62px;
-    margin-bottom: 18px;
+.hero h1 span{
+    color:var(--orange);
 }
 
-.hero-card h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.hero p{
+    color:var(--blue);
+    font-size:20px;
+    line-height:1.7;
+    max-width:900px;
+    margin-top:35px;
 }
 
-.hero-card p {
-    color: var(--muted);
-    font-size: 17px;
+/* MAIN */
+
+.container{
+    max-width:1450px;
+    margin:auto;
+    padding:20px 42px 100px;
 }
 
-/* KPI LAB */
+/* CONTROL PANEL */
 
-.lab-section {
-    border-top: 1px solid var(--border);
+.control-panel{
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:30px;
+    margin-bottom:25px;
 }
 
-.section-header {
-    margin-bottom: 50px;
+.section-title{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:31px;
+    margin:0 0 8px;
 }
 
-.section-header p {
-    color: var(--muted);
-    font-size: 18px;
-    margin-top: 20px;
-    max-width: 850px;
+.section-description{
+    color:var(--muted);
+    margin:0 0 30px;
+    line-height:1.6;
 }
 
-.lab-layout {
-    display: grid;
-    grid-template-columns: 300px minmax(0,1fr);
-    gap: 30px;
-    align-items: start;
+.controls{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
 }
 
-.controls {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 28px;
-    position: sticky;
-    top: 105px;
+.control{
+    border:1px solid var(--line);
+    background:var(--panel2);
+    padding:22px;
 }
 
-.controls h3 {
-    font-size: 23px;
-    margin-bottom: 10px;
+.control-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:14px;
 }
 
-.controls > p {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 28px;
+.control label{
+    color:var(--blue);
+    font-size:15px;
 }
 
-.control {
-    margin-bottom: 25px;
+.control-value{
+    font-weight:bold;
+    color:var(--orange);
 }
 
-.control label {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    color: var(--blue);
-    margin-bottom: 8px;
+input[type="range"]{
+    width:100%;
+    accent-color:var(--orange);
+    cursor:pointer;
 }
 
-.control strong {
-    color: var(--text);
+/* KPI GRID */
+
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:25px;
 }
 
-input[type="range"] {
-    width: 100%;
-    accent-color: var(--orange);
-    cursor: pointer;
+.kpi{
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:24px;
+    min-height:145px;
 }
 
-select {
-    width: 100%;
-    padding: 13px 14px;
-    background: var(--panel2);
-    color: var(--text);
-    border: 1px solid var(--border);
-    outline: none;
+.kpi-label{
+    color:var(--blue);
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-size:12px;
+    margin-bottom:18px;
 }
 
-.run-btn {
-    width: 100%;
-    border: none;
-    background: var(--orange);
-    color: #08111d;
-    padding: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 5px;
+.kpi-value{
+    font-size:31px;
+    font-weight:500;
+    margin-bottom:10px;
 }
 
-.run-btn:hover {
-    filter: brightness(1.08);
+.kpi-note{
+    color:var(--muted);
+    font-size:13px;
 }
 
-/* DASHBOARD */
-
-.dashboard {
-    min-width: 0;
+.positive{
+    color:var(--green);
 }
 
-.kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 16px;
-    margin-bottom: 22px;
+.warning{
+    color:var(--orange);
 }
 
-.kpi-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 24px;
-    min-height: 150px;
+.negative{
+    color:var(--red);
 }
 
-.kpi-label {
-    color: var(--blue);
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
+/* BIG PROFITABILITY */
+
+.profitability{
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:20px;
+    margin-bottom:25px;
 }
 
-.kpi-value {
-    font-size: 32px;
-    font-weight: 400;
+.panel{
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:30px;
 }
 
-.kpi-note {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 8px;
+.panel h2{
+    margin:0 0 8px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:30px;
 }
 
-/* CHART */
-
-.chart-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 30px;
-    margin-bottom: 22px;
+.panel-subtitle{
+    color:var(--muted);
+    margin-bottom:30px;
 }
 
-.chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 25px;
+/* PROFIT WATERFALL */
+
+.waterfall{
+    display:grid;
+    gap:17px;
 }
 
-.chart-header h3 {
-    font-size: 25px;
+.waterfall-row{
+    display:grid;
+    grid-template-columns:190px 1fr 110px;
+    align-items:center;
+    gap:15px;
 }
 
-.chart-header span {
-    color: var(--blue);
-    font-size: 14px;
+.waterfall-name{
+    color:#c6d3df;
 }
 
-.chart {
-    width: 100%;
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background:
-        linear-gradient(to bottom,
-            transparent 24%,
-            var(--border) 25%,
-            transparent 25%,
-            transparent 49%,
-            var(--border) 50%,
-            transparent 50%,
-            transparent 74%,
-            var(--border) 75%,
-            transparent 75%);
+.bar-track{
+    height:18px;
+    background:#182737;
+    border:1px solid var(--line);
 }
 
-.chart svg {
-    width: 100%;
-    height: 100%;
+.bar{
+    height:100%;
+    background:var(--orange);
+    transition:width .35s ease;
 }
 
-.chart-line {
-    fill: none;
-    stroke: var(--orange);
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.bar.cost{
+    background:#c97878;
 }
 
-/* PROFITABILITY */
-
-.profit-card {
-    border: 1px solid var(--border);
-    background: var(--panel);
-    padding: 32px;
-    margin-bottom: 22px;
+.bar.profit{
+    background:var(--green);
 }
 
-.profit-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-    margin-top: 25px;
+.waterfall-value{
+    text-align:right;
+    font-weight:bold;
 }
 
-.profit-item {
-    background: var(--panel2);
-    border: 1px solid var(--border);
-    padding: 22px;
+/* MARGINS */
+
+.margin-box{
+    display:grid;
+    gap:20px;
 }
 
-.profit-item .label {
-    color: var(--muted);
-    font-size: 14px;
+.margin-item{
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
 }
 
-.profit-item .value {
-    font-size: 28px;
-    margin-top: 7px;
+.margin-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
 }
 
-.good {
-    color: var(--green);
+.margin-name{
+    color:var(--blue);
 }
 
-.bad {
-    color: var(--red);
+.margin-number{
+    font-size:22px;
 }
 
-/* INTERPRETATION */
-
-.interpretation {
-    border-left: 3px solid var(--orange);
-    background: var(--panel);
-    border-top: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 28px;
+.progress{
+    height:9px;
+    background:#172535;
+    overflow:hidden;
 }
 
-.interpretation h3 {
-    margin-bottom: 10px;
-    font-size: 23px;
+.progress span{
+    display:block;
+    height:100%;
+    background:var(--orange);
+    transition:width .35s ease;
 }
 
-.interpretation p {
-    color: var(--muted);
-    font-size: 16px;
+/* TABLE */
+
+.table-panel{
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:30px;
+    margin-bottom:25px;
 }
 
-/* KPI EXPLAINER */
-
-.kpi-library {
-    border-top: 1px solid var(--border);
+.table-wrap{
+    overflow-x:auto;
 }
 
-.kpi-cards {
-    display: grid;
-    grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 18px;
+table{
+    width:100%;
+    border-collapse:collapse;
 }
 
-.info-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 28px;
+th,td{
+    padding:17px 14px;
+    border-bottom:1px solid var(--line);
+    text-align:left;
 }
 
-.info-card h3 {
-    color: var(--text);
-    font-size: 21px;
-    margin-bottom: 8px;
+th{
+    color:var(--blue);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
-.info-card .formula {
-    color: var(--orange);
-    font-family: Georgia, serif;
-    font-size: 18px;
-    margin-bottom: 12px;
+td{
+    color:#d8e1e9;
 }
 
-.info-card p {
-    color: var(--muted);
-    font-size: 14px;
+td:last-child{
+    font-weight:bold;
+}
+
+/* INSIGHTS */
+
+.insights{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.insight{
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:27px;
+}
+
+.insight-number{
+    color:var(--orange);
+    font-size:36px;
+    margin-bottom:14px;
+}
+
+.insight h3{
+    margin:0 0 10px;
+    font-size:19px;
+}
+
+.insight p{
+    color:var(--muted);
+    line-height:1.65;
+    margin:0;
 }
 
 /* FOOTER */
 
-footer {
-    border-top: 1px solid var(--border);
-    padding: 50px 5%;
-    color: var(--muted);
-    text-align: center;
-    font-size: 13px;
+footer{
+    border-top:1px solid var(--line);
+    padding:35px 42px;
+    color:#7f93a7;
+    text-align:center;
 }
 
 /* RESPONSIVE */
 
-@media (max-width: 1100px) {
-
-    .hero-grid {
-        grid-template-columns: 1fr;
+@media(max-width:1100px){
+    .kpi-grid{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    .lab-layout {
-        grid-template-columns: 1fr;
+    .controls{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .controls {
-        position: static;
-    }
-
-    .kpi-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .kpi-cards {
-        grid-template-columns: repeat(2,1fr);
+    .profitability{
+        grid-template-columns:1fr;
     }
 }
 
-@media (max-width: 800px) {
-
-    nav {
-        padding: 0 24px;
+@media(max-width:700px){
+    .navbar{
+        padding:0 18px;
     }
 
-    .nav-links {
-        gap: 18px;
+    .navlinks{
+        gap:12px;
+        font-size:12px;
     }
 
-    section {
-        padding: 70px 0;
+    .hero,
+    .container{
+        padding-left:20px;
+        padding-right:20px;
     }
 
-    .container {
-        width: calc(100% - 40px);
+    .hero{
+        padding-top:55px;
     }
 
-    .profit-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .chart-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 650px) {
-
-    nav {
-        height: 68px;
-        padding: 0 20px;
-    }
-
-    .logo {
-        font-size: 21px;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero {
-        min-height: auto;
-    }
-
-    .hero-card {
-        padding: 25px;
-    }
-
+    .controls,
     .kpi-grid,
-    .kpi-cards {
-        grid-template-columns: 1fr;
+    .insights{
+        grid-template-columns:1fr;
     }
 
-    .controls {
-        padding: 22px;
+    .waterfall-row{
+        grid-template-columns:1fr;
+        gap:8px;
     }
 
-    .chart-card,
-    .profit-card {
-        padding: 20px;
+    .waterfall-value{
+        text-align:left;
     }
 }
 </style>
@@ -560,403 +465,510 @@ footer {
 
 <body>
 
-<nav>
-    <a href="index.html" class="logo">
-        RM <span>Analytics Lab</span>
-    </a>
+<!-- NAVIGATION -->
 
-    <div class="nav-links">
+<nav class="navbar">
+
+    <div class="logo">
+        RM <span>Analytics Lab</span>
+    </div>
+
+    <div class="navlinks">
         <a href="index.html">RM Problem</a>
-        <a href="index.html#framework">Framework</a>
+        <a href="index.html">Framework</a>
         <a href="forecasting.html">Forecasting</a>
         <a href="kpi.html">KPI Intelligence</a>
     </div>
+
 </nav>
 
-<main>
 
 <!-- HERO -->
 
 <section class="hero">
-    <div class="container hero-grid">
 
-        <div>
-            <div class="eyebrow">
-                04 — KPI INTELLIGENCE LABORATORY
-            </div>
-
-            <h1>
-                Measure the
-                <span>economics</span>
-                of the flight.
-            </h1>
-
-            <p class="lead">
-                Revenue Management performance cannot be understood through
-                one number. Explore how demand, capacity, revenue, cost and
-                profitability interact to determine commercial performance.
-            </p>
-        </div>
-
-        <div class="hero-card">
-            <div class="number">01</div>
-
-            <h3>
-                From operational metrics to profitability
-            </h3>
-
-            <p>
-                A strong load factor does not automatically mean a profitable
-                flight. Revenue, yield, cost and capacity must be interpreted
-                together.
-            </p>
-        </div>
-
+    <div class="eyebrow">
+        04 — COMMERCIAL PERFORMANCE LAB
     </div>
+
+    <h1>
+        Measure the
+        <span>economics</span>
+        behind the decision.
+    </h1>
+
+    <p>
+        Translate demand, pricing, capacity and cost assumptions
+        into commercial KPIs. Explore revenue, profitability,
+        margins, break-even economics and operating efficiency
+        in one decision environment.
+    </p>
+
 </section>
 
 
-<!-- KPI LAB -->
+<main class="container">
 
-<section class="lab-section">
-<div class="container">
 
-    <div class="section-header">
+<!-- SCENARIO CONTROLS -->
 
-        <div class="eyebrow">
-            INTERACTIVE KPI LAB
+<section class="control-panel">
+
+    <h2 class="section-title">
+        Commercial scenario controls
+    </h2>
+
+    <p class="section-description">
+        Change the operating assumptions and watch the entire KPI
+        system respond immediately.
+    </p>
+
+    <div class="controls">
+
+        <div class="control">
+
+            <div class="control-header">
+                <label>Demand</label>
+                <span class="control-value" id="demandValue">120 pax</span>
+            </div>
+
+            <input
+                id="demand"
+                type="range"
+                min="40"
+                max="220"
+                value="120"
+            >
+
         </div>
 
-        <h2>
-            Test the <span>commercial system.</span>
-        </h2>
 
-        <p>
-            Change the assumptions and observe how airline KPIs and
-            profitability respond.
-        </p>
+        <div class="control">
+
+            <div class="control-header">
+                <label>Average fare</label>
+                <span class="control-value" id="fareValue">$180</span>
+            </div>
+
+            <input
+                id="fare"
+                type="range"
+                min="60"
+                max="500"
+                value="180"
+            >
+
+        </div>
+
+
+        <div class="control">
+
+            <div class="control-header">
+                <label>Aircraft capacity</label>
+                <span class="control-value" id="capacityValue">180 pax</span>
+            </div>
+
+            <input
+                id="capacity"
+                type="range"
+                min="80"
+                max="300"
+                value="180"
+            >
+
+        </div>
+
+
+        <div class="control">
+
+            <div class="control-header">
+                <label>Operating cost / pax</label>
+                <span class="control-value" id="costValue">$95</span>
+            </div>
+
+            <input
+                id="cost"
+                type="range"
+                min="30"
+                max="250"
+                value="95"
+            >
+
+        </div>
 
     </div>
 
-    <div class="lab-layout">
+</section>
 
-        <!-- CONTROLS -->
 
-        <aside class="controls">
+<!-- KPI CARDS -->
 
-            <h3>Scenario controls</h3>
+<section class="kpi-grid">
 
-            <p>
-                Change one commercial assumption at a time and observe
-                the effect on the KPI system.
-            </p>
+    <div class="kpi">
 
-            <div class="control">
+        <div class="kpi-label">
+            Revenue
+        </div>
 
-                <label>
-                    <span>Aircraft capacity</span>
-                    <strong id="capacityValue">180</strong>
-                </label>
+        <div class="kpi-value" id="revenueKpi">
+            $21,600
+        </div>
 
-                <input
-                    id="capacity"
-                    type="range"
-                    min="80"
-                    max="300"
-                    value="180"
-                >
+        <div class="kpi-note">
+            Passenger revenue
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            Operating cost
+        </div>
+
+        <div class="kpi-value" id="costKpi">
+            $11,400
+        </div>
+
+        <div class="kpi-note">
+            Variable operating cost
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            Operating profit
+        </div>
+
+        <div class="kpi-value positive" id="profitKpi">
+            $10,200
+        </div>
+
+        <div class="kpi-note">
+            Revenue less operating cost
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            Profit margin
+        </div>
+
+        <div class="kpi-value positive" id="marginKpi">
+            47.2%
+        </div>
+
+        <div class="kpi-note">
+            Profit / revenue
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            Load factor
+        </div>
+
+        <div class="kpi-value" id="loadKpi">
+            66.7%
+        </div>
+
+        <div class="kpi-note">
+            Demand / capacity
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            Revenue / passenger
+        </div>
+
+        <div class="kpi-value" id="rppKpi">
+            $180
+        </div>
+
+        <div class="kpi-note">
+            Average passenger revenue
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            Yield
+        </div>
+
+        <div class="kpi-value" id="yieldKpi">
+            $180
+        </div>
+
+        <div class="kpi-note">
+            Revenue per passenger
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            RASK
+        </div>
+
+        <div class="kpi-value" id="raskKpi">
+            $120.00
+        </div>
+
+        <div class="kpi-note">
+            Revenue / available seat
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            CASK
+        </div>
+
+        <div class="kpi-value" id="caskKpi">
+            $63.33
+        </div>
+
+        <div class="kpi-note">
+            Cost / available seat
+        </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+        <div class="kpi-label">
+            Break-even load factor
+        </div>
+
+        <div class="kpi-value warning" id="breakEvenKpi">
+            52.8%
+        </div>
+
+        <div class="kpi-note">
+            Minimum load to cover cost
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROFITABILITY -->
+
+<section class="profitability">
+
+
+    <div class="panel">
+
+        <h2>Profitability bridge</h2>
+
+        <div class="panel-subtitle">
+            How demand and price translate into operating economics.
+        </div>
+
+        <div class="waterfall">
+
+
+            <div class="waterfall-row">
+
+                <div class="waterfall-name">
+                    Passenger revenue
+                </div>
+
+                <div class="bar-track">
+                    <div
+                        class="bar"
+                        id="revenueBar"
+                        style="width:100%">
+                    </div>
+                </div>
+
+                <div
+                    class="waterfall-value"
+                    id="revenueBridge">
+                    $21,600
+                </div>
 
             </div>
 
-            <div class="control">
 
-                <label>
-                    <span>Passengers</span>
-                    <strong id="passengersValue">120</strong>
-                </label>
+            <div class="waterfall-row">
 
-                <input
-                    id="passengers"
-                    type="range"
-                    min="20"
-                    max="300"
-                    value="120"
-                >
+                <div class="waterfall-name">
+                    Operating cost
+                </div>
 
-            </div>
-
-            <div class="control">
-
-                <label>
-                    <span>Average fare ($)</span>
-                    <strong id="fareValue">180</strong>
-                </label>
-
-                <input
-                    id="fare"
-                    type="range"
-                    min="50"
-                    max="600"
-                    value="180"
-                >
-
-            </div>
-
-            <div class="control">
-
-                <label>
-                    <span>Ancillary revenue ($)</span>
-                    <strong id="ancillaryValue">35</strong>
-                </label>
-
-                <input
-                    id="ancillary"
-                    type="range"
-                    min="0"
-                    max="150"
-                    value="35"
-                >
-
-            </div>
-
-            <div class="control">
-
-                <label>
-                    <span>Operating cost ($)</span>
-                    <strong id="costValue">17000</strong>
-                </label>
-
-                <input
-                    id="cost"
-                    type="range"
-                    min="5000"
-                    max="50000"
-                    step="500"
-                    value="17000"
-                >
-
-            </div>
-
-            <div class="control">
-
-                <label>
-                    <span>Average distance (km)</span>
-                    <strong id="distanceValue">2500</strong>
-                </label>
-
-                <input
-                    id="distance"
-                    type="range"
-                    min="500"
-                    max="6000"
-                    step="100"
-                    value="2500"
-                >
-
-            </div>
-
-            <button class="run-btn" id="runButton">
-                Run KPI analysis
-            </button>
-
-        </aside>
-
-
-        <!-- DASHBOARD -->
-
-        <div class="dashboard">
-
-            <div class="kpi-grid">
-
-                <div class="kpi-card">
-                    <div class="kpi-label">Load Factor</div>
-                    <div class="kpi-value" id="loadFactor">67%</div>
-                    <div class="kpi-note">
-                        Passenger capacity utilization
+                <div class="bar-track">
+                    <div
+                        class="bar cost"
+                        id="costBar"
+                        style="width:53%">
                     </div>
                 </div>
 
-                <div class="kpi-card">
-                    <div class="kpi-label">Passenger Revenue</div>
-                    <div class="kpi-value" id="revenue">$25,800</div>
-                    <div class="kpi-note">
-                        Fare revenue
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-label">Total Revenue</div>
-                    <div class="kpi-value" id="totalRevenue">$30,000</div>
-                    <div class="kpi-note">
-                        Fare + ancillary revenue
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-label">Operating Profit</div>
-                    <div class="kpi-value good" id="profit">$13,000</div>
-                    <div class="kpi-note">
-                        Revenue minus operating cost
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-label">Profit Margin</div>
-                    <div class="kpi-value good" id="margin">43%</div>
-                    <div class="kpi-note">
-                        Profit / total revenue
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-label">Yield</div>
-                    <div class="kpi-value" id="yield">$0.10</div>
-                    <div class="kpi-note">
-                        Revenue per passenger-km
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-label">RASK</div>
-                    <div class="kpi-value" id="rask">$0.067</div>
-                    <div class="kpi-note">
-                        Revenue per available seat-km
-                    </div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-label">CASK</div>
-                    <div class="kpi-value" id="cask">$0.038</div>
-                    <div class="kpi-note">
-                        Cost per available seat-km
-                    </div>
+                <div
+                    class="waterfall-value"
+                    id="costBridge">
+                    -$11,400
                 </div>
 
             </div>
 
 
-            <!-- CHART -->
+            <div class="waterfall-row">
 
-            <div class="chart-card">
+                <div class="waterfall-name">
+                    Operating profit
+                </div>
 
-                <div class="chart-header">
-                    <h3>Commercial performance</h3>
-                    <span id="chartMessage">
-                        Revenue versus cost
+                <div class="bar-track">
+                    <div
+                        class="bar profit"
+                        id="profitBar"
+                        style="width:47%">
+                    </div>
+                </div>
+
+                <div
+                    class="waterfall-value positive"
+                    id="profitBridge">
+                    $10,200
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h2>Commercial health</h2>
+
+        <div class="panel-subtitle">
+            Core efficiency indicators.
+        </div>
+
+        <div class="margin-box">
+
+
+            <div class="margin-item">
+
+                <div class="margin-top">
+                    <span class="margin-name">
+                        Load factor
+                    </span>
+
+                    <span
+                        class="margin-number"
+                        id="loadHealth">
+                        66.7%
                     </span>
                 </div>
 
-                <div class="chart">
-
-                    <svg
-                        viewBox="0 0 900 300"
-                        preserveAspectRatio="none"
-                    >
-
-                        <polyline
-                            id="revenueLine"
-                            class="chart-line"
-                            points="
-                            20,240
-                            100,225
-                            180,215
-                            260,195
-                            340,180
-                            420,160
-                            500,145
-                            580,125
-                            660,110
-                            740,85
-                            820,60
-                            "
-                        />
-
-                        <polyline
-                            id="costLine"
-                            class="chart-line"
-                            style="stroke:var(--blue)"
-                            points="
-                            20,260
-                            100,258
-                            180,255
-                            260,250
-                            340,245
-                            420,240
-                            500,235
-                            580,230
-                            660,225
-                            740,220
-                            820,215
-                            "
-                        />
-
-                    </svg>
-
+                <div class="progress">
+                    <span
+                        id="loadProgress"
+                        style="width:66.7%">
+                    </span>
                 </div>
 
             </div>
 
 
-            <!-- PROFITABILITY -->
+            <div class="margin-item">
 
-            <div class="profit-card">
+                <div class="margin-top">
+                    <span class="margin-name">
+                        Profit margin
+                    </span>
 
-                <div class="eyebrow">
-                    PROFITABILITY
+                    <span
+                        class="margin-number"
+                        id="profitHealth">
+                        47.2%
+                    </span>
                 </div>
 
-                <h3>
-                    Is the flight economically attractive?
-                </h3>
-
-                <div class="profit-grid">
-
-                    <div class="profit-item">
-                        <div class="label">
-                            Break-even passengers
-                        </div>
-                        <div class="value" id="breakEven">
-                            71 pax
-                        </div>
-                    </div>
-
-                    <div class="profit-item">
-                        <div class="label">
-                            Profit per passenger
-                        </div>
-                        <div class="value" id="profitPerPassenger">
-                            $108
-                        </div>
-                    </div>
-
-                    <div class="profit-item">
-                        <div class="label">
-                            Profit per available seat
-                        </div>
-                        <div class="value" id="profitPerSeat">
-                            $72
-                        </div>
-                    </div>
-
+                <div class="progress">
+                    <span
+                        id="profitProgress"
+                        style="width:47.2%">
+                    </span>
                 </div>
 
             </div>
 
 
-            <!-- INTERPRETATION -->
+            <div class="margin-item">
 
-            <div class="interpretation">
+                <div class="margin-top">
+                    <span class="margin-name">
+                        Break-even headroom
+                    </span>
 
-                <h3 id="interpretationTitle">
-                    Commercial interpretation
-                </h3>
+                    <span
+                        class="margin-number"
+                        id="headroomHealth">
+                        13.9 pts
+                    </span>
+                </div>
 
-                <p id="interpretationText">
-                    The current scenario generates a healthy load factor
-                    and positive operating profit. The commercial result
-                    should be interpreted together with yield and cost,
-                    rather than load factor alone.
-                </p>
+                <div class="progress">
+                    <span
+                        id="headroomProgress"
+                        style="width:27.8%">
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="margin-item">
+
+                <div class="margin-top">
+                    <span class="margin-name">
+                        Capacity utilisation
+                    </span>
+
+                    <span
+                        class="margin-number"
+                        id="capacityHealth">
+                        66.7%
+                    </span>
+                </div>
+
+                <div class="progress">
+                    <span
+                        id="capacityProgress"
+                        style="width:66.7%">
+                    </span>
+                </div>
 
             </div>
 
@@ -964,419 +976,580 @@ footer {
 
     </div>
 
-</div>
 </section>
 
 
-<!-- KPI LIBRARY -->
+<!-- KPI TABLE -->
 
-<section class="kpi-library">
-<div class="container">
+<section class="table-panel">
 
-    <div class="section-header">
+    <h2 class="section-title">
+        KPI definition matrix
+    </h2>
 
-        <div class="eyebrow">
-            KPI REFERENCE
+    <p class="section-description">
+        The dashboard connects operational assumptions to
+        commercially meaningful measures.
+    </p>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>KPI</th>
+                    <th>Current value</th>
+                    <th>Formula</th>
+                    <th>Commercial meaning</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Revenue</td>
+                    <td id="tableRevenue">$21,600</td>
+                    <td>Demand × Fare</td>
+                    <td>Total passenger revenue</td>
+                </tr>
+
+                <tr>
+                    <td>Operating Cost</td>
+                    <td id="tableCost">$11,400</td>
+                    <td>Demand × Cost / pax</td>
+                    <td>Variable operating expense</td>
+                </tr>
+
+                <tr>
+                    <td>Operating Profit</td>
+                    <td id="tableProfit">$10,200</td>
+                    <td>Revenue − Cost</td>
+                    <td>Commercial contribution</td>
+                </tr>
+
+                <tr>
+                    <td>Profit Margin</td>
+                    <td id="tableMargin">47.2%</td>
+                    <td>Profit / Revenue</td>
+                    <td>Profitability efficiency</td>
+                </tr>
+
+                <tr>
+                    <td>Load Factor</td>
+                    <td id="tableLoad">66.7%</td>
+                    <td>Demand / Capacity</td>
+                    <td>Capacity utilisation</td>
+                </tr>
+
+                <tr>
+                    <td>RASK</td>
+                    <td id="tableRask">$120.00</td>
+                    <td>Revenue / Capacity</td>
+                    <td>Revenue productivity</td>
+                </tr>
+
+                <tr>
+                    <td>CASK</td>
+                    <td id="tableCask">$63.33</td>
+                    <td>Cost / Capacity</td>
+                    <td>Cost productivity</td>
+                </tr>
+
+                <tr>
+                    <td>Break-even Load Factor</td>
+                    <td id="tableBreakEven">52.8%</td>
+                    <td>Cost / Revenue at full capacity</td>
+                    <td>Minimum sustainable utilisation</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- INSIGHTS -->
+
+<section class="insights">
+
+
+    <div class="insight">
+
+        <div class="insight-number">
+            01
         </div>
 
-        <h2>
-            Know what the <span>numbers mean.</span>
-        </h2>
+        <h3>
+            Revenue quality
+        </h3>
 
-        <p>
-            These measures connect airline operations with Revenue
-            Management and profitability.
+        <p id="revenueInsight">
+            Revenue grows when demand and average fare improve.
+            The combination determines the commercial value of
+            each departure.
         </p>
 
     </div>
 
 
-    <div class="kpi-cards">
+    <div class="insight">
 
-        <div class="info-card">
-            <h3>Load Factor</h3>
-            <div class="formula">
-                Passengers ÷ Capacity
-            </div>
-            <p>
-                Measures how much available passenger capacity is being
-                utilized.
-            </p>
+        <div class="insight-number">
+            02
         </div>
 
-        <div class="info-card">
-            <h3>RPK</h3>
-            <div class="formula">
-                Passengers × Distance
-            </div>
-            <p>
-                Revenue passenger kilometres measure passenger traffic
-                carried.
-            </p>
-        </div>
+        <h3>
+            Profitability
+        </h3>
 
-        <div class="info-card">
-            <h3>ASK</h3>
-            <div class="formula">
-                Seats × Distance
-            </div>
-            <p>
-                Available seat kilometres measure the capacity offered
-                to the market.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>Yield</h3>
-            <div class="formula">
-                Passenger Revenue ÷ RPK
-            </div>
-            <p>
-                Measures revenue generated for each passenger kilometre.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>RASK</h3>
-            <div class="formula">
-                Revenue ÷ ASK
-            </div>
-            <p>
-                Measures revenue generated from each available seat
-                kilometre.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>CASK</h3>
-            <div class="formula">
-                Operating Cost ÷ ASK
-            </div>
-            <p>
-                Measures operating cost per available seat kilometre.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>Profit Margin</h3>
-            <div class="formula">
-                Profit ÷ Revenue
-            </div>
-            <p>
-                Shows how much of the generated revenue remains after
-                operating costs.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>Break-even Load Factor</h3>
-            <div class="formula">
-                Break-even passengers ÷ Capacity
-            </div>
-            <p>
-                Indicates the minimum utilization required to cover
-                operating costs under the scenario assumptions.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>Profit per Passenger</h3>
-            <div class="formula">
-                Profit ÷ Passengers
-            </div>
-            <p>
-                Shows the average economic contribution generated by
-                each passenger.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>Revenue</h3>
-            <div class="formula">
-                Fare Revenue + Ancillary Revenue
-            </div>
-            <p>
-                Represents the commercial income generated by the flight.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>Operating Cost</h3>
-            <div class="formula">
-                Fixed + Variable Operating Costs
-            </div>
-            <p>
-                Represents the resources required to operate the flight
-                under the scenario.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>Operating Profit</h3>
-            <div class="formula">
-                Total Revenue − Operating Cost
-            </div>
-            <p>
-                Shows whether the flight produces a positive or negative
-                operating contribution.
-            </p>
-        </div>
+        <p id="profitInsight">
+            Profitability depends on the spread between passenger
+            revenue and operating cost per passenger.
+        </p>
 
     </div>
 
-</div>
+
+    <div class="insight">
+
+        <div class="insight-number">
+            03
+        </div>
+
+        <h3>
+            Break-even discipline
+        </h3>
+
+        <p id="breakEvenInsight">
+            The break-even load factor shows how much capacity
+            must be sold before the operation covers variable cost.
+        </p>
+
+    </div>
+
 </section>
 
 </main>
 
 
 <footer>
-    RM Analytics Lab — Revenue Management Analytics Laboratory
+    RM Analytics Lab — Revenue Management Decision Science
 </footer>
 
 
 <script>
 
-const capacity = document.getElementById("capacity");
-const passengers = document.getElementById("passengers");
-const fare = document.getElementById("fare");
-const ancillary = document.getElementById("ancillary");
-const cost = document.getElementById("cost");
-const distance = document.getElementById("distance");
+/* =========================================================
+   KPI ENGINE
+   ========================================================= */
 
-const capacityValue = document.getElementById("capacityValue");
-const passengersValue = document.getElementById("passengersValue");
-const fareValue = document.getElementById("fareValue");
-const ancillaryValue = document.getElementById("ancillaryValue");
-const costValue = document.getElementById("costValue");
-const distanceValue = document.getElementById("distanceValue");
+document.addEventListener("DOMContentLoaded", function(){
 
-function formatMoney(value) {
-    return "$" + Math.round(value).toLocaleString();
-}
+    const demandInput =
+        document.getElementById("demand");
 
-function updateLabels() {
+    const fareInput =
+        document.getElementById("fare");
 
-    capacityValue.textContent =
-        Number(capacity.value).toLocaleString();
+    const capacityInput =
+        document.getElementById("capacity");
 
-    passengersValue.textContent =
-        Number(passengers.value).toLocaleString();
-
-    fareValue.textContent =
-        Number(fare.value).toLocaleString();
-
-    ancillaryValue.textContent =
-        Number(ancillary.value).toLocaleString();
-
-    costValue.textContent =
-        Number(cost.value).toLocaleString();
-
-    distanceValue.textContent =
-        Number(distance.value).toLocaleString();
-}
-
-function runAnalysis() {
-
-    const cap = Number(capacity.value);
-    const pax = Number(passengers.value);
-    const avgFare = Number(fare.value);
-    const ancillaryPerPax = Number(ancillary.value);
-    const operatingCost = Number(cost.value);
-    const km = Number(distance.value);
-
-    const passengerRevenue =
-        pax * avgFare;
-
-    const ancillaryRevenue =
-        pax * ancillaryPerPax;
-
-    const totalRevenue =
-        passengerRevenue + ancillaryRevenue;
-
-    const operatingProfit =
-        totalRevenue - operatingCost;
-
-    const loadFactor =
-        cap > 0 ? pax / cap : 0;
-
-    const rpk =
-        pax * km;
-
-    const ask =
-        cap * km;
-
-    const yieldValue =
-        rpk > 0 ? passengerRevenue / rpk : 0;
-
-    const rask =
-        ask > 0 ? totalRevenue / ask : 0;
-
-    const cask =
-        ask > 0 ? operatingCost / ask : 0;
-
-    const margin =
-        totalRevenue > 0
-            ? operatingProfit / totalRevenue
-            : 0;
-
-    const contributionPerPassenger =
-        pax > 0
-            ? operatingProfit / pax
-            : 0;
-
-    const profitPerSeat =
-        cap > 0
-            ? operatingProfit / cap
-            : 0;
-
-    const revenuePerPassenger =
-        avgFare + ancillaryPerPax;
-
-    const breakEvenPassengers =
-        revenuePerPassenger > 0
-            ? Math.ceil(operatingCost / revenuePerPassenger)
-            : 0;
-
-    const breakEvenLoadFactor =
-        cap > 0
-            ? breakEvenPassengers / cap
-            : 0;
+    const costInput =
+        document.getElementById("cost");
 
 
-    document.getElementById("loadFactor").textContent =
-        Math.round(loadFactor * 100) + "%";
-
-    document.getElementById("revenue").textContent =
-        formatMoney(passengerRevenue);
-
-    document.getElementById("totalRevenue").textContent =
-        formatMoney(totalRevenue);
-
-    document.getElementById("profit").textContent =
-        formatMoney(operatingProfit);
-
-    document.getElementById("margin").textContent =
-        Math.round(margin * 100) + "%";
-
-    document.getElementById("yield").textContent =
-        "$" + yieldValue.toFixed(3);
-
-    document.getElementById("rask").textContent =
-        "$" + rask.toFixed(3);
-
-    document.getElementById("cask").textContent =
-        "$" + cask.toFixed(3);
-
-    document.getElementById("breakEven").textContent =
-        breakEvenPassengers + " pax";
-
-    document.getElementById("profitPerPassenger").textContent =
-        formatMoney(contributionPerPassenger);
-
-    document.getElementById("profitPerSeat").textContent =
-        formatMoney(profitPerSeat);
-
-
-    const profitElement =
-        document.getElementById("profit");
-
-    const marginElement =
-        document.getElementById("margin");
-
-    const interpretationTitle =
-        document.getElementById("interpretationTitle");
-
-    const interpretationText =
-        document.getElementById("interpretationText");
-
-    if (operatingProfit > 0) {
-
-        profitElement.className =
-            "kpi-value good";
-
-        marginElement.className =
-            "kpi-value good";
-
-    } else {
-
-        profitElement.className =
-            "kpi-value bad";
-
-        marginElement.className =
-            "kpi-value bad";
+    function money(value){
+        return "$" + Math.round(value).toLocaleString();
     }
 
 
-    if (operatingProfit <= 0) {
+    function money2(value){
+        return "$" + value.toFixed(2);
+    }
 
-        interpretationTitle.textContent =
-            "The flight is currently unprofitable.";
 
-        interpretationText.textContent =
-            "Total revenue does not cover operating cost under the current assumptions. Management should examine fare, passenger volume, ancillary revenue and cost before increasing capacity or pursuing additional demand.";
+    function percent(value){
+        return value.toFixed(1) + "%";
+    }
 
-    } else if (loadFactor < breakEvenLoadFactor) {
 
-        interpretationTitle.textContent =
-            "Demand is below the economic break-even point.";
+    function updateDashboard(){
 
-        interpretationText.textContent =
-            "The flight currently produces a positive contribution, but the scenario has limited protection against weaker demand. Revenue Management should monitor booking pace, fare quality and remaining capacity closely.";
+        const demand =
+            Number(demandInput.value);
 
-    } else if (margin < 0.10) {
+        const fare =
+            Number(fareInput.value);
 
-        interpretationTitle.textContent =
-            "Profit is positive but the margin is thin.";
+        const capacity =
+            Number(capacityInput.value);
 
-        interpretationText.textContent =
-            "A healthy load factor does not necessarily create strong economics. The relatively small margin suggests that fare quality, ancillary revenue or operating cost should be monitored.";
+        const costPerPassenger =
+            Number(costInput.value);
 
-    } else if (loadFactor >= 0.85) {
 
-        interpretationTitle.textContent =
-            "The flight has strong utilization.";
+        /* CORE ECONOMICS */
 
-        interpretationText.textContent =
-            "High utilization can support strong revenue, but additional demand should be evaluated against remaining capacity and the opportunity to improve fare mix rather than simply maximizing passenger volume.";
+        const revenue =
+            demand * fare;
 
-    } else {
+        const operatingCost =
+            demand * costPerPassenger;
 
-        interpretationTitle.textContent =
-            "The commercial position is balanced.";
+        const operatingProfit =
+            revenue - operatingCost;
 
-        interpretationText.textContent =
-            "The flight combines positive profitability with moderate utilization. Revenue Management should balance passenger volume, fare quality, ancillary revenue and capacity rather than optimizing any single KPI.";
+
+        /* OPERATING KPIs */
+
+        const loadFactor =
+            capacity > 0
+            ? demand / capacity
+            : 0;
+
+
+        const profitMargin =
+            revenue > 0
+            ? operatingProfit / revenue
+            : 0;
+
+
+        const rpp =
+            demand > 0
+            ? revenue / demand
+            : 0;
+
+
+        const yieldValue =
+            rpp;
+
+
+        const rask =
+            capacity > 0
+            ? revenue / capacity
+            : 0;
+
+
+        const cask =
+            capacity > 0
+            ? operatingCost / capacity
+            : 0;
+
+
+        /*
+         * Break-even load factor:
+         *
+         * cost per passenger /
+         * average fare
+         */
+
+        const breakEvenLoad =
+            fare > 0
+            ? costPerPassenger / fare
+            : 0;
+
+
+        const headroom =
+            loadFactor - breakEvenLoad;
+
+
+        /* CONTROL VALUES */
+
+        document.getElementById("demandValue").textContent =
+            demand + " pax";
+
+        document.getElementById("fareValue").textContent =
+            "$" + fare;
+
+        document.getElementById("capacityValue").textContent =
+            capacity + " pax";
+
+        document.getElementById("costValue").textContent =
+            "$" + costPerPassenger;
+
+
+        /* KPI CARDS */
+
+        document.getElementById("revenueKpi").textContent =
+            money(revenue);
+
+        document.getElementById("costKpi").textContent =
+            money(operatingCost);
+
+        document.getElementById("profitKpi").textContent =
+            money(operatingProfit);
+
+        document.getElementById("marginKpi").textContent =
+            percent(profitMargin * 100);
+
+        document.getElementById("loadKpi").textContent =
+            percent(loadFactor * 100);
+
+        document.getElementById("rppKpi").textContent =
+            money2(rpp);
+
+        document.getElementById("yieldKpi").textContent =
+            money2(yieldValue);
+
+        document.getElementById("raskKpi").textContent =
+            money2(rask);
+
+        document.getElementById("caskKpi").textContent =
+            money2(cask);
+
+        document.getElementById("breakEvenKpi").textContent =
+            percent(breakEvenLoad * 100);
+
+
+        /* PROFITABILITY BRIDGE */
+
+        document.getElementById("revenueBridge").textContent =
+            money(revenue);
+
+        document.getElementById("costBridge").textContent =
+            "-" + money(operatingCost);
+
+        document.getElementById("profitBridge").textContent =
+            money(operatingProfit);
+
+
+        const costPercentage =
+            revenue > 0
+            ? (operatingCost / revenue) * 100
+            : 0;
+
+
+        const profitPercentage =
+            revenue > 0
+            ? Math.max(0, (operatingProfit / revenue) * 100)
+            : 0;
+
+
+        document.getElementById("revenueBar").style.width =
+            "100%";
+
+        document.getElementById("costBar").style.width =
+            Math.min(100, Math.max(0, costPercentage)) + "%";
+
+        document.getElementById("profitBar").style.width =
+            Math.min(100, Math.max(0, profitPercentage)) + "%";
+
+
+        /* HEALTH */
+
+        document.getElementById("loadHealth").textContent =
+            percent(loadFactor * 100);
+
+        document.getElementById("profitHealth").textContent =
+            percent(profitMargin * 100);
+
+        document.getElementById("headroomHealth").textContent =
+            (headroom * 100).toFixed(1) + " pts";
+
+        document.getElementById("capacityHealth").textContent =
+            percent(loadFactor * 100);
+
+
+        document.getElementById("loadProgress").style.width =
+            Math.min(100, Math.max(0, loadFactor * 100)) + "%";
+
+        document.getElementById("profitProgress").style.width =
+            Math.min(100, Math.max(0, profitMargin * 100)) + "%";
+
+        document.getElementById("headroomProgress").style.width =
+            Math.min(100, Math.max(0, headroom * 200)) + "%";
+
+        document.getElementById("capacityProgress").style.width =
+            Math.min(100, Math.max(0, loadFactor * 100)) + "%";
+
+
+        /* TABLE */
+
+        document.getElementById("tableRevenue").textContent =
+            money(revenue);
+
+        document.getElementById("tableCost").textContent =
+            money(operatingCost);
+
+        document.getElementById("tableProfit").textContent =
+            money(operatingProfit);
+
+        document.getElementById("tableMargin").textContent =
+            percent(profitMargin * 100);
+
+        document.getElementById("tableLoad").textContent =
+            percent(loadFactor * 100);
+
+        document.getElementById("tableRask").textContent =
+            money2(rask);
+
+        document.getElementById("tableCask").textContent =
+            money2(cask);
+
+        document.getElementById("tableBreakEven").textContent =
+            percent(breakEvenLoad * 100);
+
+
+        /* PROFIT COLOUR */
+
+        const profitElements = [
+            document.getElementById("profitKpi"),
+            document.getElementById("marginKpi"),
+            document.getElementById("profitBridge")
+        ];
+
+
+        profitElements.forEach(function(element){
+
+            element.classList.remove(
+                "positive",
+                "negative",
+                "warning"
+            );
+
+            if(operatingProfit > 0){
+
+                element.classList.add("positive");
+
+            }else if(operatingProfit < 0){
+
+                element.classList.add("negative");
+
+            }else{
+
+                element.classList.add("warning");
+
+            }
+
+        });
+
+
+        /* BREAK-EVEN COLOUR */
+
+        const breakEvenElement =
+            document.getElementById("breakEvenKpi");
+
+        breakEvenElement.classList.remove(
+            "positive",
+            "negative",
+            "warning"
+        );
+
+
+        if(headroom > 0.10){
+
+            breakEvenElement.classList.add("positive");
+
+        }else if(headroom > 0){
+
+            breakEvenElement.classList.add("warning");
+
+        }else{
+
+            breakEvenElement.classList.add("negative");
+
+        }
+
+
+        /* DYNAMIC INSIGHTS */
+
+        const revenueInsight =
+            document.getElementById("revenueInsight");
+
+        revenueInsight.textContent =
+            "At " +
+            demand +
+            " passengers and an average fare of " +
+            "$" +
+            fare +
+            ", the operation generates " +
+            money(revenue) +
+            " of passenger revenue.";
+
+
+        const profitInsight =
+            document.getElementById("profitInsight");
+
+
+        if(operatingProfit > 0){
+
+            profitInsight.textContent =
+                "The current scenario produces " +
+                money(operatingProfit) +
+                " of operating profit with a " +
+                percent(profitMargin * 100) +
+                " margin.";
+
+        }else{
+
+            profitInsight.textContent =
+                "The current scenario produces an operating loss of " +
+                money(Math.abs(operatingProfit)) +
+                ". Pricing, demand or operating cost must improve.";
+
+        }
+
+
+        const breakEvenInsight =
+            document.getElementById("breakEvenInsight");
+
+
+        if(headroom > 0){
+
+            breakEvenInsight.textContent =
+                "The operation is " +
+                (headroom * 100).toFixed(1) +
+                " percentage points above break-even load factor. " +
+                "There is currently positive utilisation headroom.";
+
+        }else{
+
+            breakEvenInsight.textContent =
+                "The operation is below break-even load factor by " +
+                Math.abs(headroom * 100).toFixed(1) +
+                " percentage points. " +
+                "The scenario requires stronger economics.";
+
+        }
 
     }
 
 
-    document.getElementById("chartMessage").textContent =
-        "RASK " + rask.toFixed(3) +
-        " vs CASK " + cask.toFixed(3);
-}
+    /* LIVE CONTROLS */
+
+    demandInput.addEventListener(
+        "input",
+        updateDashboard
+    );
+
+    fareInput.addEventListener(
+        "input",
+        updateDashboard
+    );
+
+    capacityInput.addEventListener(
+        "input",
+        updateDashboard
+    );
+
+    costInput.addEventListener(
+        "input",
+        updateDashboard
+    );
 
 
-[
-    capacity,
-    passengers,
-    fare,
-    ancillary,
-    cost,
-    distance
-].forEach(input => {
+    /* INITIAL CALCULATION */
 
-    input.addEventListener("input", () => {
-        updateLabels();
-    });
+    updateDashboard();
 
 });
-
-document.getElementById("runButton")
-    .addEventListener("click", runAnalysis);
-
-updateLabels();
-runAnalysis();
 
 </script>
 
