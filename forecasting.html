@@ -12,14 +12,17 @@
 >
 
 <style>
+
 /* =========================================================
-   RESET / BASE
+   RESET
    ========================================================= */
 
-* {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 :root {
@@ -37,9 +40,14 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     background: var(--bg);
     color: var(--text);
     font-family: Arial, Helvetica, sans-serif;
@@ -50,6 +58,12 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+button,
+select,
+input {
+    font: inherit;
 }
 
 img,
@@ -65,6 +79,7 @@ video {
 
 nav {
     height: 78px;
+    width: 100%;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -74,7 +89,7 @@ nav {
     top: 0;
     background: rgba(8, 17, 29, 0.97);
     backdrop-filter: blur(10px);
-    z-index: 20;
+    z-index: 50;
 }
 
 .logo {
@@ -91,6 +106,10 @@ nav {
     display: flex;
     gap: 34px;
     color: var(--muted);
+}
+
+.nav-links a {
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
@@ -110,6 +129,7 @@ nav {
 
 section {
     padding: 95px 0;
+    width: 100%;
     min-width: 0;
 }
 
@@ -146,6 +166,7 @@ h2 {
 
 h3 {
     font-size: 20px;
+    line-height: 1.3;
     margin-bottom: 12px;
 }
 
@@ -214,6 +235,7 @@ h3 {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
+    min-width: 0;
 }
 
 .model-card {
@@ -221,8 +243,8 @@ h3 {
     border: 1px solid var(--border);
     padding: 28px;
     min-height: 235px;
-    transition: 0.25s;
     min-width: 0;
+    transition: 0.25s;
 }
 
 .model-card:hover {
@@ -256,6 +278,7 @@ h3 {
     display: grid;
     grid-template-columns: 320px minmax(0, 1fr);
     gap: 22px;
+    width: 100%;
     min-width: 0;
 }
 
@@ -277,9 +300,14 @@ h3 {
     margin-bottom: 25px;
 }
 
+.control:last-of-type {
+    margin-bottom: 18px;
+}
+
 .control label {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 12px;
     color: var(--muted);
     font-size: 14px;
@@ -298,6 +326,7 @@ h3 {
 select,
 input[type="range"] {
     width: 100%;
+    max-width: 100%;
 }
 
 select {
@@ -310,6 +339,7 @@ select {
 
 input[type="range"] {
     accent-color: var(--orange);
+    cursor: pointer;
 }
 
 button {
@@ -321,6 +351,7 @@ button {
     font-weight: bold;
     cursor: pointer;
     margin-top: 8px;
+    transition: opacity 0.2s ease;
 }
 
 button:hover {
@@ -336,6 +367,7 @@ button:hover {
 .reset-button:hover {
     color: var(--text);
     border-color: var(--orange);
+    opacity: 1;
 }
 
 /* =========================================================
@@ -418,9 +450,9 @@ button:hover {
 }
 
 canvas {
+    display: block;
     width: 100%;
     height: 100%;
-    display: block;
 }
 
 .legend {
@@ -535,11 +567,31 @@ td strong {
     color: var(--muted);
 }
 
+.booking-card li:last-child {
+    border-bottom: none;
+}
+
+.booking-card li span {
+    color: var(--text);
+    float: right;
+}
+
 /* =========================================================
-   RESPONSIVE FIX
+   FOOTER
    ========================================================= */
 
-/* Smaller desktop / large tablet */
+footer {
+    border-top: 1px solid var(--border);
+    padding: 50px 5%;
+    color: var(--muted);
+    text-align: center;
+    font-size: 13px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 1100px) {
 
     .hero-grid {
@@ -567,35 +619,7 @@ td strong {
     .booking-layout {
         grid-template-columns: 1fr;
     }
-
-    .chart-card {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .dashboard {
-        min-width: 0;
-        width: 100%;
-    }
-
-    .models,
-    .metrics,
-    .chart-card,
-    .model-comparison {
-        min-width: 0;
-    }
-
-    table {
-        width: 100%;
-        max-width: 100%;
-    }
 }
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
 
 @media (max-width: 800px) {
 
@@ -608,16 +632,17 @@ td strong {
     }
 
     section {
-        padding: 75px 0;
+        padding: 70px 0;
     }
 
     .container {
         width: calc(100% - 40px);
-        max-width: 100%;
+        max-width: none;
     }
 
     .hero-grid {
         grid-template-columns: 1fr;
+        width: 100%;
     }
 
     .lab-grid {
@@ -627,23 +652,31 @@ td strong {
 
     .controls {
         width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
+        position: static;
     }
 
     .dashboard {
         width: 100%;
-        max-width: 100%;
         min-width: 0;
-        box-sizing: border-box;
     }
 
     .models {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
     }
 
     .metrics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+    }
+
+    .metric {
+        min-width: 0;
+    }
+
+    .chart-card {
+        width: 100%;
+        min-width: 0;
     }
 
     .chart-title {
@@ -659,41 +692,14 @@ td strong {
         height: 340px;
         width: 100%;
         max-width: 100%;
-        overflow: hidden;
     }
 
-    .chart-card {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-
-    /* Prevent wide tables from breaking the page */
-    .model-comparison,
-    .table-container {
+    .table-wrap {
         width: 100%;
         max-width: 100%;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    table {
-        min-width: 620px;
-    }
-
-    /* Keep sliders inside their panels */
-    input[type="range"] {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
     }
 }
-
-
-/* =========================================================
-   PHONE
-   ========================================================= */
 
 @media (max-width: 650px) {
 
@@ -706,13 +712,11 @@ td strong {
 
     nav {
         height: 68px;
-        padding: 0 20px;
-        box-sizing: border-box;
+        padding: 0 16px;
     }
 
     .logo {
         font-size: 21px;
-        white-space: nowrap;
     }
 
     .nav-links {
@@ -720,15 +724,12 @@ td strong {
     }
 
     section {
-        padding: 65px 0;
+        padding: 60px 0;
     }
 
     .container {
         width: calc(100% - 32px);
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        box-sizing: border-box;
+        max-width: none;
     }
 
     .hero {
@@ -736,63 +737,32 @@ td strong {
     }
 
     .hero-grid {
-        display: grid;
-        grid-template-columns: 1fr;
         gap: 30px;
-        width: 100%;
-    }
-
-    .hero-card {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        padding: 25px;
     }
 
     h1 {
-        font-size: clamp(44px, 14vw, 58px);
-        line-height: 0.98;
+        font-size: clamp(42px, 14vw, 58px);
         max-width: 100%;
         overflow-wrap: break-word;
     }
 
     h2 {
-        font-size: clamp(36px, 11vw, 52px);
-        line-height: 1;
+        font-size: clamp(34px, 11vw, 50px);
         max-width: 100%;
         overflow-wrap: break-word;
     }
 
     .lead {
         font-size: 17px;
-        line-height: 1.65;
-    }
-
-    /* Forecasting laboratory layout */
-    .lab-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-        width: 100%;
         max-width: 100%;
+        overflow-wrap: anywhere;
     }
 
-    .controls {
-        position: static;
+    .hero-card {
         width: 100%;
-        max-width: 100%;
-        padding: 22px;
-        box-sizing: border-box;
+        padding: 24px;
     }
 
-    .dashboard {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
-    }
-
-    /* Model cards */
     .models {
         grid-template-columns: 1fr;
         width: 100%;
@@ -803,9 +773,18 @@ td strong {
         width: 100%;
     }
 
+    .controls {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .dashboard {
+        width: 100%;
+        min-width: 0;
+    }
+
     .metric {
         width: 100%;
-        box-sizing: border-box;
         padding: 18px;
     }
 
@@ -813,114 +792,67 @@ td strong {
         font-size: 25px;
     }
 
-    /* Buttons */
-    button,
-    .button,
-    .run-button {
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* Chart */
     .chart-card {
         width: 100%;
-        max-width: 100%;
         padding: 18px;
-        box-sizing: border-box;
-        overflow: hidden;
     }
 
     .chart-wrapper {
         width: 100%;
-        max-width: 100%;
-        height: 300px;
-        overflow: hidden;
-        box-sizing: border-box;
+        height: 280px;
     }
 
     .chart-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+        display: block;
     }
 
     .chart-title span {
+        display: block;
         width: 100%;
-        max-width: 100%;
+        margin-top: 8px;
     }
 
-    /* Model comparison table */
-    .model-comparison,
-    .table-container {
+    .table-wrap {
         width: 100%;
-        max-width: 100%;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        box-sizing: border-box;
     }
 
-    table {
-        min-width: 620px;
+    .table-wrap table {
+        width: 650px;
+        min-width: 650px;
     }
 
     th,
     td {
+        padding: 12px;
         white-space: nowrap;
     }
 
-    /* Booking layout */
     .booking-layout {
         grid-template-columns: 1fr;
-        width: 100%;
     }
 
     .booking-card {
         width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
     }
 
-    /* Sliders */
-    input[type="range"] {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* Long text */
-    p,
-    li,
-    .interpretation,
-    .description {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    }
-
-    /* Footer */
     footer {
         padding: 40px 20px;
-        box-sizing: border-box;
     }
 }
 
+@media (max-width: 420px) {
 
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 400px) {
+    .container {
+        width: calc(100% - 24px);
+    }
 
     nav {
-        padding: 0 15px;
+        padding: 0 12px;
     }
 
     .logo {
         font-size: 19px;
-    }
-
-    .container {
-        width: calc(100% - 24px);
     }
 
     section {
@@ -940,7 +872,7 @@ td strong {
     }
 
     .controls {
-        padding: 18px;
+        padding: 16px;
     }
 
     .chart-card {
@@ -948,39 +880,14 @@ td strong {
     }
 
     .chart-wrapper {
-        height: 260px;
+        height: 250px;
     }
 
     .metric {
         padding: 16px;
     }
-}        height: 280px;
-    }
-
-    .table-wrap {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-    }
-
-    .table-wrap table {
-        min-width: 650px;
-    }
-
-    th,
-    td {
-        padding: 12px;
-        white-space: nowrap;
-    }
-
-    .insight {
-        padding: 22px;
-    }
-
-    footer {
-        padding: 40px 20px;
-    }
 }
+
 </style>
 </head>
 
@@ -1012,6 +919,7 @@ td strong {
     <div class="container hero-grid">
 
         <div>
+
             <div class="eyebrow">
                 03 — Forecasting Laboratory
             </div>
@@ -1027,6 +935,7 @@ td strong {
                 Change the assumptions, compare forecasting methods and
                 observe how forecast quality affects commercial interpretation.
             </p>
+
         </div>
 
         <div class="hero-card">
@@ -1039,8 +948,8 @@ td strong {
 
             <p>
                 A forecast is not simply a number. It is an analytical
-                assumption about future demand that influences inventory,
-                pricing and capacity decisions.
+                estimate used to support capacity, pricing and inventory
+                decisions under uncertainty.
             </p>
 
         </div>
@@ -1051,7 +960,7 @@ td strong {
 
 
 <!-- =====================================================
-     FORECASTING FRAMEWORK
+     FORECASTING MODELS
      ===================================================== -->
 
 <section>
@@ -1061,18 +970,17 @@ td strong {
         <div class="section-intro">
 
             <div class="eyebrow">
-                Forecasting framework
+                Forecasting Models
             </div>
 
             <h2>
-                Four ways to
-                <span>read demand.</span>
+                Four ways to estimate
+                <span>demand.</span>
             </h2>
 
             <p class="lead">
-                Different forecasting approaches make different assumptions
-                about the future. The purpose of this laboratory is to make
-                those assumptions visible.
+                Different forecasting methods respond differently to trend,
+                volatility and changing booking behaviour.
             </p>
 
         </div>
@@ -1081,65 +989,38 @@ td strong {
         <div class="models">
 
             <div class="model-card">
-                <div class="model-number">
-                    01 / NAIVE
-                </div>
-
-                <h3>
-                    Naive Forecast
-                </h3>
-
+                <div class="model-number">01 — MOVING AVERAGE</div>
+                <h3>Moving Average</h3>
                 <p>
-                    Uses the latest observed demand as the forecast for the
-                    next period. Simple, transparent and useful as a baseline.
+                    Smooths recent observations and provides a simple
+                    baseline forecast for relatively stable demand.
                 </p>
             </div>
 
-
             <div class="model-card">
-                <div class="model-number">
-                    02 / MOVING AVERAGE
-                </div>
-
-                <h3>
-                    Moving Average
-                </h3>
-
+                <div class="model-number">02 — EXPONENTIAL</div>
+                <h3>Exponential Smoothing</h3>
                 <p>
-                    Smooths recent observations to reduce short-term noise
-                    and create a more stable demand estimate.
+                    Gives greater importance to recent observations and
+                    reacts faster to changing demand conditions.
                 </p>
             </div>
 
-
             <div class="model-card">
-                <div class="model-number">
-                    03 / EXPONENTIAL
-                </div>
-
-                <h3>
-                    Exponential Smoothing
-                </h3>
-
+                <div class="model-number">03 — TREND</div>
+                <h3>Trend Adjusted</h3>
                 <p>
-                    Gives greater weight to recent observations while retaining
-                    information from earlier demand.
+                    Extends recent demand direction to capture systematic
+                    growth or decline in the booking environment.
                 </p>
             </div>
 
-
             <div class="model-card">
-                <div class="model-number">
-                    04 / TREND
-                </div>
-
-                <h3>
-                    Trend Forecast
-                </h3>
-
+                <div class="model-number">04 — SEASONAL</div>
+                <h3>Seasonal Pattern</h3>
                 <p>
-                    Extends the observed direction of demand into the future.
-                    Useful when the market is systematically growing or declining.
+                    Uses a recurring pattern to represent systematic
+                    variation across the booking horizon.
                 </p>
             </div>
 
@@ -1161,18 +1042,17 @@ td strong {
         <div class="section-intro">
 
             <div class="eyebrow">
-                Interactive experiment
+                Interactive Laboratory
             </div>
 
             <h2>
-                Run the
+                Test the
                 <span>forecast.</span>
             </h2>
 
             <p class="lead">
-                Adjust the commercial environment and compare the resulting
-                demand forecast. The data are synthetic and designed for
-                analytical experimentation.
+                Change the commercial assumptions and compare how the
+                forecasting methods respond.
             </p>
 
         </div>
@@ -1180,46 +1060,24 @@ td strong {
 
         <div class="lab-grid">
 
-
             <!-- =================================================
                  CONTROLS
                  ================================================= -->
 
             <aside class="controls">
 
-                <h3>
-                    Scenario controls
-                </h3>
-
-                <p class="small" style="margin-bottom:28px;">
-                    Change one assumption at a time and observe the effect
-                    on the forecast.
-                </p>
-
-
                 <div class="control">
 
-                    <label>
-                        <span>Forecasting method</span>
+                    <label for="method">
+                        <span>Forecasting Method</span>
                     </label>
 
                     <select id="method">
 
-                        <option value="naive">
-                            Naive
-                        </option>
-
-                        <option value="moving">
-                            Moving Average
-                        </option>
-
-                        <option value="exponential">
-                            Exponential Smoothing
-                        </option>
-
-                        <option value="trend">
-                            Trend
-                        </option>
+                        <option value="moving">Moving Average</option>
+                        <option value="exponential">Exponential Smoothing</option>
+                        <option value="trend">Trend Adjusted</option>
+                        <option value="seasonal">Seasonal Pattern</option>
 
                     </select>
 
@@ -1228,36 +1086,17 @@ td strong {
 
                 <div class="control">
 
-                    <label>
-                        <span>Aircraft capacity</span>
+                    <label for="capacity">
+                        <span>Aircraft Capacity</span>
                         <strong id="capacityValue">180</strong>
                     </label>
 
                     <input
-                        type="range"
                         id="capacity"
-                        min="100"
-                        max="260"
-                        value="180"
-                        step="10"
-                    >
-
-                </div>
-
-
-                <div class="control">
-
-                    <label>
-                        <span>Demand level</span>
-                        <strong id="demandValue">100</strong>
-                    </label>
-
-                    <input
                         type="range"
-                        id="demand"
-                        min="60"
-                        max="150"
-                        value="100"
+                        min="100"
+                        max="300"
+                        value="180"
                         step="5"
                     >
 
@@ -1266,17 +1105,36 @@ td strong {
 
                 <div class="control">
 
-                    <label>
-                        <span>Demand volatility</span>
-                        <strong id="volatilityValue">12%</strong>
+                    <label for="demand">
+                        <span>Base Demand</span>
+                        <strong id="demandValue">150</strong>
                     </label>
 
                     <input
+                        id="demand"
                         type="range"
+                        min="80"
+                        max="260"
+                        value="150"
+                        step="5"
+                    >
+
+                </div>
+
+
+                <div class="control">
+
+                    <label for="volatility">
+                        <span>Demand Volatility</span>
+                        <strong id="volatilityValue">15%</strong>
+                    </label>
+
+                    <input
                         id="volatility"
+                        type="range"
                         min="0"
-                        max="30"
-                        value="12"
+                        max="40"
+                        value="15"
                         step="1"
                     >
 
@@ -1285,32 +1143,29 @@ td strong {
 
                 <div class="control">
 
-                    <label>
-                        <span>Trend</span>
-                        <strong id="trendValue">+2%</strong>
+                    <label for="trend">
+                        <span>Demand Trend</span>
+                        <strong id="trendValue">5%</strong>
                     </label>
 
                     <input
-                        type="range"
                         id="trend"
-                        min="-5"
-                        max="8"
-                        value="2"
+                        type="range"
+                        min="-20"
+                        max="20"
+                        value="5"
                         step="1"
                     >
 
                 </div>
 
 
-                <button id="runButton">
-                    Run forecast
+                <button id="runForecast">
+                    Run Forecast
                 </button>
 
-                <button
-                    class="reset-button"
-                    id="resetButton"
-                >
-                    Reset scenario
+                <button id="resetScenario" class="reset-button">
+                    Reset Scenario
                 </button>
 
             </aside>
@@ -1320,23 +1175,17 @@ td strong {
                  DASHBOARD
                  ================================================= -->
 
-            <div class="dashboard">
-
-
-                <!-- METRICS -->
+            <main class="dashboard">
 
                 <div class="metrics">
 
                     <div class="metric">
 
                         <div class="label">
-                            Forecast demand
+                            Forecast Demand
                         </div>
 
-                        <div
-                            class="value"
-                            id="forecastMetric"
-                        >
+                        <div class="value" id="forecastDemand">
                             —
                         </div>
 
@@ -1346,13 +1195,23 @@ td strong {
                     <div class="metric">
 
                         <div class="label">
-                            MAPE
+                            Capacity
                         </div>
 
-                        <div
-                            class="value"
-                            id="mapeMetric"
-                        >
+                        <div class="value" id="capacityMetric">
+                            180
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="label">
+                            Expected Load Factor
+                        </div>
+
+                        <div class="value" id="loadFactor">
                             —
                         </div>
 
@@ -1362,29 +1221,10 @@ td strong {
                     <div class="metric">
 
                         <div class="label">
-                            Load factor
+                            Forecast Accuracy
                         </div>
 
-                        <div
-                            class="value"
-                            id="loadMetric"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="metric">
-
-                        <div class="label">
-                            Commercial signal
-                        </div>
-
-                        <div
-                            class="value"
-                            id="signalMetric"
-                        >
+                        <div class="value" id="accuracy">
                             —
                         </div>
 
@@ -1393,65 +1233,52 @@ td strong {
                 </div>
 
 
-                <!-- CHART -->
+                <!-- =================================================
+                     CHART
+                     ================================================= -->
 
                 <div class="chart-card">
 
                     <div class="chart-title">
 
                         <h3>
-                            Demand forecast
+                            Demand Forecast
                         </h3>
 
-                        <span id="chartSubtitle">
-                            Historical demand and projected demand
+                        <span>
+                            Historical demand, actual trajectory and model forecast
                         </span>
 
                     </div>
 
-
                     <div class="chart-wrapper">
-
                         <canvas id="forecastChart"></canvas>
-
                     </div>
-
 
                     <div class="legend">
 
                         <div class="legend-item">
-
                             <span
                                 class="legend-line"
                                 style="background:#8fb9df;"
                             ></span>
-
-                            Historical demand
-
+                            Historical
                         </div>
 
-
                         <div class="legend-item">
-
                             <span
                                 class="legend-line"
                                 style="background:#f6a54f;"
                             ></span>
-
-                            Forecast
-
+                            Actual
                         </div>
 
-
                         <div class="legend-item">
-
                             <span
                                 class="legend-line"
                                 style="background:#75c69b;"
                             ></span>
-
-                            Capacity
-
+                            Forecast
                         </div>
 
                     </div>
@@ -1459,37 +1286,41 @@ td strong {
                 </div>
 
 
-                <!-- INSIGHT -->
+                <!-- =================================================
+                     INSIGHT
+                     ================================================= -->
 
                 <div class="insight">
 
                     <strong id="insightTitle">
-                        Analytical interpretation
+                        Forecast interpretation
                     </strong>
 
                     <p id="insightText">
-                        Run the model to generate a commercial interpretation.
+                        Run the forecast to generate a commercial interpretation
+                        of the selected scenario.
                     </p>
 
                 </div>
 
 
-                <!-- MODEL COMPARISON -->
+                <!-- =================================================
+                     MODEL COMPARISON
+                     ================================================= -->
 
                 <div class="chart-card">
 
                     <div class="chart-title">
 
                         <h3>
-                            Model comparison
+                            Model Comparison
                         </h3>
 
                         <span>
-                            Lower MAPE indicates greater historical accuracy
+                            Forecast performance under the current scenario
                         </span>
 
                     </div>
-
 
                     <div class="table-wrap">
 
@@ -1498,16 +1329,17 @@ td strong {
                             <thead>
 
                                 <tr>
-                                    <th>Method</th>
+                                    <th>Model</th>
                                     <th>Forecast</th>
                                     <th>MAPE</th>
-                                    <th>RMSE</th>
-                                    <th>Interpretation</th>
+                                    <th>Bias</th>
+                                    <th>Commercial Interpretation</th>
                                 </tr>
 
                             </thead>
 
                             <tbody id="comparisonTable">
+
                             </tbody>
 
                         </table>
@@ -1516,7 +1348,7 @@ td strong {
 
                 </div>
 
-            </div>
+            </main>
 
         </div>
 
@@ -1536,18 +1368,17 @@ td strong {
         <div class="section-intro">
 
             <div class="eyebrow">
-                Booking curve
+                Booking Curve
             </div>
 
             <h2>
-                Demand arrives
-                <span>through time.</span>
+                Demand develops
+                <span>over time.</span>
             </h2>
 
             <p class="lead">
-                Airline demand is observed progressively before departure.
-                Forecasting therefore requires analysts to distinguish
-                observed bookings from the demand that has not yet materialised.
+                Revenue Management decisions depend on how demand arrives
+                through the booking horizon, not only on final demand.
             </p>
 
         </div>
@@ -1555,55 +1386,42 @@ td strong {
 
         <div class="booking-layout">
 
-
             <div class="booking-card">
 
                 <h3>
-                    Days before departure
+                    Booking Horizon
                 </h3>
 
                 <ul>
-
                     <li>
-                        90 days
-                        <span>18%</span>
+                        90 days before departure
+                        <span>22%</span>
                     </li>
 
                     <li>
-                        60 days
-                        <span>31%</span>
+                        60 days before departure
+                        <span>39%</span>
                     </li>
 
                     <li>
-                        45 days
-                        <span>42%</span>
+                        30 days before departure
+                        <span>61%</span>
                     </li>
 
                     <li>
-                        30 days
-                        <span>56%</span>
-                    </li>
-
-                    <li>
-                        21 days
-                        <span>66%</span>
-                    </li>
-
-                    <li>
-                        14 days
+                        14 days before departure
                         <span>76%</span>
                     </li>
 
                     <li>
-                        7 days
-                        <span>88%</span>
+                        7 days before departure
+                        <span>89%</span>
                     </li>
 
                     <li>
-                        1 day
-                        <span>97%</span>
+                        Departure day
+                        <span>100%</span>
                     </li>
-
                 </ul>
 
             </div>
@@ -1612,33 +1430,34 @@ td strong {
             <div class="booking-card">
 
                 <h3>
-                    Analytical questions
+                    Commercial Meaning
                 </h3>
 
                 <ul>
 
                     <li>
-                        Is current pickup faster than expected?
+                        Early bookings
+                        <span>Low urgency</span>
                     </li>
 
                     <li>
-                        Is demand constrained by capacity?
+                        Mid-horizon
+                        <span>Demand signal</span>
                     </li>
 
                     <li>
-                        Is the booking curve shifting?
+                        Close-in period
+                        <span>High sensitivity</span>
                     </li>
 
                     <li>
-                        Is the forecast biased?
+                        Final days
+                        <span>Inventory pressure</span>
                     </li>
 
                     <li>
-                        Should inventory controls change?
-                    </li>
-
-                    <li>
-                        Is additional demand still likely to arrive?
+                        Departure
+                        <span>Capacity fixed</span>
                     </li>
 
                 </ul>
@@ -1658,547 +1477,479 @@ td strong {
 
 <footer>
 
-    RM Analytics Lab · Forecasting Laboratory
-
-    <br><br>
-
-    Synthetic analytical environment for Revenue Management education
-    and decision-making experimentation.
+    RM Analytics Lab — Revenue Management Forecasting Laboratory
 
 </footer>
 
 
 <!-- =====================================================
-     JAVASCRIPT
+     FORECASTING APPLICATION
      ===================================================== -->
 
 <script>
+
+"use strict";
+
 /* =========================================================
-   FORECASTING LABORATORY
-   Self-contained JavaScript
+   DOM ELEMENTS
    ========================================================= */
 
-const methodSelect = document.getElementById("method");
+const methodEl = document.getElementById("method");
 
-const capacityInput = document.getElementById("capacity");
-const demandInput = document.getElementById("demand");
-const volatilityInput = document.getElementById("volatility");
-const trendInput = document.getElementById("trend");
+const capacityEl = document.getElementById("capacity");
+const demandEl = document.getElementById("demand");
+const volatilityEl = document.getElementById("volatility");
+const trendEl = document.getElementById("trend");
 
-const capacityValue = document.getElementById("capacityValue");
-const demandValue = document.getElementById("demandValue");
-const volatilityValue = document.getElementById("volatilityValue");
-const trendValue = document.getElementById("trendValue");
+const capacityValueEl = document.getElementById("capacityValue");
+const demandValueEl = document.getElementById("demandValue");
+const volatilityValueEl = document.getElementById("volatilityValue");
+const trendValueEl = document.getElementById("trendValue");
 
-const forecastMetric = document.getElementById("forecastMetric");
-const mapeMetric = document.getElementById("mapeMetric");
-const loadMetric = document.getElementById("loadMetric");
-const signalMetric = document.getElementById("signalMetric");
+const forecastDemandEl = document.getElementById("forecastDemand");
+const capacityMetricEl = document.getElementById("capacityMetric");
+const loadFactorEl = document.getElementById("loadFactor");
+const accuracyEl = document.getElementById("accuracy");
 
-const insightTitle = document.getElementById("insightTitle");
-const insightText = document.getElementById("insightText");
+const comparisonTableEl = document.getElementById("comparisonTable");
 
-const chartSubtitle = document.getElementById("chartSubtitle");
+const insightTitleEl = document.getElementById("insightTitle");
+const insightTextEl = document.getElementById("insightText");
 
-const comparisonTable =
-    document.getElementById("comparisonTable");
-
-const canvas =
-    document.getElementById("forecastChart");
-
+const canvas = document.getElementById("forecastChart");
 const ctx = canvas.getContext("2d");
 
-const runButton =
-    document.getElementById("runButton");
-
-const resetButton =
-    document.getElementById("resetButton");
+const runButton = document.getElementById("runForecast");
+const resetButton = document.getElementById("resetScenario");
 
 
 /* =========================================================
-   SYNTHETIC HISTORICAL DEMAND
+   STATE
    ========================================================= */
 
-const baseHistory = [
-    82, 86, 89, 91, 88,
-    94, 96, 93, 98, 101,
-    99, 103, 105, 107, 104,
-    110, 108, 112, 115, 117,
-    114, 119, 121, 118, 124,
-    126, 123, 129, 131, 128
-];
+const DEFAULTS = {
+    method: "moving",
+    capacity: 180,
+    demand: 150,
+    volatility: 15,
+    trend: 5
+};
 
 
 /* =========================================================
-   HELPERS
+   UTILITIES
    ========================================================= */
 
-function average(values) {
+function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+}
+
+function mean(values) {
 
     if (!values.length) {
         return 0;
     }
 
-    return values.reduce(
-        (sum, value) => sum + value,
-        0
-    ) / values.length;
+    return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
+function round(value, decimals = 0) {
 
-function round(value) {
-    return Math.round(value);
+    const factor = Math.pow(10, decimals);
+
+    return Math.round(value * factor) / factor;
 }
 
+function randomNormal() {
 
-function percentage(value) {
-    return `${value.toFixed(1)}%`;
-}
+    let u = 0;
+    let v = 0;
 
-
-function calculateMAPE(actual, predicted) {
-
-    let total = 0;
-    let count = 0;
-
-    for (let i = 0; i < actual.length; i++) {
-
-        if (actual[i] !== 0) {
-
-            total += Math.abs(
-                (actual[i] - predicted[i]) /
-                actual[i]
-            );
-
-            count++;
-        }
+    while (u === 0) {
+        u = Math.random();
     }
 
-    return count
-        ? (total / count) * 100
-        : 0;
-}
-
-
-function calculateRMSE(actual, predicted) {
-
-    let total = 0;
-
-    for (let i = 0; i < actual.length; i++) {
-
-        const error =
-            actual[i] - predicted[i];
-
-        total += error * error;
+    while (v === 0) {
+        v = Math.random();
     }
 
-    return Math.sqrt(
-        total / actual.length
-    );
+    return Math.sqrt(-2 * Math.log(u)) *
+        Math.cos(2 * Math.PI * v);
 }
 
 
 /* =========================================================
-   FORECAST METHODS
+   LABEL UPDATES
    ========================================================= */
 
-function naiveForecast(history) {
+function updateLabels() {
 
-    return history[history.length - 1];
+    capacityValueEl.textContent = capacityEl.value;
+
+    demandValueEl.textContent = demandEl.value;
+
+    volatilityValueEl.textContent =
+        volatilityEl.value + "%";
+
+    const trend = Number(trendEl.value);
+
+    trendValueEl.textContent =
+        (trend > 0 ? "+" : "") + trend + "%";
+
+    capacityMetricEl.textContent =
+        capacityEl.value;
 }
 
 
-function movingAverageForecast(history) {
+/* =========================================================
+   GENERATE DEMAND
+   ========================================================= */
 
-    const window =
-        history.slice(-5);
+function generateDemandSeries() {
 
-    return average(window);
+    const baseDemand = Number(demandEl.value);
+
+    const volatility = Number(volatilityEl.value) / 100;
+
+    const trend = Number(trendEl.value) / 100;
+
+    const points = 24;
+
+    const actual = [];
+
+    for (let i = 0; i < points; i++) {
+
+        const progress = i / (points - 1);
+
+        const trendEffect =
+            1 + trend * progress;
+
+        const seasonalEffect =
+            1 +
+            Math.sin(i / 2.7) * 0.045;
+
+        const noise =
+            randomNormal() * volatility;
+
+        const value =
+            baseDemand *
+            trendEffect *
+            seasonalEffect *
+            (1 + noise);
+
+        actual.push(
+            Math.max(
+                20,
+                Math.round(value)
+            )
+        );
+    }
+
+    return actual;
 }
 
 
-function exponentialForecast(history) {
+/* =========================================================
+   FORECAST MODELS
+   ========================================================= */
+
+function movingAverage(data) {
+
+    const windowSize = Math.min(5, data.length);
+
+    const recent =
+        data.slice(-windowSize);
+
+    return mean(recent);
+}
+
+
+function exponentialSmoothing(data) {
+
+    let level = data[0];
 
     const alpha = 0.35;
 
-    let forecast =
-        history[0];
+    for (let i = 1; i < data.length; i++) {
 
-    for (let i = 1; i < history.length; i++) {
-
-        forecast =
-            alpha * history[i] +
-            (1 - alpha) * forecast;
+        level =
+            alpha * data[i] +
+            (1 - alpha) * level;
     }
 
-    return forecast;
+    return level;
 }
 
 
-function trendForecast(history) {
+function trendAdjusted(data) {
 
-    const n = history.length;
+    const n = data.length;
 
-    const xMean =
-        (n - 1) / 2;
+    const recentWindow =
+        Math.min(10, n);
 
-    const yMean =
-        average(history);
+    const start =
+        n - recentWindow;
+
+    const xValues = [];
+
+    const yValues = [];
+
+    for (let i = start; i < n; i++) {
+
+        xValues.push(i);
+
+        yValues.push(data[i]);
+    }
+
+    const xMean = mean(xValues);
+    const yMean = mean(yValues);
 
     let numerator = 0;
     let denominator = 0;
 
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < xValues.length; i++) {
 
         numerator +=
-            (i - xMean) *
-            (history[i] - yMean);
+            (xValues[i] - xMean) *
+            (yValues[i] - yMean);
 
         denominator +=
-            Math.pow(i - xMean, 2);
+            Math.pow(xValues[i] - xMean, 2);
     }
 
     const slope =
-        denominator
-            ? numerator / denominator
-            : 0;
+        denominator === 0
+            ? 0
+            : numerator / denominator;
 
-    return history[n - 1] + slope;
+    const intercept =
+        yMean - slope * xMean;
+
+    return intercept + slope * n;
 }
 
 
-/* =========================================================
-   HISTORICAL MODEL FIT
-   ========================================================= */
+function seasonalForecast(data) {
 
-function generatePredictions(history, type) {
+    const recentWindow =
+        Math.min(12, data.length);
 
-    const predictions = [];
+    const recent =
+        data.slice(-recentWindow);
 
-    for (let i = 0; i < history.length; i++) {
+    const seasonalAdjustment =
+        1 + Number(trendEl.value) / 100 * 0.35;
 
-        if (i < 5) {
-
-            predictions.push(
-                history[i]
-            );
-
-            continue;
-        }
-
-        const previous =
-            history.slice(0, i);
-
-        let prediction;
-
-        if (type === "naive") {
-
-            prediction =
-                naiveForecast(previous);
-
-        } else if (type === "moving") {
-
-            prediction =
-                movingAverageForecast(previous);
-
-        } else if (type === "exponential") {
-
-            prediction =
-                exponentialForecast(previous);
-
-        } else {
-
-            prediction =
-                trendForecast(previous);
-        }
-
-        predictions.push(prediction);
-    }
-
-    return predictions;
+    return mean(recent) * seasonalAdjustment;
 }
 
 
-/* =========================================================
-   FORECAST CALCULATION
-   ========================================================= */
-
-function calculateForecast(
-    method,
-    demand,
-    volatility,
-    trend,
-    capacity
-) {
-
-    const adjustedHistory =
-        baseHistory.map(
-            (value, index) => {
-
-                const trendFactor =
-                    1 +
-                    (trend / 100) *
-                    (index / baseHistory.length);
-
-                return value *
-                    trendFactor;
-            }
-        );
-
+function calculateForecast(data, method) {
 
     let forecast;
 
-    if (method === "naive") {
+    switch (method) {
 
-        forecast =
-            naiveForecast(
-                adjustedHistory
-            );
+        case "exponential":
+            forecast = exponentialSmoothing(data);
+            break;
 
-    } else if (method === "moving") {
+        case "trend":
+            forecast = trendAdjusted(data);
+            break;
 
-        forecast =
-            movingAverageForecast(
-                adjustedHistory
-            );
+        case "seasonal":
+            forecast = seasonalForecast(data);
+            break;
 
-    } else if (method === "exponential") {
-
-        forecast =
-            exponentialForecast(
-                adjustedHistory
-            );
-
-    } else {
-
-        forecast =
-            trendForecast(
-                adjustedHistory
-            );
+        case "moving":
+        default:
+            forecast = movingAverage(data);
+            break;
     }
 
+    return Math.max(0, forecast);
+}
 
-    /*
-       Scale the forecast toward the selected
-       commercial demand level.
-    */
 
-    const currentBase =
-        average(
-            adjustedHistory.slice(-5)
+/* =========================================================
+   MODEL PERFORMANCE
+   ========================================================= */
+
+function calculateModelMetrics(data, modelForecast) {
+
+    const recent =
+        data.slice(-8);
+
+    const errors =
+        recent.map(
+            value => Math.abs(value - modelForecast)
         );
 
-    const demandFactor =
-        demand / currentBase;
+    const mape =
+        mean(
+            recent.map(
+                value =>
+                    value === 0
+                        ? 0
+                        : Math.abs(
+                            (value - modelForecast) /
+                            value
+                        ) * 100
+            )
+        );
 
-    forecast *= demandFactor;
-
-
-    /*
-       Volatility slightly widens the estimate.
-    */
-
-    forecast *=
-        1 + volatility / 100 * 0.12;
-
-
-    return Math.min(
-        Math.max(forecast, 20),
-        capacity * 1.25
-    );
-}
-
-
-/* =========================================================
-   MODEL COMPARISON
-   ========================================================= */
-
-function getModelResults(
-    demand,
-    volatility,
-    trend,
-    capacity
-) {
-
-    const methods = [
-        {
-            key: "naive",
-            name: "Naive"
-        },
-        {
-            key: "moving",
-            name: "Moving Average"
-        },
-        {
-            key: "exponential",
-            name: "Exponential Smoothing"
-        },
-        {
-            key: "trend",
-            name: "Trend"
-        }
-    ];
-
-
-    return methods.map(model => {
-
-        const predictions =
-            generatePredictions(
-                baseHistory,
-                model.key
-            );
-
-        const mape =
-            calculateMAPE(
-                baseHistory.slice(5),
-                predictions.slice(5)
-            );
-
-        const rmse =
-            calculateRMSE(
-                baseHistory.slice(5),
-                predictions.slice(5)
-            );
-
-        const forecast =
-            calculateForecast(
-                model.key,
-                demand,
-                volatility,
-                trend,
-                capacity
-            );
-
-        let interpretation;
-
-        if (mape < 8) {
-
-            interpretation =
-                "Strong accuracy";
-
-        } else if (mape < 12) {
-
-            interpretation =
-                "Moderate accuracy";
-
-        } else {
-
-            interpretation =
-                "Review assumptions";
-        }
-
-
-        return {
-            ...model,
-            forecast,
-            mape,
-            rmse,
-            interpretation
-        };
-    });
-}
-
-
-/* =========================================================
-   COMMERCIAL SIGNAL
-   ========================================================= */
-
-function getCommercialSignal(
-    forecast,
-    capacity
-) {
-
-    const load =
-        forecast / capacity;
-
-    if (load >= 1.0) {
-
-        return {
-            label: "Constrained",
-            explanation:
-                "Forecast demand is at or above aircraft capacity. The commercial priority should shift toward inventory protection, price discipline and careful control of remaining availability."
-        };
-
-    }
-
-    if (load >= 0.85) {
-
-        return {
-            label: "Strong",
-            explanation:
-                "Forecast demand is approaching capacity. Revenue Management should monitor pickup closely and consider protecting higher-value inventory as departure approaches."
-        };
-
-    }
-
-    if (load >= 0.65) {
-
-        return {
-            label: "Balanced",
-            explanation:
-                "Forecast demand indicates a relatively balanced commercial position. Inventory and pricing can remain responsive while monitoring changes in booking pace."
-        };
-
-    }
+    const bias =
+        mean(
+            recent.map(
+                value =>
+                    modelForecast - value
+            )
+        );
 
     return {
-        label: "Stimulate",
-        explanation:
-            "Forecast demand remains comfortably below capacity. Greater attention may be required on stimulation, fare availability or competitive positioning."
+        mape,
+        bias,
+        mae: mean(errors)
     };
 }
 
 
 /* =========================================================
-   UPDATE DISPLAY VALUES
+   BUILD MODEL COMPARISON
    ========================================================= */
 
-function updateLabels() {
+function buildComparison(data) {
 
-    capacityValue.textContent =
-        capacityInput.value;
+    const models = [
 
-    demandValue.textContent =
-        demandInput.value;
+        {
+            key: "moving",
+            name: "Moving Average",
+            forecast: movingAverage(data)
+        },
 
-    volatilityValue.textContent =
-        `${volatilityInput.value}%`;
+        {
+            key: "exponential",
+            name: "Exponential Smoothing",
+            forecast: exponentialSmoothing(data)
+        },
 
-    const trend =
-        Number(trendInput.value);
+        {
+            key: "trend",
+            name: "Trend Adjusted",
+            forecast: trendAdjusted(data)
+        },
 
-    trendValue.textContent =
-        `${trend >= 0 ? "+" : ""}${trend}%`;
+        {
+            key: "seasonal",
+            name: "Seasonal Pattern",
+            forecast: seasonalForecast(data)
+        }
+
+    ];
+
+
+    const results =
+        models.map(model => {
+
+            const metrics =
+                calculateModelMetrics(
+                    data,
+                    model.forecast
+                );
+
+            return {
+                ...model,
+                ...metrics
+            };
+        });
+
+
+    comparisonTableEl.innerHTML = "";
+
+
+    results.forEach(result => {
+
+        const row =
+            document.createElement("tr");
+
+        let interpretation;
+
+        if (result.bias > 8) {
+
+            interpretation =
+                "Potential over-forecast";
+
+        } else if (result.bias < -8) {
+
+            interpretation =
+                "Potential under-forecast";
+
+        } else {
+
+            interpretation =
+                "Balanced demand signal";
+        }
+
+
+        row.innerHTML = `
+
+            <td>
+                <strong>${result.name}</strong>
+            </td>
+
+            <td>
+                ${round(result.forecast)}
+            </td>
+
+            <td>
+                ${round(result.mape, 1)}%
+            </td>
+
+            <td>
+                ${result.bias >= 0 ? "+" : ""}
+                ${round(result.bias, 1)}
+            </td>
+
+            <td>
+                ${interpretation}
+            </td>
+
+        `;
+
+        comparisonTableEl.appendChild(row);
+    });
+
+
+    return results;
 }
 
 
 /* =========================================================
-   DRAW CHART
+   CHART DRAWING
    ========================================================= */
 
-function drawChart(
-    historical,
-    forecast,
-    capacity
-) {
+function resizeCanvas() {
 
     const rect =
         canvas.getBoundingClientRect();
 
-    const width =
-        Math.max(rect.width, 300);
-
-    const height =
-        Math.max(rect.height, 250);
-
     const ratio =
         window.devicePixelRatio || 1;
 
+    const width =
+        Math.max(1, rect.width);
+
+    const height =
+        Math.max(1, rect.height);
+
     canvas.width =
-        width * ratio;
+        Math.round(width * ratio);
 
     canvas.height =
-        height * ratio;
+        Math.round(height * ratio);
 
     ctx.setTransform(
         ratio,
@@ -2208,6 +1959,25 @@ function drawChart(
         0,
         0
     );
+
+    return {
+        width,
+        height
+    };
+}
+
+
+function drawChart(history, actual, forecast) {
+
+    const size =
+        resizeCanvas();
+
+    const width =
+        size.width;
+
+    const height =
+        size.height;
+
 
     ctx.clearRect(
         0,
@@ -2219,10 +1989,11 @@ function drawChart(
 
     const padding = {
         top: 25,
-        right: 25,
-        bottom: 40,
-        left: 45
+        right: 20,
+        bottom: 45,
+        left: 50
     };
+
 
     const chartWidth =
         width -
@@ -2235,23 +2006,34 @@ function drawChart(
         padding.bottom;
 
 
-    const values = [
-        ...historical,
-        ...forecast,
-        capacity
-    ];
+    const combined =
+        history.concat(actual);
 
     const maxValue =
-        Math.max(...values) * 1.12;
+        Math.max(
+            ...combined,
+            forecast
+        );
 
     const minValue =
-        Math.max(
-            0,
-            Math.min(...values) * 0.82
+        Math.min(
+            ...combined,
+            forecast
         );
 
 
-    function x(index, count) {
+    const range =
+        Math.max(
+            1,
+            maxValue - minValue
+        );
+
+
+    function x(index) {
+
+        const count =
+            history.length +
+            actual.length;
 
         return padding.left +
             (index / (count - 1)) *
@@ -2263,42 +2045,42 @@ function drawChart(
 
         return padding.top +
             chartHeight -
-            ((value - minValue) /
-             (maxValue - minValue)) *
+            ((value - minValue) / range) *
             chartHeight;
     }
 
 
-    /* Grid */
+    /* GRID */
 
     ctx.strokeStyle =
         "#26384b";
 
     ctx.lineWidth = 1;
 
-    for (let i = 0; i <= 4; i++) {
 
-        const gy =
+    for (let i = 0; i <= 5; i++) {
+
+        const yy =
             padding.top +
-            (chartHeight / 4) * i;
+            (chartHeight / 5) * i;
 
         ctx.beginPath();
 
         ctx.moveTo(
             padding.left,
-            gy
+            yy
         );
 
         ctx.lineTo(
             width - padding.right,
-            gy
+            yy
         );
 
         ctx.stroke();
     }
 
 
-    /* Y labels */
+    /* Y LABELS */
 
     ctx.fillStyle =
         "#9eb0c4";
@@ -2306,182 +2088,143 @@ function drawChart(
     ctx.font =
         "12px Arial";
 
-    for (let i = 0; i <= 4; i++) {
+    for (let i = 0; i <= 5; i++) {
 
         const value =
             maxValue -
-            ((maxValue - minValue) / 4) *
-            i;
+            (range / 5) * i;
 
-        const gy =
+        const yy =
             padding.top +
-            (chartHeight / 4) * i;
+            (chartHeight / 5) * i;
 
         ctx.fillText(
             Math.round(value),
-            5,
-            gy + 4
+            8,
+            yy + 4
         );
     }
 
 
-    /* Historical */
+    function drawSeries(
+        values,
+        startIndex,
+        strokeStyle,
+        lineWidth
+    ) {
 
-    ctx.strokeStyle =
-        "#8fb9df";
+        if (!values.length) {
+            return;
+        }
 
-    ctx.lineWidth = 3;
+        ctx.beginPath();
 
-    ctx.beginPath();
+        values.forEach(
+            (value, index) => {
 
-    historical.forEach(
-        (value, index) => {
+                const px =
+                    x(startIndex + index);
 
-            const px =
-                x(
-                    index,
-                    historical.length + forecast.length
-                );
+                const py =
+                    y(value);
 
-            const py =
-                y(value);
+                if (index === 0) {
 
-            if (index === 0) {
+                    ctx.moveTo(
+                        px,
+                        py
+                    );
 
-                ctx.moveTo(px, py);
+                } else {
 
-            } else {
-
-                ctx.lineTo(px, py);
+                    ctx.lineTo(
+                        px,
+                        py
+                    );
+                }
             }
-        }
-    );
+        );
 
-    ctx.stroke();
+        ctx.strokeStyle =
+            strokeStyle;
 
+        ctx.lineWidth =
+            lineWidth;
 
-    /* Forecast */
-
-    ctx.strokeStyle =
-        "#f6a54f";
-
-    ctx.lineWidth = 3;
-
-    ctx.beginPath();
+        ctx.stroke();
+    }
 
 
-    const totalCount =
-        historical.length +
-        forecast.length;
+    /* HISTORICAL */
 
-
-    historical.forEach(
-        (value, index) => {
-
-            const px =
-                x(index, totalCount);
-
-            const py =
-                y(value);
-
-            if (index === 0) {
-
-                ctx.moveTo(px, py);
-
-            } else {
-
-                ctx.lineTo(px, py);
-            }
-        }
+    drawSeries(
+        history,
+        0,
+        "#8fb9df",
+        2
     );
 
 
-    forecast.forEach(
-        (value, index) => {
+    /* ACTUAL */
 
-            const actualIndex =
-                historical.length +
-                index;
-
-            const px =
-                x(
-                    actualIndex,
-                    totalCount
-                );
-
-            const py =
-                y(value);
-
-            ctx.lineTo(px, py);
-        }
+    drawSeries(
+        actual,
+        history.length,
+        "#f6a54f",
+        2
     );
 
-    ctx.stroke();
 
+    /* FORECAST */
 
-    /* Capacity */
+    const forecastStart =
+        history.length +
+        actual.length -
+        1;
 
-    ctx.strokeStyle =
-        "#75c69b";
+    const forecastEnd =
+        forecastStart + 5;
 
-    ctx.lineWidth = 2;
-
-    ctx.setLineDash([7, 5]);
 
     ctx.beginPath();
 
     ctx.moveTo(
-        padding.left,
-        y(capacity)
+        x(forecastStart),
+        y(actual[actual.length - 1])
     );
 
     ctx.lineTo(
-        width - padding.right,
-        y(capacity)
+        x(forecastEnd),
+        y(forecast)
     );
+
+    ctx.strokeStyle =
+        "#75c69b";
+
+    ctx.lineWidth = 3;
 
     ctx.stroke();
 
-    ctx.setLineDash([]);
 
+    /* FORECAST POINT */
 
-    /* Forecast points */
+    ctx.beginPath();
 
-    forecast.forEach(
-        (value, index) => {
-
-            const actualIndex =
-                historical.length +
-                index;
-
-            const px =
-                x(
-                    actualIndex,
-                    totalCount
-                );
-
-            const py =
-                y(value);
-
-            ctx.fillStyle =
-                "#f6a54f";
-
-            ctx.beginPath();
-
-            ctx.arc(
-                px,
-                py,
-                4,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fill();
-        }
+    ctx.arc(
+        x(forecastEnd),
+        y(forecast),
+        5,
+        0,
+        Math.PI * 2
     );
 
+    ctx.fillStyle =
+        "#75c69b";
 
-    /* X-axis labels */
+    ctx.fill();
+
+
+    /* X AXIS LABEL */
 
     ctx.fillStyle =
         "#9eb0c4";
@@ -2492,189 +2235,243 @@ function drawChart(
     ctx.fillText(
         "Historical",
         padding.left,
-        height - 12
+        height - 15
     );
 
     ctx.fillText(
         "Forecast",
-        width - 80,
-        height - 12
+        Math.max(
+            padding.left + chartWidth - 65,
+            padding.left
+        ),
+        height - 15
     );
 }
 
 
 /* =========================================================
-   MAIN RUN FUNCTION
+   COMMERCIAL INTERPRETATION
    ========================================================= */
+
+function updateInsight(
+    forecast,
+    capacity,
+    selectedMethod
+) {
+
+    const loadFactor =
+        forecast / capacity;
+
+
+    let title;
+    let message;
+
+
+    if (loadFactor >= 1) {
+
+        title =
+            "Capacity pressure detected";
+
+        message =
+            "The forecast is at or above available aircraft capacity. " +
+            "This indicates a high-demand environment where inventory " +
+            "protection, price discipline and careful displacement " +
+            "decisions become increasingly important.";
+
+    } else if (loadFactor >= 0.85) {
+
+        title =
+            "Strong demand environment";
+
+        message =
+            "Forecast demand is close to aircraft capacity. " +
+            "Revenue Management should monitor booking pace closely " +
+            "and consider protecting inventory for higher-value demand.";
+
+    } else if (loadFactor >= 0.65) {
+
+        title =
+            "Balanced demand environment";
+
+        message =
+            "Forecast demand is comfortably below capacity but remains " +
+            "commercially meaningful. Pricing and availability can be " +
+            "managed while monitoring changes in booking pace.";
+
+    } else {
+
+        title =
+            "Demand below capacity";
+
+        message =
+            "Forecast demand leaves meaningful capacity available. " +
+            "Commercial actions may focus on stimulating demand, " +
+            "supporting weaker periods and avoiding unnecessary inventory restrictions.";
+    }
+
+
+    insightTitleEl.textContent =
+        title +
+        " — " +
+        methodName(selectedMethod);
+
+
+    insightTextEl.textContent =
+        message;
+}
+
+
+function methodName(method) {
+
+    const names = {
+
+        moving:
+            "Moving Average",
+
+        exponential:
+            "Exponential Smoothing",
+
+        trend:
+            "Trend Adjusted",
+
+        seasonal:
+            "Seasonal Pattern"
+    };
+
+    return names[method] ||
+        "Forecast Model";
+}
+
+
+/* =========================================================
+   MAIN FORECAST
+   ========================================================= */
+
+let lastScenario = null;
+
 
 function runForecast() {
 
     updateLabels();
 
 
-    const method =
-        methodSelect.value;
-
     const capacity =
-        Number(capacityInput.value);
-
-    const demand =
-        Number(demandInput.value);
-
-    const volatility =
-        Number(volatilityInput.value);
-
-    const trend =
-        Number(trendInput.value);
+        Number(capacityEl.value);
 
 
-    const results =
-        getModelResults(
-            demand,
-            volatility,
-            trend,
-            capacity
+    const method =
+        methodEl.value;
+
+
+    const history =
+        generateDemandSeries();
+
+
+    /*
+       Split the generated demand into:
+       - historical observations
+       - recent actual observations
+    */
+
+    const split =
+        Math.max(
+            10,
+            Math.floor(history.length * 0.65)
         );
 
 
-    const selected =
-        results.find(
-            item => item.key === method
+    const historical =
+        history.slice(
+            0,
+            split
+        );
+
+
+    const actual =
+        history.slice(
+            split
         );
 
 
     const forecast =
-        selected.forecast;
+        calculateForecast(
+            actual,
+            method
+        );
 
 
     const loadFactor =
-        (forecast / capacity) * 100;
-
-
-    const signal =
-        getCommercialSignal(
-            forecast,
-            capacity
+        clamp(
+            forecast / capacity,
+            0,
+            1.5
         );
 
 
-    /* Metrics */
-
-    forecastMetric.textContent =
-        `${round(forecast)} pax`;
-
-    mapeMetric.textContent =
-        percentage(selected.mape);
-
-    loadMetric.textContent =
-        `${Math.round(loadFactor)}%`;
-
-    signalMetric.textContent =
-        signal.label;
+    const models =
+        buildComparison(
+            actual
+        );
 
 
-    /* Insight */
-
-    insightTitle.textContent =
-        `${signal.label} commercial signal`;
-
-    insightText.textContent =
-        `${signal.explanation} Historical forecast accuracy for the selected method is ${percentage(selected.mape)}. The selected method is ${selected.name}.`;
+    const selected =
+        models.find(
+            model =>
+                model.key === method
+        );
 
 
-    chartSubtitle.textContent =
-        `${selected.name} forecast · ${round(forecast)} pax`;
-
-
-    /* Forecast series */
-
-    const forecastSeries = [];
-
-    let current =
-        baseHistory[
-            baseHistory.length - 1
-        ];
-
-
-    for (let i = 1; i <= 8; i++) {
-
-        const progress =
-            i / 8;
-
-        const trendEffect =
-            1 +
-            (trend / 100) *
-            progress;
-
-        const volatilityEffect =
-            1 +
-            (
-                Math.sin(i * 1.7) *
-                volatility /
-                100 *
-                0.18
-            );
-
-        const path =
-            current +
-            (forecast - current) *
-            progress;
-
-        const value =
-            path *
-            trendEffect *
-            volatilityEffect;
-
-
-        forecastSeries.push(
-            Math.min(
-                Math.max(value, 10),
-                capacity * 1.2
+    const accuracy =
+        selected
+            ? clamp(
+                100 - selected.mape,
+                0,
+                100
             )
-        );
-    }
+            : 0;
 
 
-    drawChart(
-        baseHistory,
-        forecastSeries,
-        capacity
+    forecastDemandEl.textContent =
+        Math.round(forecast);
+
+
+    capacityMetricEl.textContent =
+        capacity;
+
+
+    loadFactorEl.textContent =
+        round(
+            loadFactor * 100,
+            1
+        ) + "%";
+
+
+    accuracyEl.textContent =
+        round(
+            accuracy,
+            1
+        ) + "%";
+
+
+    updateInsight(
+        forecast,
+        capacity,
+        method
     );
 
 
-    /* Comparison table */
+    drawChart(
+        historical,
+        actual,
+        forecast
+    );
 
-    comparisonTable.innerHTML = "";
 
-    results.forEach(result => {
-
-        const row =
-            document.createElement("tr");
-
-        row.innerHTML = `
-            <td>
-                <strong>${result.name}</strong>
-            </td>
-
-            <td>
-                ${round(result.forecast)} pax
-            </td>
-
-            <td>
-                ${percentage(result.mape)}
-            </td>
-
-            <td>
-                ${result.rmse.toFixed(1)}
-            </td>
-
-            <td>
-                ${result.interpretation}
-            </td>
-        `;
-
-        comparisonTable.appendChild(row);
-    });
+    lastScenario = {
+        historical,
+        actual,
+        forecast
+    };
 }
 
 
@@ -2684,20 +2481,23 @@ function runForecast() {
 
 function resetScenario() {
 
-    methodSelect.value =
-        "naive";
+    methodEl.value =
+        DEFAULTS.method;
 
-    capacityInput.value =
-        180;
+    capacityEl.value =
+        DEFAULTS.capacity;
 
-    demandInput.value =
-        100;
+    demandEl.value =
+        DEFAULTS.demand;
 
-    volatilityInput.value =
-        12;
+    volatilityEl.value =
+        DEFAULTS.volatility;
 
-    trendInput.value =
-        2;
+    trendEl.value =
+        DEFAULTS.trend;
+
+
+    updateLabels();
 
     runForecast();
 }
@@ -2706,6 +2506,26 @@ function resetScenario() {
 /* =========================================================
    EVENTS
    ========================================================= */
+
+capacityEl.addEventListener(
+    "input",
+    updateLabels
+);
+
+demandEl.addEventListener(
+    "input",
+    updateLabels
+);
+
+volatilityEl.addEventListener(
+    "input",
+    updateLabels
+);
+
+trendEl.addEventListener(
+    "input",
+    updateLabels
+);
 
 runButton.addEventListener(
     "click",
@@ -2718,49 +2538,24 @@ resetButton.addEventListener(
 );
 
 
-[
-    capacityInput,
-    demandInput,
-    volatilityInput,
-    trendInput,
-    methodSelect
-].forEach(
-    element => {
-
-        element.addEventListener(
-            "input",
-            updateLabels
-        );
-
-        element.addEventListener(
-            "change",
-            updateLabels
-        );
-    }
-);
-
-
-/* Redraw chart after resizing */
-
-let resizeTimer;
-
 window.addEventListener(
     "resize",
-    () => {
+    function() {
 
-        clearTimeout(resizeTimer);
+        if (lastScenario) {
 
-        resizeTimer =
-            setTimeout(
-                runForecast,
-                100
+            drawChart(
+                lastScenario.historical,
+                lastScenario.actual,
+                lastScenario.forecast
             );
+        }
     }
 );
 
 
 /* =========================================================
-   INITIAL RUN
+   INITIALIZE
    ========================================================= */
 
 updateLabels();
