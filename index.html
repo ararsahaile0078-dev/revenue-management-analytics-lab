@@ -1,634 +1,822 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Revenue Management Analytics Lab</title>
-
-    <meta
-        name="description"
-        content="An interactive Revenue Management Analytics Lab exploring airline economics, KPIs, forecasting, capacity, competition and commercial decision-making."
-    >
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0b121b;
-            color: #e8edf3;
-            line-height: 1.6;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================= */
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 18px 5%;
-
-            background: rgba(11, 18, 27, 0.95);
-            border-bottom: 1px solid #263241;
-        }
-
-        .brand {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .brand span {
-            color: #f2a65a;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #aeb9c7;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .nav-links a:hover {
-            color: #f2a65a;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 85vh;
-
-            display: flex;
-            align-items: center;
-
-            padding: 80px 8%;
-
-            border-bottom: 1px solid #263241;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .eyebrow {
-            color: #8fa9c4;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 12px;
-            margin-bottom: 25px;
-        }
-
-        h1 {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: clamp(52px, 7vw, 92px);
-
-            line-height: 0.98;
-
-            font-weight: 400;
-
-            margin-bottom: 30px;
-        }
-
-        h1 span {
-            color: #f2a65a;
-        }
-
-        .hero-description {
-            max-width: 720px;
-
-            color: #9eafc2;
-
-            font-size: 20px;
-
-            margin-bottom: 40px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-block;
-
-            padding: 16px 25px;
-
-            text-decoration: none;
-
-            border: 1px solid #415061;
-
-            color: #e8edf3;
-
-            font-size: 13px;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-        }
-
-        .button.primary {
-            background: #f2a65a;
-            color: #101820;
-            border-color: #f2a65a;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-        }
-
-        /* =========================
-           GENERAL SECTIONS
-        ========================= */
-
-        section {
-            padding: 100px 8%;
-        }
-
-        .section-label {
-            color: #8fa9c4;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 12px;
-            margin-bottom: 18px;
-        }
-
-        h2 {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: clamp(40px, 5vw, 64px);
-
-            font-weight: 400;
-
-            line-height: 1.05;
-
-            margin-bottom: 25px;
-        }
-
-        .section-intro {
-            max-width: 800px;
-
-            color: #9eafc2;
-
-            font-size: 18px;
-
-            margin-bottom: 60px;
-        }
-
-        /* =========================
-           DECISION PROBLEM
-        ========================= */
-
-        .decision-section {
-            background: #101a26;
-        }
-
-        .decision-flow {
-            display: grid;
-
-            grid-template-columns: repeat(5, 1fr);
-
-            gap: 12px;
-
-            margin-top: 50px;
-        }
-
-        .flow-card {
-            padding: 28px 20px;
-
-            min-height: 150px;
-
-            border: 1px solid #354454;
-
-            background: #0d1620;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: center;
-        }
-
-        .flow-number {
-            color: #f2a65a;
-
-            font-size: 12px;
-
-            letter-spacing: 2px;
-
-            margin-bottom: 12px;
-        }
-
-        .flow-card h3 {
-            font-size: 18px;
-
-            font-weight: 500;
-        }
-
-        .decision-statement {
-            margin-top: 55px;
-
-            padding: 35px;
-
-            border-left: 3px solid #f2a65a;
-
-            background: #0c141e;
-        }
-
-        .decision-statement strong {
-            display: block;
-
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 30px;
-
-            font-weight: 400;
-
-            margin-bottom: 15px;
-        }
-
-        .decision-statement p {
-            color: #9eafc2;
-
-            max-width: 850px;
-        }
-
-        /* =========================
-           SIGNAL TO DECISION
-        ========================= */
-
-        .stages {
-            display: grid;
-
-            grid-template-columns: repeat(5, 1fr);
-
-            gap: 15px;
-        }
-
-        .stage {
-            padding: 30px;
-
-            border: 1px solid #354454;
-
-            background: #0d1620;
-        }
-
-        .stage-number {
-            color: #f2a65a;
-
-            font-size: 13px;
-
-            margin-bottom: 15px;
-        }
-
-        .stage h3 {
-            margin-bottom: 12px;
-
-            font-size: 19px;
-        }
-
-        .stage p {
-            color: #899bad;
-
-            font-size: 14px;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 40px 8%;
-
-            border-top: 1px solid #263241;
-
-            color: #708094;
-
-            font-size: 13px;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .decision-flow,
-            .stages {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                min-height: 75vh;
-
-                padding: 70px 6%;
-            }
-
-            section {
-                padding: 75px 6%;
-            }
-
-            h1 {
-                font-size: 55px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RM Analytics Lab</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #08111d;
+      --panel: #0d1926;
+      --panel-2: #101e2d;
+      --border: #26384a;
+      --text: #eef3f9;
+      --muted: #9eb0c5;
+      --blue: #8db9e8;
+      --orange: #f8a84c;
+      --green: #7bd6ad;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    .navbar {
+      height: 80px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 17, 29, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 18px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links .active {
+      color: var(--orange);
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 760px;
+      padding: 125px 5%;
+      display: grid;
+      grid-template-columns: 1.7fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 16px;
+      letter-spacing: 7px;
+      margin-bottom: 42px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(65px, 7vw, 118px);
+      line-height: 0.95;
+      font-weight: 400;
+      letter-spacing: -5px;
+      margin-bottom: 42px;
+    }
+
+    .hero h1 .orange {
+      color: var(--orange);
+    }
+
+    .hero-text {
+      max-width: 920px;
+      color: var(--blue);
+      font-size: 22px;
+      line-height: 1.8;
+      margin-bottom: 38px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 17px 32px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      font-size: 15px;
+      letter-spacing: 2px;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      border-color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: var(--orange);
+      color: #08111d;
+      border-color: var(--orange);
+      font-weight: 700;
+    }
+
+    .button.primary:hover {
+      background: #ffb35b;
+    }
+
+    /* =========================
+       HERO CARD
+    ========================== */
+
+    .hero-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 52px 48px;
+      min-height: 450px;
+    }
+
+    .hero-card-number {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 65px;
+      color: var(--orange);
+      margin-bottom: 25px;
+    }
+
+    .hero-card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 31px;
+      line-height: 1.25;
+      margin-bottom: 25px;
+    }
+
+    .hero-card p {
+      color: var(--blue);
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    .section {
+      padding: 110px 5%;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 5vw, 78px);
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .section-title span {
+      color: var(--orange);
+    }
+
+    .section-description {
+      color: var(--blue);
+      font-size: 19px;
+      max-width: 850px;
+      margin-bottom: 55px;
+    }
+
+    /* =========================
+       LAB CARDS
+    ========================== */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 38px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--orange);
+    }
+
+    .card-number {
+      color: var(--orange);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+    }
+
+    .card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 400;
+      margin: 25px 0 15px;
+    }
+
+    .card p {
+      color: var(--blue);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .card-link {
+      color: var(--orange);
+      margin-top: 25px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       KPI SECTION
+    ========================== */
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 32px;
+      min-height: 180px;
+    }
+
+    .kpi-label {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .kpi-value {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      color: var(--text);
+    }
+
+    .kpi-note {
+      color: var(--green);
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 45px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+    }
+
+    footer strong {
+      color: var(--text);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 90px;
+      }
+
+      .hero-card {
+        max-width: 700px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        height: auto;
+        padding: 20px;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .nav-links {
+        gap: 15px;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+      }
+
+      .hero {
+        padding: 80px 25px;
+      }
+
+      .hero h1 {
+        font-size: 60px;
+        letter-spacing: -3px;
+      }
+
+      .hero-text {
+        font-size: 18px;
+      }
+
+      .cards,
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 80px 25px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
 
-    <nav>
+  <header class="navbar">
 
-        <div class="brand">
-            RM <span>Analytics Lab</span>
-        </div>
+    <a href="index.html" class="logo">
+      RM <span>Analytics Lab</span>
+    </a>
 
-        <ul class="nav-links">
-            <li><a href="#decision">RM Problem</a></li>
-            <li><a href="#framework">Framework</a></li>
-            <li><a href="#laboratory">Laboratory</a></li>
-        </ul>
+    <nav class="nav-links">
+      <a href="#rm-problem">RM Problem</a>
 
+      <a href="#framework">Framework</a>
+
+      <!-- IMPORTANT: FORECASTING NOW WORKS -->
+      <a href="forecasting.html" class="active">
+        Laboratory
+      </a>
     </nav>
 
+  </header>
 
-    <!-- =========================
-         HERO
-    ========================= -->
 
-    <header class="hero">
+  <!-- =========================
+       HERO
+  ========================== -->
 
-        <div class="hero-content">
+  <main>
 
-            <div class="eyebrow">
-                Revenue Management Analytics Lab
-            </div>
+    <section class="hero" id="rm-problem">
 
-            <h1>
-                Revenue Management,
-                <span>built as a decision science.</span>
-            </h1>
+      <div>
 
-            <p class="hero-description">
-                An interactive analytical environment exploring the economics,
-                measurement, forecasting, competition and commercial decisions
-                behind airline Revenue Management.
-            </p>
+        <div class="eyebrow">
+          Revenue Management Analytics Lab
+        </div>
 
-            <div class="button-group">
+        <h1>
+          Revenue<br>
+          Management,
+          <span class="orange">built as</span><br>
+          <span class="orange">a decision science.</span>
+        </h1>
 
-                <a href="#decision" class="button primary">
-                    Explore the RM Problem →
-                </a>
+        <p class="hero-text">
+          An interactive analytical environment exploring the economics,
+          measurement, forecasting, competition and commercial decisions
+          behind airline Revenue Management.
+        </p>
 
-                <a href="#framework" class="button">
-                    Explore the Framework →
-                </a>
+        <div class="buttons">
 
-            </div>
+          <a href="#rm-problem" class="button primary">
+            EXPLORE THE RM PROBLEM →
+          </a>
+
+          <a href="#framework" class="button">
+            EXPLORE THE FRAMEWORK →
+          </a>
 
         </div>
 
-    </header>
+      </div>
 
 
-    <!-- =========================
-         RM DECISION PROBLEM
-    ========================= -->
+      <div class="hero-card">
 
-    <section id="decision" class="decision-section">
-
-        <div class="section-label">
-            01 — The Commercial Problem
+        <div class="hero-card-number">
+          01
         </div>
 
         <h2>
-            Revenue Management begins
-            with a constrained resource.
+          Revenue Management as a commercial system
         </h2>
 
-        <p class="section-intro">
-            Airline capacity is limited, perishable and time-sensitive.
-            The analyst therefore has to continuously balance uncertain demand,
-            price, capacity, customer value and competitive pressure.
+        <p>
+          Revenue Management connects demand, forecasting, pricing,
+          inventory, capacity, profitability and customer behaviour.
+          The objective is not simply to sell more seats, but to make
+          better commercial decisions.
         </p>
 
-
-        <div class="decision-flow">
-
-            <div class="flow-card">
-                <div class="flow-number">01</div>
-                <h3>Limited Capacity</h3>
-            </div>
-
-            <div class="flow-card">
-                <div class="flow-number">02</div>
-                <h3>Uncertain Demand</h3>
-            </div>
-
-            <div class="flow-card">
-                <div class="flow-number">03</div>
-                <h3>Customer Value</h3>
-            </div>
-
-            <div class="flow-card">
-                <div class="flow-number">04</div>
-                <h3>Competition</h3>
-            </div>
-
-            <div class="flow-card">
-                <div class="flow-number">05</div>
-                <h3>Time to Departure</h3>
-            </div>
-
-        </div>
-
-
-        <div class="decision-statement">
-
-            <strong>
-                Revenue Management is not simply about filling seats.
-            </strong>
-
-            <p>
-                It is about deciding which demand to accept, at what price,
-                at what time, given limited and perishable capacity.
-                The objective is to improve the economic value generated
-                from constrained inventory.
-            </p>
-
-        </div>
+      </div>
 
     </section>
 
 
     <!-- =========================
-         SIGNAL TO DECISION
-    ========================= -->
+         FRAMEWORK
+    ========================== -->
 
-    <section id="framework">
+    <section class="section" id="framework">
 
-        <div class="section-label">
-            02 — Analytical Framework
+      <div class="eyebrow">
+        01 — The Framework
+      </div>
+
+      <h2 class="section-title">
+        From <span>demand</span> to decision.
+      </h2>
+
+      <p class="section-description">
+        Explore the analytical building blocks behind modern Revenue
+        Management and understand how each component influences the
+        commercial outcome.
+      </p>
+
+
+      <div class="cards">
+
+        <!-- FORECASTING -->
+        <a href="forecasting.html" class="card">
+
+          <div>
+
+            <div class="card-number">
+              01
+            </div>
+
+            <h3>
+              Forecasting
+            </h3>
+
+            <p>
+              Test demand assumptions, compare forecasting methods,
+              measure forecast accuracy and understand how forecasts
+              influence capacity and commercial decisions.
+            </p>
+
+          </div>
+
+          <div class="card-link">
+            OPEN FORECASTING LAB →
+          </div>
+
+        </a>
+
+
+        <!-- KPI -->
+        <a href="kpi.html" class="card">
+
+          <div>
+
+            <div class="card-number">
+              02
+            </div>
+
+            <h3>
+              KPI & Performance
+            </h3>
+
+            <p>
+              Explore load factor, yield, RASK, CASK, revenue,
+              profitability, margin and other Revenue Management
+              performance indicators.
+            </p>
+
+          </div>
+
+          <div class="card-link">
+            OPEN KPI LAB →
+          </div>
+
+        </a>
+
+
+        <!-- COMMERCIAL -->
+        <a href="#commercial" class="card">
+
+          <div>
+
+            <div class="card-number">
+              03
+            </div>
+
+            <h3>
+              Commercial Decisions
+            </h3>
+
+            <p>
+              Connect forecasts and KPIs to pricing, capacity,
+              inventory, competition and commercial strategy.
+            </p>
+
+          </div>
+
+          <div class="card-link">
+            EXPLORE COMMERCIAL →
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         KPI OVERVIEW
+    ========================== -->
+
+    <section class="section" id="commercial">
+
+      <div class="eyebrow">
+        02 — Performance System
+      </div>
+
+      <h2 class="section-title">
+        Measure what <span>matters.</span>
+      </h2>
+
+      <p class="section-description">
+        Revenue Management performance cannot be understood through
+        a single metric. The commercial system must connect demand,
+        capacity, revenue, cost and profitability.
+      </p>
+
+
+      <div class="kpi-grid">
+
+        <div class="kpi">
+
+          <div class="kpi-label">
+            Load Factor
+          </div>
+
+          <div class="kpi-value">
+            78%
+          </div>
+
+          <div class="kpi-note">
+            Capacity utilisation
+          </div>
+
         </div>
 
-        <h2>
-            From signal to decision.
-        </h2>
 
-        <p class="section-intro">
-            A strong Revenue Management analyst does more than calculate KPIs.
-            The analyst connects measurement, explanation, forecasting and
-            optimization before making a commercial decision.
-        </p>
+        <div class="kpi">
 
+          <div class="kpi-label">
+            Yield
+          </div>
 
-        <div class="stages">
+          <div class="kpi-value">
+            €145
+          </div>
 
-            <div class="stage">
-                <div class="stage-number">01 — MEASURE</div>
-
-                <h3>Measure</h3>
-
-                <p>
-                    KPIs reveal what is happening across demand,
-                    capacity, revenue and customer mix.
-                </p>
-            </div>
-
-
-            <div class="stage">
-                <div class="stage-number">02 — UNDERSTAND</div>
-
-                <h3>Understand</h3>
-
-                <p>
-                    Identify the economic and competitive factors
-                    explaining the observed performance.
-                </p>
-            </div>
-
-
-            <div class="stage">
-                <div class="stage-number">03 — FORECAST</div>
-
-                <h3>Forecast</h3>
-
-                <p>
-                    Estimate future demand, booking behavior and
-                    expected commercial outcomes.
-                </p>
-            </div>
-
-
-            <div class="stage">
-                <div class="stage-number">04 — OPTIMIZE</div>
-
-                <h3>Optimize</h3>
-
-                <p>
-                    Evaluate alternative pricing, inventory and
-                    capacity decisions under uncertainty.
-                </p>
-            </div>
-
-
-            <div class="stage">
-                <div class="stage-number">05 — DECIDE</div>
-
-                <h3>Decide</h3>
-
-                <p>
-                    Select the commercial action with the strongest
-                    expected economic outcome.
-                </p>
-            </div>
+          <div class="kpi-note">
+            Revenue per passenger
+          </div>
 
         </div>
+
+
+        <div class="kpi">
+
+          <div class="kpi-label">
+            RASK
+          </div>
+
+          <div class="kpi-value">
+            €0.082
+          </div>
+
+          <div class="kpi-note">
+            Revenue per available seat km
+          </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+          <div class="kpi-label">
+            Profitability
+          </div>
+
+          <div class="kpi-value">
+            16.4%
+          </div>
+
+          <div class="kpi-note">
+            Operating margin
+          </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+          <div class="kpi-label">
+            Revenue
+          </div>
+
+          <div class="kpi-value">
+            €1.24M
+          </div>
+
+          <div class="kpi-note">
+            Total commercial revenue
+          </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+          <div class="kpi-label">
+            CASK
+          </div>
+
+          <div class="kpi-value">
+            €0.069
+          </div>
+
+          <div class="kpi-note">
+            Cost per available seat km
+          </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+          <div class="kpi-label">
+            Forecast Accuracy
+          </div>
+
+          <div class="kpi-value">
+            97%
+          </div>
+
+          <div class="kpi-note">
+            Forecast quality
+          </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+          <div class="kpi-label">
+            Revenue / Flight
+          </div>
+
+          <div class="kpi-value">
+            €42.8K
+          </div>
+
+          <div class="kpi-note">
+            Average flight revenue
+          </div>
+
+        </div>
+
+      </div>
 
     </section>
 
 
     <!-- =========================
          LABORATORY
-    ========================= -->
+    ========================== -->
 
-    <section id="laboratory" class="decision-section">
+    <section class="section">
 
-        <div class="section-label">
-            03 — Analytics Laboratory
-        </div>
+      <div class="eyebrow">
+        03 — Laboratory
+      </div>
 
-        <h2>
-            Where assumptions become scenarios.
-        </h2>
+      <h2 class="section-title">
+        Test the <span>system.</span>
+      </h2>
 
-        <p class="section-intro">
-            The laboratory will progressively introduce interactive
-            Revenue Management experiments using synthetic data and
-            simplified analytical models.
-        </p>
+      <p class="section-description">
+        Change assumptions and observe how the commercial system
+        responds. Start with forecasting and progressively connect
+        the analysis to KPIs and profitability.
+      </p>
 
-        <div class="decision-statement">
 
-            <strong>
-                Coming next: KPI Intelligence.
-            </strong>
+      <div class="buttons">
 
-            <p>
-                Explore how airline Revenue Management KPIs are calculated,
-                interpreted, connected and improved — including the trade-offs
-                an analyst must consider when optimizing commercial performance.
-            </p>
+        <a href="forecasting.html" class="button primary">
+          OPEN FORECASTING LAB →
+        </a>
 
-        </div>
+        <a href="kpi.html" class="button">
+          OPEN KPI LAB →
+        </a>
+
+      </div>
 
     </section>
 
+  </main>
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
 
-    <footer>
+  <!-- =========================
+       FOOTER
+  ========================== -->
 
-        Educational and portfolio project using synthetic data and
-        simplified analytical models. It does not represent any airline's
-        proprietary Revenue Management system.
+  <footer>
 
-    </footer>
+    <div>
+      <strong>RM Analytics Lab</strong>
+    </div>
+
+    <div>
+      Revenue Management • Analytics • Decision Science
+    </div>
+
+  </footer>
+
 
 </body>
 </html>
