@@ -6,10 +6,16 @@
 
 <title>Forecasting Laboratory | RM Analytics Lab</title>
 
-<meta name="description"
-content="Interactive airline Revenue Management demand forecasting laboratory covering booking curves, forecasting models, accuracy and commercial decision-making.">
+<meta
+    name="description"
+    content="Interactive airline Revenue Management demand forecasting laboratory covering forecasting models, accuracy and commercial decision-making."
+>
 
 <style>
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -38,12 +44,24 @@ body {
     color: var(--text);
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 a {
     color: inherit;
     text-decoration: none;
 }
+
+img,
+canvas,
+svg,
+video {
+    max-width: 100%;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 nav {
     height: 78px;
@@ -54,7 +72,7 @@ nav {
     padding: 0 4.5%;
     position: sticky;
     top: 0;
-    background: rgba(8,17,29,0.97);
+    background: rgba(8, 17, 29, 0.97);
     backdrop-filter: blur(10px);
     z-index: 20;
 }
@@ -62,6 +80,7 @@ nav {
 .logo {
     font-size: 24px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .logo span {
@@ -78,14 +97,20 @@ nav {
     color: var(--text);
 }
 
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
 .container {
     width: 90%;
     max-width: 1450px;
-    margin: auto;
+    margin: 0 auto;
+    min-width: 0;
 }
 
 section {
     padding: 95px 0;
+    min-width: 0;
 }
 
 .eyebrow {
@@ -136,7 +161,14 @@ h3 {
     font-size: 14px;
 }
 
-/* HERO */
+.section-intro {
+    max-width: 900px;
+    margin-bottom: 50px;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero {
     min-height: 70vh;
@@ -147,9 +179,14 @@ h3 {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.35fr 0.65fr;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
     gap: 65px;
     align-items: center;
+    min-width: 0;
+}
+
+.hero-grid > * {
+    min-width: 0;
 }
 
 .hero-card {
@@ -169,18 +206,13 @@ h3 {
     margin-top: 10px;
 }
 
-/* INTRO */
-
-.section-intro {
-    max-width: 900px;
-    margin-bottom: 50px;
-}
-
-/* MODEL CARDS */
+/* =========================================================
+   MODEL CARDS
+   ========================================================= */
 
 .models {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
 }
 
@@ -190,6 +222,7 @@ h3 {
     padding: 28px;
     min-height: 235px;
     transition: 0.25s;
+    min-width: 0;
 }
 
 .model-card:hover {
@@ -209,7 +242,9 @@ h3 {
     font-size: 14px;
 }
 
-/* LAB */
+/* =========================================================
+   LABORATORY
+   ========================================================= */
 
 .lab {
     background: #09131f;
@@ -219,8 +254,13 @@ h3 {
 
 .lab-grid {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 320px minmax(0, 1fr);
     gap: 22px;
+    min-width: 0;
+}
+
+.lab-grid > * {
+    min-width: 0;
 }
 
 .controls {
@@ -230,6 +270,7 @@ h3 {
     align-self: start;
     position: sticky;
     top: 100px;
+    min-width: 0;
 }
 
 .control {
@@ -239,13 +280,19 @@ h3 {
 .control label {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
     color: var(--muted);
     font-size: 14px;
     margin-bottom: 9px;
 }
 
+.control label span {
+    min-width: 0;
+}
+
 .control strong {
     color: var(--text);
+    white-space: nowrap;
 }
 
 select,
@@ -291,23 +338,29 @@ button:hover {
     border-color: var(--orange);
 }
 
-/* DASHBOARD */
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
 
 .dashboard {
     display: grid;
     gap: 18px;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .metrics {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
+    min-width: 0;
 }
 
 .metric {
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 21px;
+    min-width: 0;
 }
 
 .metric .label {
@@ -320,30 +373,48 @@ button:hover {
 .metric .value {
     font-size: 29px;
     margin-top: 7px;
+    overflow-wrap: anywhere;
 }
+
+/* =========================================================
+   CHART
+   ========================================================= */
 
 .chart-card {
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 24px;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .chart-title {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 20px;
     margin-bottom: 18px;
+    min-width: 0;
+}
+
+.chart-title h3 {
+    min-width: 0;
 }
 
 .chart-title span {
     color: var(--muted);
     font-size: 13px;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .chart-wrapper {
     position: relative;
     width: 100%;
+    max-width: 100%;
     height: 390px;
+    min-width: 0;
 }
 
 canvas {
@@ -373,12 +444,16 @@ canvas {
     display: inline-block;
 }
 
-/* INSIGHT */
+/* =========================================================
+   INSIGHT
+   ========================================================= */
 
 .insight {
     border-left: 3px solid var(--orange);
     background: var(--panel);
     padding: 27px;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .insight strong {
@@ -390,11 +465,17 @@ canvas {
     margin-top: 8px;
 }
 
-/* TABLE */
+/* =========================================================
+   TABLE
+   ========================================================= */
 
 .table-wrap {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     border: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
@@ -415,6 +496,7 @@ th {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 td {
@@ -425,18 +507,22 @@ td strong {
     color: var(--text);
 }
 
-/* BOOKING CURVE */
+/* =========================================================
+   BOOKING CURVE
+   ========================================================= */
 
 .booking-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px;
+    min-width: 0;
 }
 
 .booking-card {
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 28px;
+    min-width: 0;
 }
 
 .booking-card ul {
@@ -454,7 +540,9 @@ td strong {
     float: right;
 }
 
-/* FOOTER */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer {
     border-top: 1px solid var(--border);
@@ -464,31 +552,102 @@ footer {
     font-size: 13px;
 }
 
-/* RESPONSIVE */
+/* =========================================================
+   RESPONSIVE FIX
+   ========================================================= */
 
-@media(max-width: 1000px) {
-    .hero-grid,
-    .lab-grid,
-    .booking-layout {
+/* Smaller desktop / large tablet */
+@media (max-width: 1100px) {
+
+    .hero-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .lab-grid {
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 18px;
     }
 
     .models {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .metrics {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .controls {
         position: static;
     }
+
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-card {
+        width: 100%;
+    }
 }
 
-@media(max-width: 650px) {
+/* Tablet */
+@media (max-width: 800px) {
+
     nav {
+        padding: 0 24px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    section {
+        padding: 75px 0;
+    }
+
+    .container {
+        width: calc(100% - 40px);
+    }
+
+    .lab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        width: 100%;
+    }
+
+    .dashboard {
+        width: 100%;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .chart-title {
+        flex-wrap: wrap;
+    }
+
+    .chart-title span {
+        width: 100%;
+    }
+
+    .chart-wrapper {
+        height: 340px;
+    }
+}
+
+/* Phone */
+@media (max-width: 650px) {
+
+    nav {
+        height: 68px;
         padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 21px;
     }
 
     .nav-links {
@@ -496,7 +655,11 @@ footer {
     }
 
     section {
-        padding: 70px 0;
+        padding: 65px 0;
+    }
+
+    .container {
+        width: calc(100% - 32px);
     }
 
     .models,
@@ -504,16 +667,72 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    h1 {
-        font-size: 50px;
+    .hero {
+        min-height: auto;
     }
 
     .hero-grid {
-        gap: 35px;
+        gap: 30px;
+    }
+
+    h1 {
+        font-size: clamp(44px, 14vw, 58px);
+    }
+
+    h2 {
+        font-size: clamp(36px, 11vw, 52px);
+    }
+
+    .lead {
+        font-size: 17px;
+    }
+
+    .hero-card {
+        padding: 25px;
+    }
+
+    .controls {
+        padding: 22px;
+    }
+
+    .metric {
+        padding: 18px;
+    }
+
+    .metric .value {
+        font-size: 25px;
+    }
+
+    .chart-card {
+        padding: 18px;
     }
 
     .chart-wrapper {
-        height: 300px;
+        height: 280px;
+    }
+
+    .table-wrap {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .table-wrap table {
+        min-width: 650px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        white-space: nowrap;
+    }
+
+    .insight {
+        padding: 22px;
+    }
+
+    footer {
+        padding: 40px 20px;
     }
 }
 </style>
@@ -521,7 +740,9 @@ footer {
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
 
 <nav>
     <a href="index.html" class="logo">
@@ -536,13 +757,18 @@ footer {
 </nav>
 
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+     ===================================================== -->
 
 <section class="hero">
+
     <div class="container hero-grid">
 
         <div>
-            <div class="eyebrow">03 — Forecasting Laboratory</div>
+            <div class="eyebrow">
+                03 — Forecasting Laboratory
+            </div>
 
             <h1>
                 Demand becomes
@@ -558,26 +784,39 @@ footer {
         </div>
 
         <div class="hero-card">
+
             <div class="number">01</div>
-            <h3>Forecasting as a commercial system</h3>
+
+            <h3>
+                Forecasting as a commercial system
+            </h3>
+
             <p>
                 A forecast is not simply a number. It is an analytical
                 assumption about future demand that influences inventory,
                 pricing and capacity decisions.
             </p>
+
         </div>
 
     </div>
+
 </section>
 
 
-<!-- FORECASTING MODELS -->
+<!-- =====================================================
+     FORECASTING FRAMEWORK
+     ===================================================== -->
 
 <section>
+
     <div class="container">
 
         <div class="section-intro">
-            <div class="eyebrow">Forecasting framework</div>
+
+            <div class="eyebrow">
+                Forecasting framework
+            </div>
 
             <h2>
                 Four ways to
@@ -589,40 +828,69 @@ footer {
                 about the future. The purpose of this laboratory is to make
                 those assumptions visible.
             </p>
+
         </div>
+
 
         <div class="models">
 
             <div class="model-card">
-                <div class="model-number">01 / NAIVE</div>
-                <h3>Naive Forecast</h3>
+                <div class="model-number">
+                    01 / NAIVE
+                </div>
+
+                <h3>
+                    Naive Forecast
+                </h3>
+
                 <p>
                     Uses the latest observed demand as the forecast for the
                     next period. Simple, transparent and useful as a baseline.
                 </p>
             </div>
 
+
             <div class="model-card">
-                <div class="model-number">02 / MOVING AVERAGE</div>
-                <h3>Moving Average</h3>
+                <div class="model-number">
+                    02 / MOVING AVERAGE
+                </div>
+
+                <h3>
+                    Moving Average
+                </h3>
+
                 <p>
                     Smooths recent observations to reduce short-term noise
                     and create a more stable demand estimate.
                 </p>
             </div>
 
+
             <div class="model-card">
-                <div class="model-number">03 / EXPONENTIAL</div>
-                <h3>Exponential Smoothing</h3>
+                <div class="model-number">
+                    03 / EXPONENTIAL
+                </div>
+
+                <h3>
+                    Exponential Smoothing
+                </h3>
+
                 <p>
                     Gives greater weight to recent observations while retaining
                     information from earlier demand.
                 </p>
             </div>
 
+
             <div class="model-card">
-                <div class="model-number">04 / TREND</div>
-                <h3>Trend Forecast</h3>
+                <div class="model-number">
+                    04 / TREND
+                </div>
+
+                <h3>
+                    Trend Forecast
+                </h3>
+
                 <p>
                     Extends the observed direction of demand into the future.
                     Useful when the market is systematically growing or declining.
@@ -632,17 +900,23 @@ footer {
         </div>
 
     </div>
+
 </section>
 
 
-<!-- LABORATORY -->
+<!-- =====================================================
+     LABORATORY
+     ===================================================== -->
 
 <section class="lab" id="laboratory">
 
     <div class="container">
 
         <div class="section-intro">
-            <div class="eyebrow">Interactive experiment</div>
+
+            <div class="eyebrow">
+                Interactive experiment
+            </div>
 
             <h2>
                 Run the
@@ -654,16 +928,22 @@ footer {
                 demand forecast. The data are synthetic and designed for
                 analytical experimentation.
             </p>
+
         </div>
 
 
         <div class="lab-grid">
 
-            <!-- CONTROLS -->
+
+            <!-- =================================================
+                 CONTROLS
+                 ================================================= -->
 
             <aside class="controls">
 
-                <h3>Scenario controls</h3>
+                <h3>
+                    Scenario controls
+                </h3>
 
                 <p class="small" style="margin-bottom:28px;">
                     Change one assumption at a time and observe the effect
@@ -678,10 +958,23 @@ footer {
                     </label>
 
                     <select id="method">
-                        <option value="naive">Naive</option>
-                        <option value="moving">Moving Average</option>
-                        <option value="exponential">Exponential Smoothing</option>
-                        <option value="trend">Trend</option>
+
+                        <option value="naive">
+                            Naive
+                        </option>
+
+                        <option value="moving">
+                            Moving Average
+                        </option>
+
+                        <option value="exponential">
+                            Exponential Smoothing
+                        </option>
+
+                        <option value="trend">
+                            Trend
+                        </option>
+
                     </select>
 
                 </div>
@@ -767,85 +1060,160 @@ footer {
                     Run forecast
                 </button>
 
-                <button class="reset-button" id="resetButton">
+                <button
+                    class="reset-button"
+                    id="resetButton"
+                >
                     Reset scenario
                 </button>
 
             </aside>
 
 
-            <!-- DASHBOARD -->
+            <!-- =================================================
+                 DASHBOARD
+                 ================================================= -->
 
             <div class="dashboard">
+
+
+                <!-- METRICS -->
 
                 <div class="metrics">
 
                     <div class="metric">
-                        <div class="label">Forecast demand</div>
-                        <div class="value" id="forecastMetric">—</div>
+
+                        <div class="label">
+                            Forecast demand
+                        </div>
+
+                        <div
+                            class="value"
+                            id="forecastMetric"
+                        >
+                            —
+                        </div>
+
                     </div>
 
-                    <div class="metric">
-                        <div class="label">MAPE</div>
-                        <div class="value" id="mapeMetric">—</div>
-                    </div>
 
                     <div class="metric">
-                        <div class="label">Load factor</div>
-                        <div class="value" id="loadMetric">—</div>
+
+                        <div class="label">
+                            MAPE
+                        </div>
+
+                        <div
+                            class="value"
+                            id="mapeMetric"
+                        >
+                            —
+                        </div>
+
                     </div>
 
+
                     <div class="metric">
-                        <div class="label">Commercial signal</div>
-                        <div class="value" id="signalMetric">—</div>
+
+                        <div class="label">
+                            Load factor
+                        </div>
+
+                        <div
+                            class="value"
+                            id="loadMetric"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="label">
+                            Commercial signal
+                        </div>
+
+                        <div
+                            class="value"
+                            id="signalMetric"
+                        >
+                            —
+                        </div>
+
                     </div>
 
                 </div>
 
+
+                <!-- CHART -->
 
                 <div class="chart-card">
 
                     <div class="chart-title">
-                        <h3>Demand forecast</h3>
+
+                        <h3>
+                            Demand forecast
+                        </h3>
+
                         <span id="chartSubtitle">
                             Historical demand and projected demand
                         </span>
+
                     </div>
 
+
                     <div class="chart-wrapper">
+
                         <canvas id="forecastChart"></canvas>
+
                     </div>
+
 
                     <div class="legend">
 
                         <div class="legend-item">
+
                             <span
                                 class="legend-line"
                                 style="background:#8fb9df;"
                             ></span>
+
                             Historical demand
+
                         </div>
 
+
                         <div class="legend-item">
+
                             <span
                                 class="legend-line"
                                 style="background:#f6a54f;"
                             ></span>
+
                             Forecast
+
                         </div>
 
+
                         <div class="legend-item">
+
                             <span
                                 class="legend-line"
                                 style="background:#75c69b;"
                             ></span>
+
                             Capacity
+
                         </div>
 
                     </div>
 
                 </div>
 
+
+                <!-- INSIGHT -->
 
                 <div class="insight">
 
@@ -860,21 +1228,29 @@ footer {
                 </div>
 
 
+                <!-- MODEL COMPARISON -->
+
                 <div class="chart-card">
 
                     <div class="chart-title">
-                        <h3>Model comparison</h3>
+
+                        <h3>
+                            Model comparison
+                        </h3>
 
                         <span>
                             Lower MAPE indicates greater historical accuracy
                         </span>
+
                     </div>
+
 
                     <div class="table-wrap">
 
                         <table>
 
                             <thead>
+
                                 <tr>
                                     <th>Method</th>
                                     <th>Forecast</th>
@@ -882,6 +1258,7 @@ footer {
                                     <th>RMSE</th>
                                     <th>Interpretation</th>
                                 </tr>
+
                             </thead>
 
                             <tbody id="comparisonTable">
@@ -902,7 +1279,9 @@ footer {
 </section>
 
 
-<!-- BOOKING CURVE -->
+<!-- =====================================================
+     BOOKING CURVE
+     ===================================================== -->
 
 <section>
 
@@ -910,7 +1289,9 @@ footer {
 
         <div class="section-intro">
 
-            <div class="eyebrow">Booking curve</div>
+            <div class="eyebrow">
+                Booking curve
+            </div>
 
             <h2>
                 Demand arrives
@@ -928,19 +1309,55 @@ footer {
 
         <div class="booking-layout">
 
+
             <div class="booking-card">
 
-                <h3>Days before departure</h3>
+                <h3>
+                    Days before departure
+                </h3>
 
                 <ul>
-                    <li>90 days <span>18%</span></li>
-                    <li>60 days <span>31%</span></li>
-                    <li>45 days <span>42%</span></li>
-                    <li>30 days <span>56%</span></li>
-                    <li>21 days <span>66%</span></li>
-                    <li>14 days <span>76%</span></li>
-                    <li>7 days <span>88%</span></li>
-                    <li>1 day <span>97%</span></li>
+
+                    <li>
+                        90 days
+                        <span>18%</span>
+                    </li>
+
+                    <li>
+                        60 days
+                        <span>31%</span>
+                    </li>
+
+                    <li>
+                        45 days
+                        <span>42%</span>
+                    </li>
+
+                    <li>
+                        30 days
+                        <span>56%</span>
+                    </li>
+
+                    <li>
+                        21 days
+                        <span>66%</span>
+                    </li>
+
+                    <li>
+                        14 days
+                        <span>76%</span>
+                    </li>
+
+                    <li>
+                        7 days
+                        <span>88%</span>
+                    </li>
+
+                    <li>
+                        1 day
+                        <span>97%</span>
+                    </li>
+
                 </ul>
 
             </div>
@@ -948,9 +1365,12 @@ footer {
 
             <div class="booking-card">
 
-                <h3>Analytical questions</h3>
+                <h3>
+                    Analytical questions
+                </h3>
 
                 <ul>
+
                     <li>
                         Is current pickup faster than expected?
                     </li>
@@ -974,6 +1394,7 @@ footer {
                     <li>
                         Is additional demand still likely to arrive?
                     </li>
+
                 </ul>
 
             </div>
@@ -985,7 +1406,9 @@ footer {
 </section>
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
 
 <footer>
 
@@ -999,6 +1422,10 @@ footer {
 </footer>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
 <script>
 /* =========================================================
    FORECASTING LABORATORY
@@ -1006,6 +1433,7 @@ footer {
    ========================================================= */
 
 const methodSelect = document.getElementById("method");
+
 const capacityInput = document.getElementById("capacity");
 const demandInput = document.getElementById("demand");
 const volatilityInput = document.getElementById("volatility");
@@ -1021,217 +1449,92 @@ const mapeMetric = document.getElementById("mapeMetric");
 const loadMetric = document.getElementById("loadMetric");
 const signalMetric = document.getElementById("signalMetric");
 
-const comparisonTable = document.getElementById("comparisonTable");
 const insightTitle = document.getElementById("insightTitle");
 const insightText = document.getElementById("insightText");
+
 const chartSubtitle = document.getElementById("chartSubtitle");
 
-const canvas = document.getElementById("forecastChart");
+const comparisonTable =
+    document.getElementById("comparisonTable");
+
+const canvas =
+    document.getElementById("forecastChart");
+
 const ctx = canvas.getContext("2d");
 
+const runButton =
+    document.getElementById("runButton");
 
-function updateLabels() {
-
-    capacityValue.textContent = capacityInput.value;
-
-    demandValue.textContent = demandInput.value;
-
-    volatilityValue.textContent =
-        volatilityInput.value + "%";
-
-    const trendNumber = Number(trendInput.value);
-
-    trendValue.textContent =
-        (trendNumber >= 0 ? "+" : "") +
-        trendNumber +
-        "%";
-}
+const resetButton =
+    document.getElementById("resetButton");
 
 
-capacityInput.addEventListener("input", updateLabels);
-demandInput.addEventListener("input", updateLabels);
-volatilityInput.addEventListener("input", updateLabels);
-trendInput.addEventListener("input", updateLabels);
+/* =========================================================
+   SYNTHETIC HISTORICAL DEMAND
+   ========================================================= */
+
+const baseHistory = [
+    82, 86, 89, 91, 88,
+    94, 96, 93, 98, 101,
+    99, 103, 105, 107, 104,
+    110, 108, 112, 115, 117,
+    114, 119, 121, 118, 124,
+    126, 123, 129, 131, 128
+];
 
 
-function seededRandom(seed) {
+/* =========================================================
+   HELPERS
+   ========================================================= */
 
-    let x = Math.sin(seed) * 10000;
+function average(values) {
 
-    return x - Math.floor(x);
-}
-
-
-function createDemandSeries(
-    baseDemand,
-    volatility,
-    trendPercent,
-    length = 20
-) {
-
-    const data = [];
-
-    for (let i = 0; i < length; i++) {
-
-        const randomComponent =
-            (seededRandom(i + 17) - 0.5) *
-            2 *
-            volatility;
-
-        const trendComponent =
-            i * (trendPercent / 100) * baseDemand * 0.08;
-
-        const seasonalComponent =
-            Math.sin(i / 2.3) *
-            baseDemand *
-            0.05;
-
-        const value =
-            baseDemand +
-            trendComponent +
-            seasonalComponent +
-            randomComponent;
-
-        data.push(
-            Math.max(20, Math.round(value))
-        );
+    if (!values.length) {
+        return 0;
     }
 
-    return data;
-}
-
-
-function naiveForecast(data) {
-
-    return data[data.length - 1];
-}
-
-
-function movingAverage(data, windowSize = 5) {
-
-    const start =
-        Math.max(0, data.length - windowSize);
-
-    const slice = data.slice(start);
-
-    return slice.reduce(
+    return values.reduce(
         (sum, value) => sum + value,
         0
-    ) / slice.length;
+    ) / values.length;
 }
 
 
-function exponentialSmoothing(
-    data,
-    alpha = 0.35
-) {
-
-    let forecast = data[0];
-
-    for (let i = 1; i < data.length; i++) {
-
-        forecast =
-            alpha * data[i] +
-            (1 - alpha) * forecast;
-    }
-
-    return forecast;
+function round(value) {
+    return Math.round(value);
 }
 
 
-function trendForecast(data) {
-
-    const n = data.length;
-
-    let sumX = 0;
-    let sumY = 0;
-    let sumXY = 0;
-    let sumX2 = 0;
-
-    for (let i = 0; i < n; i++) {
-
-        sumX += i;
-        sumY += data[i];
-        sumXY += i * data[i];
-        sumX2 += i * i;
-    }
-
-    const denominator =
-        n * sumX2 - sumX * sumX;
-
-    const slope =
-        denominator === 0
-            ? 0
-            : (
-                n * sumXY -
-                sumX * sumY
-            ) / denominator;
-
-    const intercept =
-        (sumY - slope * sumX) / n;
-
-    return intercept + slope * n;
+function percentage(value) {
+    return `${value.toFixed(1)}%`;
 }
 
 
-function forecastForMethod(
-    data,
-    method
-) {
-
-    if (method === "naive") {
-        return naiveForecast(data);
-    }
-
-    if (method === "moving") {
-        return movingAverage(data);
-    }
-
-    if (method === "exponential") {
-        return exponentialSmoothing(data);
-    }
-
-    if (method === "trend") {
-        return trendForecast(data);
-    }
-
-    return naiveForecast(data);
-}
-
-
-function calculateMAPE(
-    actual,
-    predicted
-) {
+function calculateMAPE(actual, predicted) {
 
     let total = 0;
     let count = 0;
 
     for (let i = 0; i < actual.length; i++) {
 
-        if (actual[i] === 0) {
-            continue;
-        }
+        if (actual[i] !== 0) {
 
-        total +=
-            Math.abs(
+            total += Math.abs(
                 (actual[i] - predicted[i]) /
                 actual[i]
             );
 
-        count++;
+            count++;
+        }
     }
 
-    return count === 0
-        ? 0
-        : (total / count) * 100;
+    return count
+        ? (total / count) * 100
+        : 0;
 }
 
 
-function calculateRMSE(
-    actual,
-    predicted
-) {
+function calculateRMSE(actual, predicted) {
 
     let total = 0;
 
@@ -1249,42 +1552,383 @@ function calculateRMSE(
 }
 
 
-function historicalPredictions(
-    data,
-    method
-) {
+/* =========================================================
+   FORECAST METHODS
+   ========================================================= */
+
+function naiveForecast(history) {
+
+    return history[history.length - 1];
+}
+
+
+function movingAverageForecast(history) {
+
+    const window =
+        history.slice(-5);
+
+    return average(window);
+}
+
+
+function exponentialForecast(history) {
+
+    const alpha = 0.35;
+
+    let forecast =
+        history[0];
+
+    for (let i = 1; i < history.length; i++) {
+
+        forecast =
+            alpha * history[i] +
+            (1 - alpha) * forecast;
+    }
+
+    return forecast;
+}
+
+
+function trendForecast(history) {
+
+    const n = history.length;
+
+    const xMean =
+        (n - 1) / 2;
+
+    const yMean =
+        average(history);
+
+    let numerator = 0;
+    let denominator = 0;
+
+    for (let i = 0; i < n; i++) {
+
+        numerator +=
+            (i - xMean) *
+            (history[i] - yMean);
+
+        denominator +=
+            Math.pow(i - xMean, 2);
+    }
+
+    const slope =
+        denominator
+            ? numerator / denominator
+            : 0;
+
+    return history[n - 1] + slope;
+}
+
+
+/* =========================================================
+   HISTORICAL MODEL FIT
+   ========================================================= */
+
+function generatePredictions(history, type) {
 
     const predictions = [];
 
-    for (let i = 1; i < data.length; i++) {
+    for (let i = 0; i < history.length; i++) {
 
-        const history =
-            data.slice(0, i);
+        if (i < 5) {
 
-        predictions.push(
-            forecastForMethod(
-                history,
-                method
-            )
-        );
+            predictions.push(
+                history[i]
+            );
+
+            continue;
+        }
+
+        const previous =
+            history.slice(0, i);
+
+        let prediction;
+
+        if (type === "naive") {
+
+            prediction =
+                naiveForecast(previous);
+
+        } else if (type === "moving") {
+
+            prediction =
+                movingAverageForecast(previous);
+
+        } else if (type === "exponential") {
+
+            prediction =
+                exponentialForecast(previous);
+
+        } else {
+
+            prediction =
+                trendForecast(previous);
+        }
+
+        predictions.push(prediction);
     }
 
     return predictions;
 }
 
 
-function methodName(method) {
+/* =========================================================
+   FORECAST CALCULATION
+   ========================================================= */
 
-    const names = {
-        naive: "Naive",
-        moving: "Moving Average",
-        exponential: "Exponential Smoothing",
-        trend: "Trend"
-    };
+function calculateForecast(
+    method,
+    demand,
+    volatility,
+    trend,
+    capacity
+) {
 
-    return names[method];
+    const adjustedHistory =
+        baseHistory.map(
+            (value, index) => {
+
+                const trendFactor =
+                    1 +
+                    (trend / 100) *
+                    (index / baseHistory.length);
+
+                return value *
+                    trendFactor;
+            }
+        );
+
+
+    let forecast;
+
+    if (method === "naive") {
+
+        forecast =
+            naiveForecast(
+                adjustedHistory
+            );
+
+    } else if (method === "moving") {
+
+        forecast =
+            movingAverageForecast(
+                adjustedHistory
+            );
+
+    } else if (method === "exponential") {
+
+        forecast =
+            exponentialForecast(
+                adjustedHistory
+            );
+
+    } else {
+
+        forecast =
+            trendForecast(
+                adjustedHistory
+            );
+    }
+
+
+    /*
+       Scale the forecast toward the selected
+       commercial demand level.
+    */
+
+    const currentBase =
+        average(
+            adjustedHistory.slice(-5)
+        );
+
+    const demandFactor =
+        demand / currentBase;
+
+    forecast *= demandFactor;
+
+
+    /*
+       Volatility slightly widens the estimate.
+    */
+
+    forecast *=
+        1 + volatility / 100 * 0.12;
+
+
+    return Math.min(
+        Math.max(forecast, 20),
+        capacity * 1.25
+    );
 }
 
+
+/* =========================================================
+   MODEL COMPARISON
+   ========================================================= */
+
+function getModelResults(
+    demand,
+    volatility,
+    trend,
+    capacity
+) {
+
+    const methods = [
+        {
+            key: "naive",
+            name: "Naive"
+        },
+        {
+            key: "moving",
+            name: "Moving Average"
+        },
+        {
+            key: "exponential",
+            name: "Exponential Smoothing"
+        },
+        {
+            key: "trend",
+            name: "Trend"
+        }
+    ];
+
+
+    return methods.map(model => {
+
+        const predictions =
+            generatePredictions(
+                baseHistory,
+                model.key
+            );
+
+        const mape =
+            calculateMAPE(
+                baseHistory.slice(5),
+                predictions.slice(5)
+            );
+
+        const rmse =
+            calculateRMSE(
+                baseHistory.slice(5),
+                predictions.slice(5)
+            );
+
+        const forecast =
+            calculateForecast(
+                model.key,
+                demand,
+                volatility,
+                trend,
+                capacity
+            );
+
+        let interpretation;
+
+        if (mape < 8) {
+
+            interpretation =
+                "Strong accuracy";
+
+        } else if (mape < 12) {
+
+            interpretation =
+                "Moderate accuracy";
+
+        } else {
+
+            interpretation =
+                "Review assumptions";
+        }
+
+
+        return {
+            ...model,
+            forecast,
+            mape,
+            rmse,
+            interpretation
+        };
+    });
+}
+
+
+/* =========================================================
+   COMMERCIAL SIGNAL
+   ========================================================= */
+
+function getCommercialSignal(
+    forecast,
+    capacity
+) {
+
+    const load =
+        forecast / capacity;
+
+    if (load >= 1.0) {
+
+        return {
+            label: "Constrained",
+            explanation:
+                "Forecast demand is at or above aircraft capacity. The commercial priority should shift toward inventory protection, price discipline and careful control of remaining availability."
+        };
+
+    }
+
+    if (load >= 0.85) {
+
+        return {
+            label: "Strong",
+            explanation:
+                "Forecast demand is approaching capacity. Revenue Management should monitor pickup closely and consider protecting higher-value inventory as departure approaches."
+        };
+
+    }
+
+    if (load >= 0.65) {
+
+        return {
+            label: "Balanced",
+            explanation:
+                "Forecast demand indicates a relatively balanced commercial position. Inventory and pricing can remain responsive while monitoring changes in booking pace."
+        };
+
+    }
+
+    return {
+        label: "Stimulate",
+        explanation:
+            "Forecast demand remains comfortably below capacity. Greater attention may be required on stimulation, fare availability or competitive positioning."
+    };
+}
+
+
+/* =========================================================
+   UPDATE DISPLAY VALUES
+   ========================================================= */
+
+function updateLabels() {
+
+    capacityValue.textContent =
+        capacityInput.value;
+
+    demandValue.textContent =
+        demandInput.value;
+
+    volatilityValue.textContent =
+        `${volatilityInput.value}%`;
+
+    const trend =
+        Number(trendInput.value);
+
+    trendValue.textContent =
+        `${trend >= 0 ? "+" : ""}${trend}%`;
+}
+
+
+/* =========================================================
+   DRAW CHART
+   ========================================================= */
 
 function drawChart(
     historical,
@@ -1295,14 +1939,20 @@ function drawChart(
     const rect =
         canvas.getBoundingClientRect();
 
+    const width =
+        Math.max(rect.width, 300);
+
+    const height =
+        Math.max(rect.height, 250);
+
     const ratio =
         window.devicePixelRatio || 1;
 
     canvas.width =
-        rect.width * ratio;
+        width * ratio;
 
     canvas.height =
-        rect.height * ratio;
+        height * ratio;
 
     ctx.setTransform(
         ratio,
@@ -1313,9 +1963,6 @@ function drawChart(
         0
     );
 
-    const width = rect.width;
-    const height = rect.height;
-
     ctx.clearRect(
         0,
         0,
@@ -1325,130 +1972,118 @@ function drawChart(
 
 
     const padding = {
-        left: 55,
-        right: 25,
         top: 25,
-        bottom: 45
+        right: 25,
+        bottom: 40,
+        left: 45
     };
 
-
-    const plotWidth =
+    const chartWidth =
         width -
         padding.left -
         padding.right;
 
-    const plotHeight =
+    const chartHeight =
         height -
         padding.top -
         padding.bottom;
 
 
-    const allValues =
-        historical.concat(forecast);
+    const values = [
+        ...historical,
+        ...forecast,
+        capacity
+    ];
 
     const maxValue =
+        Math.max(...values) * 1.12;
+
+    const minValue =
         Math.max(
-            capacity,
-            ...allValues
-        ) * 1.15;
-
-    const minValue = 0;
+            0,
+            Math.min(...values) * 0.82
+        );
 
 
-    function xPosition(index) {
-
-        const totalPoints =
-            historical.length +
-            forecast.length -
-            1;
+    function x(index, count) {
 
         return padding.left +
-            (
-                index /
-                totalPoints
-            ) *
-            plotWidth;
+            (index / (count - 1)) *
+            chartWidth;
     }
 
 
-    function yPosition(value) {
+    function y(value) {
 
         return padding.top +
-            plotHeight -
-            (
-                (value - minValue) /
-                (maxValue - minValue)
-            ) *
-            plotHeight;
+            chartHeight -
+            ((value - minValue) /
+             (maxValue - minValue)) *
+            chartHeight;
     }
 
 
-    /* GRID */
+    /* Grid */
 
-    ctx.strokeStyle = "#26384b";
+    ctx.strokeStyle =
+        "#26384b";
+
     ctx.lineWidth = 1;
 
-    ctx.font = "12px Arial";
-    ctx.fillStyle = "#9eb0c4";
+    for (let i = 0; i <= 4; i++) {
 
-    for (let i = 0; i <= 5; i++) {
-
-        const value =
-            (maxValue / 5) * i;
-
-        const y =
-            yPosition(value);
+        const gy =
+            padding.top +
+            (chartHeight / 4) * i;
 
         ctx.beginPath();
 
         ctx.moveTo(
             padding.left,
-            y
+            gy
         );
 
         ctx.lineTo(
             width - padding.right,
-            y
+            gy
         );
 
         ctx.stroke();
+    }
+
+
+    /* Y labels */
+
+    ctx.fillStyle =
+        "#9eb0c4";
+
+    ctx.font =
+        "12px Arial";
+
+    for (let i = 0; i <= 4; i++) {
+
+        const value =
+            maxValue -
+            ((maxValue - minValue) / 4) *
+            i;
+
+        const gy =
+            padding.top +
+            (chartHeight / 4) * i;
 
         ctx.fillText(
             Math.round(value),
-            10,
-            y + 4
+            5,
+            gy + 4
         );
     }
 
 
-    /* CAPACITY */
+    /* Historical */
 
-    const capacityY =
-        yPosition(capacity);
+    ctx.strokeStyle =
+        "#8fb9df";
 
-    ctx.strokeStyle = "#75c69b";
-    ctx.setLineDash([7, 6]);
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        padding.left,
-        capacityY
-    );
-
-    ctx.lineTo(
-        width - padding.right,
-        capacityY
-    );
-
-    ctx.stroke();
-
-    ctx.setLineDash([]);
-
-
-    /* HISTORICAL */
-
-    ctx.strokeStyle = "#8fb9df";
     ctx.lineWidth = 3;
 
     ctx.beginPath();
@@ -1456,16 +2091,22 @@ function drawChart(
     historical.forEach(
         (value, index) => {
 
-            const x =
-                xPosition(index);
+            const px =
+                x(
+                    index,
+                    historical.length + forecast.length
+                );
 
-            const y =
-                yPosition(value);
+            const py =
+                y(value);
 
             if (index === 0) {
-                ctx.moveTo(x, y);
+
+                ctx.moveTo(px, py);
+
             } else {
-                ctx.lineTo(x, y);
+
+                ctx.lineTo(px, py);
             }
         }
     );
@@ -1473,63 +2114,118 @@ function drawChart(
     ctx.stroke();
 
 
-    /* FORECAST */
+    /* Forecast */
 
-    ctx.strokeStyle = "#f6a54f";
+    ctx.strokeStyle =
+        "#f6a54f";
+
     ctx.lineWidth = 3;
 
     ctx.beginPath();
 
-    const forecastStart =
-        historical.length - 1;
 
-    const lastHistorical =
-        historical[historical.length - 1];
+    const totalCount =
+        historical.length +
+        forecast.length;
 
-    ctx.moveTo(
-        xPosition(forecastStart),
-        yPosition(lastHistorical)
+
+    historical.forEach(
+        (value, index) => {
+
+            const px =
+                x(index, totalCount);
+
+            const py =
+                y(value);
+
+            if (index === 0) {
+
+                ctx.moveTo(px, py);
+
+            } else {
+
+                ctx.lineTo(px, py);
+            }
+        }
     );
+
 
     forecast.forEach(
         (value, index) => {
 
-            const x =
-                xPosition(
-                    forecastStart +
-                    index +
-                    1
+            const actualIndex =
+                historical.length +
+                index;
+
+            const px =
+                x(
+                    actualIndex,
+                    totalCount
                 );
 
-            const y =
-                yPosition(value);
+            const py =
+                y(value);
 
-            ctx.lineTo(x, y);
+            ctx.lineTo(px, py);
         }
     );
 
     ctx.stroke();
 
 
-    /* POINTS */
+    /* Capacity */
 
-    ctx.fillStyle = "#8fb9df";
+    ctx.strokeStyle =
+        "#75c69b";
 
-    historical.forEach(
+    ctx.lineWidth = 2;
+
+    ctx.setLineDash([7, 5]);
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        padding.left,
+        y(capacity)
+    );
+
+    ctx.lineTo(
+        width - padding.right,
+        y(capacity)
+    );
+
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+
+
+    /* Forecast points */
+
+    forecast.forEach(
         (value, index) => {
 
-            const x =
-                xPosition(index);
+            const actualIndex =
+                historical.length +
+                index;
 
-            const y =
-                yPosition(value);
+            const px =
+                x(
+                    actualIndex,
+                    totalCount
+                );
+
+            const py =
+                y(value);
+
+            ctx.fillStyle =
+                "#f6a54f";
 
             ctx.beginPath();
 
             ctx.arc(
-                x,
-                y,
-                3,
+                px,
+                py,
+                4,
                 0,
                 Math.PI * 2
             );
@@ -1539,145 +2235,45 @@ function drawChart(
     );
 
 
-    /* X AXIS LABELS */
+    /* X-axis labels */
 
-    ctx.fillStyle = "#9eb0c4";
-    ctx.font = "12px Arial";
+    ctx.fillStyle =
+        "#9eb0c4";
 
-    const labels = [
-        "P1",
-        "P5",
-        "P10",
-        "P15",
-        "Forecast"
-    ];
+    ctx.font =
+        "12px Arial";
 
-    labels.forEach(
-        (label, index) => {
-
-            const x =
-                padding.left +
-                (
-                    index /
-                    (labels.length - 1)
-                ) *
-                plotWidth;
-
-            ctx.fillText(
-                label,
-                x - 12,
-                height - 12
-            );
-        }
+    ctx.fillText(
+        "Historical",
+        padding.left,
+        height - 12
     );
 
+    ctx.fillText(
+        "Forecast",
+        width - 80,
+        height - 12
+    );
 }
 
 
-function getSignal(
-    forecast,
-    capacity
-) {
-
-    const loadFactor =
-        forecast / capacity;
-
-    if (loadFactor >= 0.95) {
-        return "High";
-    }
-
-    if (loadFactor >= 0.80) {
-        return "Balanced";
-    }
-
-    return "Low";
-}
-
-
-function interpretation(
-    forecast,
-    capacity,
-    mape,
-    method
-) {
-
-    const loadFactor =
-        forecast / capacity;
-
-    let title;
-    let text;
-
-
-    if (loadFactor >= 0.95) {
-
-        title =
-            "Strong demand pressure";
-
-        text =
-            "The forecast is close to or above available "
-            + "capacity. This suggests a constrained commercial "
-            + "environment where inventory protection and "
-            + "pricing discipline become increasingly important.";
-
-    } else if (loadFactor >= 0.80) {
-
-        title =
-            "Balanced demand environment";
-
-        text =
-            "Forecast demand indicates a relatively healthy "
-            + "load factor. The analyst should continue monitoring "
-            + "pickup and booking pace before making aggressive "
-            + "inventory changes.";
-
-    } else {
-
-        title =
-            "Demand remains below capacity";
-
-        text =
-            "The forecast leaves meaningful capacity available. "
-            + "This may indicate weaker demand and could justify "
-            + "greater attention to stimulation, fare availability "
-            + "or competitive positioning.";
-
-    }
-
-
-    if (mape > 15) {
-
-        text +=
-            " Historical forecast error is relatively high, "
-            + "so the forecast should be treated cautiously.";
-
-    } else if (mape < 8) {
-
-        text +=
-            " Historical forecast accuracy is strong, providing "
-            + "greater confidence in the current estimate.";
-    }
-
-
-    text +=
-        " The selected method is " +
-        methodName(method) +
-        ".";
-
-
-    return {
-        title,
-        text
-    };
-}
-
+/* =========================================================
+   MAIN RUN FUNCTION
+   ========================================================= */
 
 function runForecast() {
 
-    const baseDemand =
-        Number(demandInput.value);
+    updateLabels();
+
+
+    const method =
+        methodSelect.value;
 
     const capacity =
         Number(capacityInput.value);
+
+    const demand =
+        Number(demandInput.value);
 
     const volatility =
         Number(volatilityInput.value);
@@ -1686,277 +2282,240 @@ function runForecast() {
         Number(trendInput.value);
 
 
-    const historical =
-        createDemandSeries(
-            baseDemand,
+    const results =
+        getModelResults(
+            demand,
             volatility,
             trend,
-            20
+            capacity
         );
 
 
-    const methods = [
-        "naive",
-        "moving",
-        "exponential",
-        "trend"
-    ];
-
-
-    const results = {};
-
-
-    methods.forEach(
-        method => {
-
-            const forecast =
-                forecastForMethod(
-                    historical,
-                    method
-                );
-
-            const predictions =
-                historicalPredictions(
-                    historical,
-                    method
-                );
-
-            const actual =
-                historical.slice(1);
-
-            const mape =
-                calculateMAPE(
-                    actual,
-                    predictions
-                );
-
-            const rmse =
-                calculateRMSE(
-                    actual,
-                    predictions
-                );
-
-            results[method] = {
-                forecast,
-                mape,
-                rmse
-            };
-        }
-    );
-
-
-    const selectedMethod =
-        methodSelect.value;
-
     const selected =
-        results[selectedMethod];
+        results.find(
+            item => item.key === method
+        );
 
 
-    /* Create 5 forecast points */
-
-    const forecastSeries = [];
-
-    let startingValue =
+    const forecast =
         selected.forecast;
 
 
-    for (let i = 0; i < 5; i++) {
+    const loadFactor =
+        (forecast / capacity) * 100;
 
-        const trendAdjustment =
+
+    const signal =
+        getCommercialSignal(
+            forecast,
+            capacity
+        );
+
+
+    /* Metrics */
+
+    forecastMetric.textContent =
+        `${round(forecast)} pax`;
+
+    mapeMetric.textContent =
+        percentage(selected.mape);
+
+    loadMetric.textContent =
+        `${Math.round(loadFactor)}%`;
+
+    signalMetric.textContent =
+        signal.label;
+
+
+    /* Insight */
+
+    insightTitle.textContent =
+        `${signal.label} commercial signal`;
+
+    insightText.textContent =
+        `${signal.explanation} Historical forecast accuracy for the selected method is ${percentage(selected.mape)}. The selected method is ${selected.name}.`;
+
+
+    chartSubtitle.textContent =
+        `${selected.name} forecast · ${round(forecast)} pax`;
+
+
+    /* Forecast series */
+
+    const forecastSeries = [];
+
+    let current =
+        baseHistory[
+            baseHistory.length - 1
+        ];
+
+
+    for (let i = 1; i <= 8; i++) {
+
+        const progress =
+            i / 8;
+
+        const trendEffect =
             1 +
             (trend / 100) *
-            (i + 1) *
-            0.08;
+            progress;
+
+        const volatilityEffect =
+            1 +
+            (
+                Math.sin(i * 1.7) *
+                volatility /
+                100 *
+                0.18
+            );
+
+        const path =
+            current +
+            (forecast - current) *
+            progress;
+
+        const value =
+            path *
+            trendEffect *
+            volatilityEffect;
+
 
         forecastSeries.push(
-            Math.max(
-                0,
-                startingValue *
-                trendAdjustment
+            Math.min(
+                Math.max(value, 10),
+                capacity * 1.2
             )
         );
     }
 
 
-    const forecastValue =
-        Math.round(
-            forecastSeries[
-                forecastSeries.length - 1
-            ]
-        );
-
-
-    const loadFactor =
-        Math.min(
-            forecastValue / capacity,
-            1.5
-        );
-
-
-    const signal =
-        getSignal(
-            forecastValue,
-            capacity
-        );
-
-
-    forecastMetric.textContent =
-        forecastValue + " pax";
-
-    mapeMetric.textContent =
-        selected.mape.toFixed(1) + "%";
-
-    loadMetric.textContent =
-        Math.round(loadFactor * 100) + "%";
-
-    signalMetric.textContent =
-        signal;
-
-
-    chartSubtitle.textContent =
-        methodName(selectedMethod) +
-        " forecast · next 5 periods";
-
-
     drawChart(
-        historical,
+        baseHistory,
         forecastSeries,
         capacity
     );
 
 
-    /* INSIGHT */
-
-    const result =
-        interpretation(
-            forecastValue,
-            capacity,
-            selected.mape,
-            selectedMethod
-        );
-
-    insightTitle.textContent =
-        result.title;
-
-    insightText.textContent =
-        result.text;
-
-
-    /* TABLE */
+    /* Comparison table */
 
     comparisonTable.innerHTML = "";
 
-    methods.forEach(
-        method => {
+    results.forEach(result => {
 
-            const item =
-                results[method];
+        const row =
+            document.createElement("tr");
 
-            let interpretationText;
+        row.innerHTML = `
+            <td>
+                <strong>${result.name}</strong>
+            </td>
 
-            if (item.mape < 8) {
-                interpretationText =
-                    "Strong accuracy";
-            } else if (item.mape < 15) {
-                interpretationText =
-                    "Acceptable accuracy";
-            } else {
-                interpretationText =
-                    "Higher uncertainty";
-            }
+            <td>
+                ${round(result.forecast)} pax
+            </td>
 
+            <td>
+                ${percentage(result.mape)}
+            </td>
 
-            const row =
-                document.createElement("tr");
+            <td>
+                ${result.rmse.toFixed(1)}
+            </td>
 
-            row.innerHTML = `
-                <td>
-                    <strong>
-                        ${methodName(method)}
-                    </strong>
-                </td>
+            <td>
+                ${result.interpretation}
+            </td>
+        `;
 
-                <td>
-                    ${Math.round(item.forecast)} pax
-                </td>
-
-                <td>
-                    ${item.mape.toFixed(1)}%
-                </td>
-
-                <td>
-                    ${item.rmse.toFixed(1)}
-                </td>
-
-                <td>
-                    ${interpretationText}
-                </td>
-            `;
-
-            comparisonTable.appendChild(row);
-        }
-    );
-
+        comparisonTable.appendChild(row);
+    });
 }
 
 
-/* RESET */
+/* =========================================================
+   RESET
+   ========================================================= */
 
-document
-    .getElementById("resetButton")
-    .addEventListener(
-        "click",
-        function() {
+function resetScenario() {
 
-            methodSelect.value =
-                "naive";
+    methodSelect.value =
+        "naive";
 
-            capacityInput.value =
-                180;
+    capacityInput.value =
+        180;
 
-            demandInput.value =
-                100;
+    demandInput.value =
+        100;
 
-            volatilityInput.value =
-                12;
+    volatilityInput.value =
+        12;
 
-            trendInput.value =
-                2;
+    trendInput.value =
+        2;
 
-            updateLabels();
-
-            runForecast();
-        }
-    );
+    runForecast();
+}
 
 
-/* RUN */
+/* =========================================================
+   EVENTS
+   ========================================================= */
 
-document
-    .getElementById("runButton")
-    .addEventListener(
-        "click",
-        runForecast
-    );
-
-
-/* METHOD CHANGE */
-
-methodSelect.addEventListener(
-    "change",
+runButton.addEventListener(
+    "click",
     runForecast
 );
 
+resetButton.addEventListener(
+    "click",
+    resetScenario
+);
 
-/* WINDOW RESIZE */
+
+[
+    capacityInput,
+    demandInput,
+    volatilityInput,
+    trendInput,
+    methodSelect
+].forEach(
+    element => {
+
+        element.addEventListener(
+            "input",
+            updateLabels
+        );
+
+        element.addEventListener(
+            "change",
+            updateLabels
+        );
+    }
+);
+
+
+/* Redraw chart after resizing */
+
+let resizeTimer;
 
 window.addEventListener(
     "resize",
-    runForecast
+    () => {
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer =
+            setTimeout(
+                runForecast,
+                100
+            );
+    }
 );
 
 
-/* INITIAL */
+/* =========================================================
+   INITIAL RUN
+   ========================================================= */
 
 updateLabels();
 
