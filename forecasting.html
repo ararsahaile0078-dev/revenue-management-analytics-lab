@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Forecasting Laboratory | RM Analytics Lab</title>
 
 <meta
     name="description"
-    content="Interactive airline Revenue Management demand forecasting laboratory covering forecasting models, accuracy and commercial decision-making."
+    content="Interactive airline Revenue Management forecasting and commercial analytics laboratory."
 >
 
 <style>
@@ -28,47 +23,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    background: #08111d;
-    color: #edf2f7;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button,
-select,
-input {
-    font: inherit;
-}
-
-img,
-canvas,
-svg,
-video {
-    max-width: 100%;
-}
-
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
-
 :root {
     --bg: #08111d;
     --panel: #0d1825;
@@ -82,31 +36,45 @@ video {
     --red: #e77c7c;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+select,
+input {
+    font: inherit;
+}
 
 /* =========================================================
    NAVIGATION
    ========================================================= */
 
 nav {
-    width: 100%;
     height: 78px;
-
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 4.5%;
-
-    border-bottom: 1px solid var(--border);
-
+    padding: 0 4%;
     position: sticky;
     top: 0;
     z-index: 100;
-
-    background: rgba(8, 17, 29, 0.97);
-    backdrop-filter: blur(10px);
-
-    min-width: 0;
+    background: rgba(8,17,29,0.97);
+    backdrop-filter: blur(12px);
 }
 
 .logo {
@@ -121,40 +89,26 @@ nav {
 
 .nav-links {
     display: flex;
-    align-items: center;
-    gap: 34px;
-
+    gap: 32px;
     color: var(--muted);
-    white-space: nowrap;
 }
 
 .nav-links a:hover {
     color: var(--text);
 }
 
-
 /* =========================================================
-   GENERAL
+   GLOBAL
    ========================================================= */
 
 .container {
     width: 90%;
     max-width: 1450px;
     margin: 0 auto;
-    min-width: 0;
 }
 
 section {
-    width: 100%;
-    padding: 95px 0;
-    min-width: 0;
-}
-
-.section-intro {
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 50px;
-    min-width: 0;
+    padding: 90px 0;
 }
 
 .eyebrow {
@@ -162,7 +116,7 @@ section {
     font-size: 13px;
     letter-spacing: 5px;
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin-bottom: 25px;
 }
 
 h1,
@@ -172,9 +126,8 @@ h2 {
 }
 
 h1 {
-    font-size: clamp(48px, 7vw, 88px);
-    line-height: 0.98;
-    max-width: 1100px;
+    font-size: clamp(52px, 7vw, 90px);
+    line-height: .98;
 }
 
 h1 span,
@@ -183,9 +136,8 @@ h2 span {
 }
 
 h2 {
-    font-size: clamp(38px, 5vw, 62px);
+    font-size: clamp(40px, 5vw, 64px);
     line-height: 1.05;
-    margin-bottom: 25px;
 }
 
 h3 {
@@ -197,8 +149,7 @@ h3 {
     color: var(--muted);
     font-size: 19px;
     max-width: 900px;
-    margin-top: 32px;
-    overflow-wrap: break-word;
+    margin-top: 30px;
 }
 
 .small {
@@ -206,110 +157,82 @@ h3 {
     font-size: 14px;
 }
 
-
 /* =========================================================
    HERO
    ========================================================= */
 
 .hero {
-    min-height: 650px;
+    min-height: 72vh;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--border);
 }
 
 .hero-grid {
     display: grid;
-
-    grid-template-columns:
-        minmax(0, 1.35fr)
-        minmax(280px, 0.65fr);
-
-    gap: 50px;
-
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr);
+    gap: 65px;
     align-items: center;
-
-    min-width: 0;
-}
-
-.hero-grid > * {
-    min-width: 0;
 }
 
 .hero-card {
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 34px;
-
-    min-width: 0;
 }
 
 .hero-card .number {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: Georgia, serif;
     color: var(--orange);
-    font-size: 58px;
-    line-height: 1;
-    margin-bottom: 15px;
+    font-size: 62px;
 }
 
 .hero-card p {
     color: var(--muted);
-    margin-top: 10px;
-    overflow-wrap: break-word;
 }
 
-
 /* =========================================================
-   MODEL CARDS
+   FORECASTING METHODS
    ========================================================= */
 
+.methods {
+    border-bottom: 1px solid var(--border);
+}
+
 .models {
-    width: 100%;
-
+    margin-top: 45px;
     display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 18px;
-
-    min-width: 0;
 }
 
 .model-card {
     background: var(--panel);
     border: 1px solid var(--border);
-
     padding: 28px;
-
-    min-height: 235px;
-    min-width: 0;
-
-    transition:
-        border-color 0.25s ease,
-        transform 0.25s ease;
+    min-height: 220px;
+    transition: .2s;
 }
 
 .model-card:hover {
     border-color: var(--orange);
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 }
 
 .model-number {
     color: var(--orange);
     letter-spacing: 2px;
     font-size: 13px;
-    margin-bottom: 42px;
+    margin-bottom: 40px;
 }
 
 .model-card p {
     color: var(--muted);
     font-size: 14px;
-    overflow-wrap: break-word;
 }
 
-
 /* =========================================================
-   LABORATORY
+   LAB
    ========================================================= */
 
 .lab {
@@ -319,92 +242,57 @@ h3 {
 }
 
 .lab-grid {
-    width: 100%;
-
     display: grid;
-
-    grid-template-columns:
-        minmax(280px, 320px)
-        minmax(0, 1fr);
-
+    grid-template-columns: 330px minmax(0, 1fr);
     gap: 22px;
-
-    min-width: 0;
+    align-items: start;
 }
-
-.lab-grid > * {
-    min-width: 0;
-}
-
 
 /* =========================================================
    CONTROLS
    ========================================================= */
 
 .controls {
-    width: 100%;
-
     background: var(--panel);
     border: 1px solid var(--border);
-
-    padding: 27px;
-
-    align-self: start;
-
+    padding: 28px;
     position: sticky;
-    top: 100px;
+    top: 98px;
+}
 
-    min-width: 0;
+.controls h3 {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.controls > p {
+    color: var(--muted);
+    margin-bottom: 32px;
 }
 
 .control {
-    width: 100%;
-    margin-bottom: 25px;
-    min-width: 0;
+    margin-bottom: 26px;
 }
 
 .control label {
-    width: 100%;
-
     display: flex;
     justify-content: space-between;
-    align-items: center;
-
-    gap: 12px;
-
-    color: var(--muted);
-    font-size: 14px;
-
+    gap: 10px;
+    color: var(--blue);
     margin-bottom: 9px;
-
-    min-width: 0;
-}
-
-.control label span {
-    min-width: 0;
-    overflow-wrap: break-word;
 }
 
 .control strong {
     color: var(--text);
-    white-space: nowrap;
 }
 
 select {
-    display: block;
-
     width: 100%;
-    max-width: 100%;
-
     background: var(--panel2);
     color: var(--text);
-
     border: 1px solid var(--border);
-
-    padding: 12px;
-
+    padding: 14px;
     border-radius: 2px;
-
     outline: none;
 }
 
@@ -413,220 +301,191 @@ select:focus {
 }
 
 input[type="range"] {
-    display: block;
-
     width: 100%;
-    max-width: 100%;
-
     accent-color: var(--orange);
 }
 
-button {
-    display: block;
-
+.run-button {
     width: 100%;
-    max-width: 100%;
-
     background: var(--orange);
     color: #08111d;
-
     border: none;
-
-    padding: 14px;
-
-    font-weight: bold;
-
+    padding: 17px;
+    font-weight: 700;
     cursor: pointer;
-
     margin-top: 8px;
-
-    transition: opacity 0.2s ease;
 }
 
-button:hover {
-    opacity: 0.85;
+.run-button:hover {
+    opacity: .88;
 }
 
 .reset-button {
+    width: 100%;
     background: transparent;
     color: var(--muted);
     border: 1px solid var(--border);
+    padding: 14px;
+    cursor: pointer;
+    margin-top: 10px;
 }
-
-.reset-button:hover {
-    color: var(--text);
-    border-color: var(--orange);
-    opacity: 1;
-}
-
 
 /* =========================================================
    DASHBOARD
    ========================================================= */
 
 .dashboard {
-    width: 100%;
-    max-width: 100%;
     min-width: 0;
-
-    display: grid;
-    gap: 18px;
 }
 
 .metrics {
-    width: 100%;
-
     display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
+    grid-template-columns: repeat(4, minmax(0,1fr));
     gap: 12px;
-
-    min-width: 0;
+    margin-bottom: 18px;
 }
 
 .metric {
     background: var(--panel);
     border: 1px solid var(--border);
-
-    padding: 21px;
-
+    padding: 22px;
     min-width: 0;
-
-    overflow: hidden;
 }
 
 .metric .label {
     color: var(--muted);
-
     font-size: 11px;
-
     text-transform: uppercase;
-
-    letter-spacing: 1px;
-
-    overflow-wrap: break-word;
+    letter-spacing: 1.3px;
 }
 
 .metric .value {
-    color: var(--text);
-
-    font-size: 31px;
-
-    margin-top: 8px;
-
-    line-height: 1.2;
-
-    overflow-wrap: break-word;
+    font-size: 30px;
+    margin-top: 7px;
+    overflow-wrap: anywhere;
 }
 
+.metric.primary {
+    border-top: 3px solid var(--orange);
+}
+
+.metric.green {
+    border-top: 3px solid var(--green);
+}
+
+.metric.blue {
+    border-top: 3px solid var(--blue);
+}
+
+.metric.red {
+    border-top: 3px solid var(--red);
+}
+
+/* =========================================================
+   COMMERCIAL KPI SECTION
+   ========================================================= */
+
+.kpi-heading {
+    margin: 38px 0 15px;
+    color: var(--blue);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.commercial-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0,1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+}
 
 /* =========================================================
    CHART
    ========================================================= */
 
 .chart-card {
-    width: 100%;
-    max-width: 100%;
-
     background: var(--panel);
     border: 1px solid var(--border);
-
     padding: 28px;
-
-    min-width: 0;
-
     overflow: hidden;
 }
 
 .chart-title {
     display: flex;
-
-    align-items: center;
     justify-content: space-between;
-
+    align-items: center;
     gap: 20px;
-
     margin-bottom: 20px;
-
-    min-width: 0;
 }
 
 .chart-title h3 {
     margin: 0;
-    flex: 0 1 auto;
 }
 
 .chart-title span {
     color: var(--blue);
-
     font-size: 14px;
-
-    text-align: right;
-
-    max-width: 55%;
-
-    overflow-wrap: break-word;
 }
 
 .chart-wrapper {
+    position: relative;
     width: 100%;
-    height: 390px;
-
-    min-width: 0;
-
-    overflow: hidden;
+    height: 430px;
 }
 
-canvas {
-    display: block;
-
+#forecastChart {
     width: 100%;
     height: 100%;
+    display: block;
 }
+
+/* =========================================================
+   LEGEND
+   ========================================================= */
 
 .legend {
     display: flex;
-
     flex-wrap: wrap;
-
-    gap: 18px;
-
-    margin-top: 14px;
-
+    gap: 22px;
+    margin-top: 18px;
     color: var(--muted);
-
     font-size: 13px;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
 }
 
 .legend-line {
-    width: 24px;
+    width: 25px;
     height: 3px;
     display: inline-block;
 }
 
+.history-line {
+    background: var(--blue);
+}
+
+.forecast-line {
+    background: var(--orange);
+}
+
+.capacity-line {
+    background: var(--green);
+}
 
 /* =========================================================
    INSIGHT
    ========================================================= */
 
 .insight {
-    border-left: 3px solid var(--orange);
-
+    margin-top: 18px;
     background: var(--panel);
-
-    padding: 27px;
-
-    min-width: 0;
-
-    overflow-wrap: anywhere;
+    border-left: 3px solid var(--orange);
+    padding: 25px;
 }
 
 .insight strong {
@@ -635,53 +494,41 @@ canvas {
 
 .insight p {
     color: var(--muted);
-    margin-top: 8px;
+    margin-top: 7px;
 }
 
-
 /* =========================================================
-   TABLE
+   COMMERCIAL TABLE
    ========================================================= */
 
+.analysis-section {
+    border-bottom: 1px solid var(--border);
+}
+
 .table-wrap {
-    width: 100%;
-    max-width: 100%;
-
+    margin-top: 40px;
     overflow-x: auto;
-    overflow-y: hidden;
-
     border: 1px solid var(--border);
-
-    -webkit-overflow-scrolling: touch;
 }
 
 table {
     width: 100%;
-
+    min-width: 750px;
     border-collapse: collapse;
-
-    min-width: 650px;
 }
 
 th,
 td {
+    padding: 16px;
     text-align: left;
-
-    padding: 15px;
-
     border-bottom: 1px solid var(--border);
 }
 
 th {
     color: var(--orange);
-
-    font-size: 12px;
-
     text-transform: uppercase;
-
     letter-spacing: 1px;
-
-    white-space: nowrap;
+    font-size: 12px;
 }
 
 td {
@@ -692,236 +539,131 @@ td strong {
     color: var(--text);
 }
 
-
 /* =========================================================
-   BOOKING CURVE
+   COMMERCIAL DECISION CARDS
    ========================================================= */
 
-.booking-layout {
+.decision-grid {
+    margin-top: 40px;
     display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+.decision-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 28px;
+}
 
-    gap: 22px;
+.decision-card .number {
+    color: var(--orange);
+    font-family: Georgia, serif;
+    font-size: 42px;
+}
 
-    min-width: 0;
+.decision-card p {
+    color: var(--muted);
+}
+
+/* =========================================================
+   BOOKING CURVE / COMMERCIAL LOGIC
+   ========================================================= */
+
+.booking {
+    border-bottom: 1px solid var(--border);
+}
+
+.booking-grid {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
 }
 
 .booking-card {
-    width: 100%;
-
     background: var(--panel);
-
     border: 1px solid var(--border);
-
     padding: 28px;
-
-    min-width: 0;
 }
 
 .booking-card ul {
     list-style: none;
+    margin-top: 15px;
 }
 
 .booking-card li {
-    border-bottom: 1px solid var(--border);
-
-    padding: 13px 0;
-
     color: var(--muted);
-
-    overflow-wrap: break-word;
+    border-bottom: 1px solid var(--border);
+    padding: 13px 0;
 }
 
-.booking-card li span {
+.booking-card li strong {
     color: var(--text);
-
-    float: right;
-
-    margin-left: 15px;
 }
-
 
 /* =========================================================
    FOOTER
    ========================================================= */
 
 footer {
-    width: 100%;
-
+    padding: 55px 0;
     border-top: 1px solid var(--border);
+}
 
-    padding: 50px 5%;
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
 
+footer p {
     color: var(--muted);
-
-    text-align: center;
-
-    font-size: 13px;
 }
 
-
 /* =========================================================
-   LARGE TABLET / SMALL DESKTOP
+   RESPONSIVE
    ========================================================= */
 
-@media (max-width: 1100px) {
-
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .lab-grid {
-        grid-template-columns:
-            minmax(250px, 300px)
-            minmax(0, 1fr);
-
-        gap: 18px;
-    }
+@media (max-width: 1200px) {
 
     .models {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2,1fr);
     }
 
     .metrics {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .commercial-grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media (max-width: 950px) {
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-grid {
+        grid-template-columns: 1fr;
     }
 
     .controls {
         position: static;
     }
 
-    .booking-layout {
+    .decision-grid {
         grid-template-columns: 1fr;
-    }
-
-    .dashboard,
-    .chart-card,
-    .metrics,
-    .models {
-        min-width: 0;
-        max-width: 100%;
     }
 }
 
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 800px) {
-
-    nav {
-        height: 72px;
-        padding: 0 24px;
-    }
-
-    .nav-links {
-        gap: 18px;
-        font-size: 14px;
-    }
-
-    section {
-        padding: 75px 0;
-    }
-
-    .container {
-        width: calc(100% - 40px);
-        max-width: 100%;
-    }
-
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .lab-grid {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
-
-    .controls {
-        width: 100%;
-        max-width: 100%;
-        position: static;
-    }
-
-    .dashboard {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .models {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-    .metrics {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-    .chart-title {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .chart-title span {
-        width: 100%;
-        max-width: 100%;
-        text-align: left;
-    }
-
-    .chart-wrapper {
-        height: 340px;
-    }
-
-    .chart-card {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .table-wrap {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-    }
-
-    table {
-        min-width: 650px;
-    }
-
-    input[type="range"] {
-        width: 100%;
-        max-width: 100%;
-    }
-}
-
-
-/* =========================================================
-   PHONE
-   ========================================================= */
-
-@media (max-width: 650px) {
-
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
+@media (max-width: 700px) {
 
     nav {
         height: 68px;
         padding: 0 20px;
-    }
-
-    .logo {
-        font-size: 21px;
     }
 
     .nav-links {
@@ -934,288 +676,54 @@ footer {
 
     .container {
         width: calc(100% - 32px);
-        max-width: 100%;
-    }
-
-    .hero {
-        min-height: auto;
-        display: block;
-    }
-
-    .hero-grid {
-        width: 100%;
-
-        display: grid;
-
-        grid-template-columns: 1fr;
-
-        gap: 30px;
-    }
-
-    .hero-card {
-        width: 100%;
-        max-width: 100%;
-        padding: 25px;
     }
 
     h1 {
-        font-size: clamp(44px, 14vw, 58px);
-        line-height: 0.98;
-        max-width: 100%;
-        overflow-wrap: break-word;
+        font-size: 48px;
     }
 
     h2 {
-        font-size: clamp(36px, 11vw, 52px);
-        line-height: 1;
-        max-width: 100%;
-        overflow-wrap: break-word;
+        font-size: 40px;
     }
-
-    .lead {
-        font-size: 17px;
-        line-height: 1.65;
-    }
-
-    .section-intro {
-        margin-bottom: 35px;
-    }
-
-
-    /* -----------------------------------------------------
-       LAB
-       ----------------------------------------------------- */
-
-    .lab-grid {
-        display: grid;
-
-        grid-template-columns: 1fr;
-
-        gap: 20px;
-
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .controls {
-        width: 100%;
-        max-width: 100%;
-
-        padding: 22px;
-
-        position: static;
-    }
-
-    .dashboard {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-
-    /* -----------------------------------------------------
-       MODEL CARDS
-       ----------------------------------------------------- */
 
     .models {
         grid-template-columns: 1fr;
-        width: 100%;
     }
-
-    .model-card {
-        width: 100%;
-        min-height: auto;
-    }
-
-
-    /* -----------------------------------------------------
-       METRICS
-       ----------------------------------------------------- */
 
     .metrics {
         grid-template-columns: 1fr;
-        width: 100%;
     }
 
-    .metric {
-        width: 100%;
-        padding: 18px;
+    .commercial-grid {
+        grid-template-columns: 1fr;
     }
 
-    .metric .value {
-        font-size: 25px;
+    .booking-grid {
+        grid-template-columns: 1fr;
     }
-
-
-    /* -----------------------------------------------------
-       CHART
-       ----------------------------------------------------- */
 
     .chart-card {
-        width: 100%;
-        max-width: 100%;
-
         padding: 18px;
-
-        overflow: hidden;
     }
 
     .chart-wrapper {
-        width: 100%;
-        max-width: 100%;
-
-        height: 300px;
-
-        overflow: hidden;
+        height: 320px;
     }
 
     .chart-title {
-        display: flex;
-
         flex-direction: column;
-
         align-items: flex-start;
-
-        gap: 8px;
     }
 
-    .chart-title span {
-        width: 100%;
-        max-width: 100%;
-
-        text-align: left;
-    }
-
-
-    /* -----------------------------------------------------
-       TABLE
-       ----------------------------------------------------- */
-
-    .table-wrap {
-        width: 100%;
-        max-width: 100%;
-
-        overflow-x: auto;
-
-        -webkit-overflow-scrolling: touch;
-    }
-
-    table {
-        min-width: 650px;
-    }
-
-
-    /* -----------------------------------------------------
-       BOOKING
-       ----------------------------------------------------- */
-
-    .booking-layout {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
-
-    .booking-card {
-        width: 100%;
-        max-width: 100%;
-        padding: 22px;
-    }
-
-
-    /* -----------------------------------------------------
-       SLIDERS
-       ----------------------------------------------------- */
-
-    input[type="range"] {
-        width: 100%;
-        max-width: 100%;
-    }
-
-
-    /* -----------------------------------------------------
-       INSIGHT
-       ----------------------------------------------------- */
-
-    .insight {
-        padding: 22px;
-    }
-
-
-    /* -----------------------------------------------------
-       FOOTER
-       ----------------------------------------------------- */
-
-    footer {
-        padding: 40px 20px;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 400px) {
-
-    nav {
-        padding: 0 15px;
-    }
-
-    .logo {
-        font-size: 19px;
-    }
-
-    .container {
-        width: calc(100% - 24px);
-    }
-
-    section {
-        padding: 50px 0;
-    }
-
-    h1 {
-        font-size: 42px;
-    }
-
-    h2 {
-        font-size: 34px;
-    }
-
-    .hero-card {
-        padding: 20px;
-    }
-
-    .controls {
-        padding: 18px;
-    }
-
-    .chart-card {
-        padding: 14px;
-    }
-
-    .chart-wrapper {
-        height: 260px;
-    }
-
-    .metric {
-        padding: 16px;
-    }
-
-    .metric .value {
-        font-size: 23px;
-    }
-
-    .booking-card {
-        padding: 18px;
+    .footer-inner {
+        flex-direction: column;
     }
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      NAVIGATION
@@ -1228,19 +736,9 @@ footer {
     </a>
 
     <div class="nav-links">
-
-        <a href="index.html">
-            RM Problem
-        </a>
-
-        <a href="index.html#framework">
-            Framework
-        </a>
-
-        <a href="#laboratory">
-            Laboratory
-        </a>
-
+        <a href="index.html">RM Problem</a>
+        <a href="index.html#framework">Framework</a>
+        <a href="#laboratory">Laboratory</a>
     </div>
 
 </nav>
@@ -1269,7 +767,7 @@ footer {
                 Explore how airline demand forecasts are constructed,
                 tested and translated into Revenue Management decisions.
                 Change the assumptions, compare forecasting methods and
-                observe how forecast quality affects commercial interpretation.
+                observe how forecast quality affects commercial performance.
             </p>
 
         </div>
@@ -1277,9 +775,7 @@ footer {
 
         <div class="hero-card">
 
-            <div class="number">
-                01
-            </div>
+            <div class="number">01</div>
 
             <h3>
                 Forecasting as a commercial system
@@ -1288,7 +784,7 @@ footer {
             <p>
                 A forecast is not simply a number. It is an analytical
                 assumption about future demand that influences inventory,
-                pricing and capacity decisions.
+                pricing, capacity, revenue and profitability decisions.
             </p>
 
         </div>
@@ -1299,49 +795,40 @@ footer {
 
 
 <!-- =====================================================
-     FORECASTING FRAMEWORK
+     FORECASTING METHODS
      ===================================================== -->
 
-<section>
+<section class="methods">
 
     <div class="container">
 
-        <div class="section-intro">
-
-            <div class="eyebrow">
-                Forecasting framework
-            </div>
-
-            <h2>
-                Four ways to
-                <span>read demand.</span>
-            </h2>
-
-            <p class="lead">
-                Different forecasting approaches make different assumptions
-                about the future. The purpose of this laboratory is to make
-                those assumptions visible.
-            </p>
-
+        <div class="eyebrow">
+            Forecasting framework
         </div>
+
+        <h2>
+            Compare the
+            <span>forecast.</span>
+        </h2>
+
+        <p class="lead">
+            Different forecasting approaches produce different commercial
+            interpretations. The objective is not simply accuracy — it is
+            understanding how the forecast changes the decision.
+        </p>
 
 
         <div class="models">
 
-
             <div class="model-card">
 
-                <div class="model-number">
-                    01 / NAIVE
-                </div>
+                <div class="model-number">01</div>
 
-                <h3>
-                    Naive Forecast
-                </h3>
+                <h3>Naive</h3>
 
                 <p>
-                    Uses the latest observed demand as the forecast for the
-                    next period. Simple, transparent and useful as a baseline.
+                    Uses the most recent observed demand as the forecast.
+                    Simple, transparent and useful as a benchmark.
                 </p>
 
             </div>
@@ -1349,17 +836,13 @@ footer {
 
             <div class="model-card">
 
-                <div class="model-number">
-                    02 / MOVING AVERAGE
-                </div>
+                <div class="model-number">02</div>
 
-                <h3>
-                    Moving Average
-                </h3>
+                <h3>Moving Average</h3>
 
                 <p>
-                    Smooths recent observations to reduce short-term noise
-                    and create a more stable demand estimate.
+                    Smooths recent demand observations and reduces the
+                    influence of short-term fluctuations.
                 </p>
 
             </div>
@@ -1367,17 +850,13 @@ footer {
 
             <div class="model-card">
 
-                <div class="model-number">
-                    03 / EXPONENTIAL
-                </div>
+                <div class="model-number">03</div>
 
-                <h3>
-                    Exponential Smoothing
-                </h3>
+                <h3>Weighted Average</h3>
 
                 <p>
-                    Gives greater weight to recent observations while retaining
-                    information from earlier demand.
+                    Places greater importance on the most recent demand
+                    observations.
                 </p>
 
             </div>
@@ -1385,17 +864,13 @@ footer {
 
             <div class="model-card">
 
-                <div class="model-number">
-                    04 / TREND
-                </div>
+                <div class="model-number">04</div>
 
-                <h3>
-                    Trend Forecast
-                </h3>
+                <h3>Exponential Smoothing</h3>
 
                 <p>
-                    Extends the observed direction of demand into the future.
-                    Useful when the market is systematically growing or declining.
+                    Updates the forecast progressively as new demand
+                    observations become available.
                 </p>
 
             </div>
@@ -1411,555 +886,867 @@ footer {
      LABORATORY
      ===================================================== -->
 
-<section
-    class="lab"
-    id="laboratory"
->
+<section class="lab" id="laboratory">
 
-    <div class="container">
+<div class="container">
+
+<div class="eyebrow">
+    Interactive laboratory
+</div>
+
+<h2>
+    Test the
+    <span>forecast.</span>
+</h2>
+
+<p class="lead">
+    Change one commercial assumption at a time and observe how demand,
+    capacity utilization, revenue and profitability respond.
+</p>
 
 
-        <div class="section-intro">
+<div class="lab-grid">
 
-            <div class="eyebrow">
-                Interactive experiment
-            </div>
 
-            <h2>
-                Run the
-                <span>forecast.</span>
-            </h2>
+<!-- =====================================================
+     CONTROLS
+     ===================================================== -->
 
-            <p class="lead">
-                Adjust the commercial environment and compare the resulting
-                demand forecast. The data are synthetic and designed for
-                analytical experimentation.
-            </p>
+<div class="controls">
+
+    <h3>Scenario controls</h3>
+
+    <p>
+        Change the assumptions and observe the effect
+        on the forecast and commercial KPIs.
+    </p>
+
+
+    <form id="forecastForm">
+
+
+        <div class="control">
+
+            <label for="forecastMethod">
+                <span>Forecasting method</span>
+            </label>
+
+            <select id="forecastMethod">
+
+                <option value="Naive">
+                    Naive
+                </option>
+
+                <option value="Moving Average">
+                    Moving Average
+                </option>
+
+                <option value="Weighted Moving Average">
+                    Weighted Moving Average
+                </option>
+
+                <option value="Exponential Smoothing">
+                    Exponential Smoothing
+                </option>
+
+                <option value="Trend Adjusted">
+                    Trend Adjusted
+                </option>
+
+            </select>
 
         </div>
 
 
-        <div class="lab-grid">
+        <div class="control">
 
+            <label for="aircraftCapacity">
 
-            <!-- =================================================
-                 CONTROLS
-                 ================================================= -->
+                <span>
+                    Aircraft capacity
+                </span>
 
-            <aside class="controls">
+                <strong id="aircraftCapacityValue">
+                    180
+                </strong>
 
-                <h3>
-                    Scenario controls
-                </h3>
+            </label>
 
-                <p
-                    class="small"
-                    style="margin-bottom:28px;"
-                >
-                    Change one assumption at a time and observe the effect
-                    on the forecast.
-                </p>
+            <input
+                type="range"
+                id="aircraftCapacity"
+                min="80"
+                max="300"
+                value="180"
+            >
 
+        </div>
 
-                <div class="control">
 
-                    <label>
-                        <span>
-                            Forecasting method
-                        </span>
-                    </label>
+        <div class="control">
 
-                    <select id="method">
+            <label for="demandLevel">
 
-                        <option value="naive">
-                            Naive
-                        </option>
+                <span>
+                    Demand level
+                </span>
 
-                        <option value="moving">
-                            Moving Average
-                        </option>
+                <strong id="demandLevelValue">
+                    100
+                </strong>
 
-                        <option value="exponential">
-                            Exponential Smoothing
-                        </option>
+            </label>
 
-                        <option value="trend">
-                            Trend
-                        </option>
+            <input
+                type="range"
+                id="demandLevel"
+                min="60"
+                max="150"
+                value="100"
+            >
 
-                    </select>
+        </div>
 
-                </div>
 
+        <div class="control">
 
-                <div class="control">
+            <label for="demandVolatility">
 
-                    <label>
+                <span>
+                    Demand volatility
+                </span>
 
-                        <span>
-                            Aircraft capacity
-                        </span>
+                <strong id="demandVolatilityValue">
+                    12%
+                </strong>
 
-                        <strong id="capacityValue">
-                            180
-                        </strong>
+            </label>
 
-                    </label>
+            <input
+                type="range"
+                id="demandVolatility"
+                min="0"
+                max="30"
+                value="12"
+            >
 
-                    <input
-                        type="range"
-                        id="capacity"
-                        min="100"
-                        max="300"
-                        value="180"
-                        step="5"
-                    >
+        </div>
 
-                </div>
 
+        <div class="control">
 
-                <div class="control">
+            <label for="demandTrend">
 
-                    <label>
+                <span>
+                    Demand trend
+                </span>
 
-                        <span>
-                            Demand level
-                        </span>
+                <strong id="demandTrendValue">
+                    +4%
+                </strong>
 
-                        <strong id="demandValue">
-                            100
-                        </strong>
+            </label>
 
-                    </label>
+            <input
+                type="range"
+                id="demandTrend"
+                min="-10"
+                max="10"
+                value="4"
+            >
 
-                    <input
-                        type="range"
-                        id="demand"
-                        min="60"
-                        max="160"
-                        value="100"
-                        step="5"
-                    >
+        </div>
 
-                </div>
 
+        <button
+            type="submit"
+            class="run-button"
+            id="runForecast"
+        >
+            Run forecast
+        </button>
 
-                <div class="control">
 
-                    <label>
+        <button
+            type="button"
+            class="reset-button"
+            id="resetScenario"
+        >
+            Reset scenario
+        </button>
 
-                        <span>
-                            Demand volatility
-                        </span>
 
-                        <strong id="volatilityValue">
-                            12%
-                        </strong>
+    </form>
 
-                    </label>
+</div>
 
-                    <input
-                        type="range"
-                        id="volatility"
-                        min="0"
-                        max="30"
-                        value="12"
-                        step="1"
-                    >
 
-                </div>
+<!-- =====================================================
+     DASHBOARD
+     ===================================================== -->
 
+<div class="dashboard">
 
-                <div class="control">
 
-                    <label>
+<!-- =====================================================
+     CORE KPIs
+     ===================================================== -->
 
-                        <span>
-                            Trend
-                        </span>
+<div class="metrics">
 
-                        <strong id="trendValue">
-                            +2%
-                        </strong>
 
-                    </label>
+    <div class="metric primary">
 
-                    <input
-                        type="range"
-                        id="trend"
-                        min="-5"
-                        max="8"
-                        value="2"
-                        step="1"
-                    >
+        <div class="label">
+            Forecast demand
+        </div>
 
-                </div>
-
-
-                <button id="runButton">
-                    Run forecast
-                </button>
-
-
-                <button
-                    class="reset-button"
-                    id="resetButton"
-                >
-                    Reset scenario
-                </button>
-
-            </aside>
-
-
-            <!-- =================================================
-                 DASHBOARD
-                 ================================================= -->
-
-            <div class="dashboard">
-
-
-                <!-- METRICS -->
-
-                <div class="metrics">
-
-
-                    <div class="metric">
-
-                        <div class="label">
-                            Forecast demand
-                        </div>
-
-                        <div
-                            class="value"
-                            id="forecastMetric"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="metric">
-
-                        <div class="label">
-                            MAPE
-                        </div>
-
-                        <div
-                            class="value"
-                            id="mapeMetric"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="metric">
-
-                        <div class="label">
-                            Load factor
-                        </div>
-
-                        <div
-                            class="value"
-                            id="loadMetric"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="metric">
-
-                        <div class="label">
-                            Commercial signal
-                        </div>
-
-                        <div
-                            class="value"
-                            id="signalMetric"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CHART -->
-
-                <div class="chart-card">
-
-                    <div class="chart-title">
-
-                        <h3>
-                            Demand forecast
-                        </h3>
-
-                        <span id="chartSubtitle">
-                            Historical demand and projected demand
-                        </span>
-
-                    </div>
-
-
-                    <div class="chart-wrapper">
-
-                        <canvas id="forecastChart"></canvas>
-
-                    </div>
-
-
-                    <div class="legend">
-
-                        <div class="legend-item">
-
-                            <span
-                                class="legend-line"
-                                style="background:#8fb9df;"
-                            ></span>
-
-                            Historical demand
-
-                        </div>
-
-
-                        <div class="legend-item">
-
-                            <span
-                                class="legend-line"
-                                style="background:#f6a54f;"
-                            ></span>
-
-                            Forecast
-
-                        </div>
-
-
-                        <div class="legend-item">
-
-                            <span
-                                class="legend-line"
-                                style="background:#75c69b;"
-                            ></span>
-
-                            Capacity
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- INSIGHT -->
-
-                <div class="insight">
-
-                    <strong id="insightTitle">
-                        Analytical interpretation
-                    </strong>
-
-                    <p id="insightText">
-                        Run the model to generate a commercial interpretation.
-                    </p>
-
-                </div>
-
-
-                <!-- MODEL COMPARISON -->
-
-                <div class="chart-card">
-
-                    <div class="chart-title">
-
-                        <h3>
-                            Model comparison
-                        </h3>
-
-                        <span>
-                            Lower MAPE indicates greater historical accuracy
-                        </span>
-
-                    </div>
-
-
-                    <div class="table-wrap">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Method
-                                    </th>
-
-                                    <th>
-                                        Forecast
-                                    </th>
-
-                                    <th>
-                                        MAPE
-                                    </th>
-
-                                    <th>
-                                        RMSE
-                                    </th>
-
-                                    <th>
-                                        Interpretation
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-                            <tbody id="comparisonTable">
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div
+            class="value"
+            id="forecastMetric"
+        >
+            0 pax
         </div>
 
     </div>
+
+
+    <div class="metric blue">
+
+        <div class="label">
+            MAPE
+        </div>
+
+        <div
+            class="value"
+            id="mapeMetric"
+        >
+            0%
+        </div>
+
+    </div>
+
+
+    <div class="metric green">
+
+        <div class="label">
+            Load factor
+        </div>
+
+        <div
+            class="value"
+            id="loadMetric"
+        >
+            0%
+        </div>
+
+    </div>
+
+
+    <div class="metric">
+
+        <div class="label">
+            Commercial signal
+        </div>
+
+        <div
+            class="value"
+            id="signalMetric"
+        >
+            Stimulate
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     COMMERCIAL KPIs
+     ===================================================== -->
+
+<div class="kpi-heading">
+    Commercial performance
+</div>
+
+
+<div class="commercial-grid">
+
+
+    <div class="metric green">
+
+        <div class="label">
+            Total revenue
+        </div>
+
+        <div
+            class="value"
+            id="revenueMetric"
+        >
+            $0
+        </div>
+
+    </div>
+
+
+    <div class="metric red">
+
+        <div class="label">
+            Total cost
+        </div>
+
+        <div
+            class="value"
+            id="costMetric"
+        >
+            $0
+        </div>
+
+    </div>
+
+
+    <div class="metric primary">
+
+        <div class="label">
+            Profitability
+        </div>
+
+        <div
+            class="value"
+            id="profitMetric"
+        >
+            $0
+        </div>
+
+    </div>
+
+
+    <div class="metric green">
+
+        <div class="label">
+            Profit margin
+        </div>
+
+        <div
+            class="value"
+            id="marginMetric"
+        >
+            0%
+        </div>
+
+    </div>
+
+
+    <div class="metric blue">
+
+        <div class="label">
+            Break-even demand
+        </div>
+
+        <div
+            class="value"
+            id="breakEvenMetric"
+        >
+            0 pax
+        </div>
+
+    </div>
+
+
+    <div class="metric blue">
+
+        <div class="label">
+            Break-even load
+        </div>
+
+        <div
+            class="value"
+            id="breakEvenLoadMetric"
+        >
+            0%
+        </div>
+
+    </div>
+
+
+    <div class="metric">
+
+        <div class="label">
+            RASM
+        </div>
+
+        <div
+            class="value"
+            id="rasmMetric"
+        >
+            $0.00
+        </div>
+
+    </div>
+
+
+    <div class="metric">
+
+        <div class="label">
+            Yield / passenger
+        </div>
+
+        <div
+            class="value"
+            id="yieldMetric"
+        >
+            $0.00
+        </div>
+
+    </div>
+
+
+    <div class="metric">
+
+        <div class="label">
+            Unused capacity
+        </div>
+
+        <div
+            class="value"
+            id="capacityGapMetric"
+        >
+            0 seats
+        </div>
+
+    </div>
+
+
+    <div class="metric">
+
+        <div class="label">
+            Forecast confidence
+        </div>
+
+        <div
+            class="value"
+            id="confidenceMetric"
+        >
+            0%
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CHART
+     ===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-title">
+
+        <h3>
+            Demand forecast
+        </h3>
+
+        <span id="forecastTitle">
+            Naive forecast · 0 pax
+        </span>
+
+    </div>
+
+
+    <div class="chart-wrapper">
+
+        <canvas id="forecastChart"></canvas>
+
+    </div>
+
+
+    <div class="legend">
+
+        <div class="legend-item">
+            <span class="legend-line history-line"></span>
+            Historical demand
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-line forecast-line"></span>
+            Forecast
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-line capacity-line"></span>
+            Capacity
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     COMMERCIAL INSIGHT
+     ===================================================== -->
+
+<div class="insight">
+
+    <strong>
+        Commercial interpretation
+    </strong>
+
+    <p id="forecastOutput">
+        Run the forecast to evaluate the expected demand,
+        capacity utilization and profitability.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     BOOKING CURVE
+     COMMERCIAL ANALYSIS
      ===================================================== -->
 
-<section>
+<section class="analysis-section">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-intro">
+    <div class="eyebrow">
+        Revenue Management economics
+    </div>
 
-            <div class="eyebrow">
-                Booking curve
-            </div>
+    <h2>
+        From forecast to
+        <span>profit.</span>
+    </h2>
 
-            <h2>
-                Demand arrives
-                <span>through time.</span>
-            </h2>
-
-            <p class="lead">
-                Airline demand is observed progressively before departure.
-                Forecasting therefore requires analysts to distinguish
-                observed bookings from the demand that has not yet materialised.
-            </p>
-
-        </div>
+    <p class="lead">
+        A demand forecast becomes commercially useful when it is connected
+        to revenue, cost, capacity and profitability.
+    </p>
 
 
-        <div class="booking-layout">
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>KPI</th>
+                    <th>Meaning</th>
+                    <th>Commercial use</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>
+                        <strong>Forecast demand</strong>
+                    </td>
+
+                    <td>
+                        Expected passenger demand.
+                    </td>
+
+                    <td>
+                        Supports inventory and capacity decisions.
+                    </td>
+                </tr>
 
 
-            <div class="booking-card">
+                <tr>
+                    <td>
+                        <strong>Load factor</strong>
+                    </td>
 
-                <h3>
-                    Days before departure
-                </h3>
+                    <td>
+                        Forecast demand relative to capacity.
+                    </td>
 
-                <ul>
-
-                    <li>
-                        90 days
-                        <span>18%</span>
-                    </li>
-
-                    <li>
-                        60 days
-                        <span>31%</span>
-                    </li>
-
-                    <li>
-                        45 days
-                        <span>42%</span>
-                    </li>
-
-                    <li>
-                        30 days
-                        <span>56%</span>
-                    </li>
-
-                    <li>
-                        21 days
-                        <span>66%</span>
-                    </li>
-
-                    <li>
-                        14 days
-                        <span>76%</span>
-                    </li>
-
-                    <li>
-                        7 days
-                        <span>88%</span>
-                    </li>
-
-                    <li>
-                        1 day
-                        <span>97%</span>
-                    </li>
-
-                </ul>
-
-            </div>
+                    <td>
+                        Indicates utilization pressure.
+                    </td>
+                </tr>
 
 
-            <div class="booking-card">
+                <tr>
+                    <td>
+                        <strong>Total revenue</strong>
+                    </td>
 
-                <h3>
-                    Analytical questions
-                </h3>
+                    <td>
+                        Passenger and ancillary revenue.
+                    </td>
 
-                <ul>
+                    <td>
+                        Measures commercial value generated.
+                    </td>
+                </tr>
 
-                    <li>
-                        Is current pickup faster than expected?
-                    </li>
 
-                    <li>
-                        Is demand constrained by capacity?
-                    </li>
+                <tr>
+                    <td>
+                        <strong>Total cost</strong>
+                    </td>
 
-                    <li>
-                        Is the booking curve shifting?
-                    </li>
+                    <td>
+                        Variable passenger cost plus flight cost.
+                    </td>
 
-                    <li>
-                        Is the forecast biased?
-                    </li>
+                    <td>
+                        Establishes the economic cost base.
+                    </td>
+                </tr>
 
-                    <li>
-                        Should inventory controls change?
-                    </li>
 
-                    <li>
-                        Is additional demand still likely to arrive?
-                    </li>
+                <tr>
+                    <td>
+                        <strong>Profitability</strong>
+                    </td>
 
-                </ul>
+                    <td>
+                        Revenue minus total cost.
+                    </td>
 
-            </div>
+                    <td>
+                        Shows whether the scenario creates economic value.
+                    </td>
+                </tr>
 
-        </div>
+
+                <tr>
+                    <td>
+                        <strong>Profit margin</strong>
+                    </td>
+
+                    <td>
+                        Profit as a percentage of revenue.
+                    </td>
+
+                    <td>
+                        Helps evaluate commercial quality.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <strong>Break-even demand</strong>
+                    </td>
+
+                    <td>
+                        Passenger volume required to cover fixed costs.
+                    </td>
+
+                    <td>
+                        Indicates minimum viable demand.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <strong>RASM</strong>
+                    </td>
+
+                    <td>
+                        Revenue per available seat.
+                    </td>
+
+                    <td>
+                        Measures revenue productivity of capacity.
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <strong>Yield</strong>
+                    </td>
+
+                    <td>
+                        Revenue generated per passenger.
+                    </td>
+
+                    <td>
+                        Connects demand to pricing performance.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
 
     </div>
+
+
+<!-- =====================================================
+     DECISION CARDS
+     ===================================================== -->
+
+<div class="decision-grid">
+
+
+    <div class="decision-card">
+
+        <div class="number">
+            01
+        </div>
+
+        <h3>
+            Stimulate demand
+        </h3>
+
+        <p>
+            When forecast demand is weak and load factor is below
+            break-even, commercial stimulation may be required.
+        </p>
+
+    </div>
+
+
+    <div class="decision-card">
+
+        <div class="number">
+            02
+        </div>
+
+        <h3>
+            Protect margin
+        </h3>
+
+        <p>
+            When demand is strong but profitability deteriorates,
+            the focus should shift from volume to economic quality.
+        </p>
+
+    </div>
+
+
+    <div class="decision-card">
+
+        <div class="number">
+            03
+        </div>
+
+        <h3>
+            Optimize price
+        </h3>
+
+        <p>
+            When capacity becomes constrained, stronger demand can
+            support tighter inventory controls and higher fares.
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     COMMERCIAL LOGIC
+     ===================================================== -->
+
+<section class="booking">
+
+<div class="container">
+
+    <div class="eyebrow">
+        Commercial interpretation
+    </div>
+
+    <h2>
+        Forecasting is a
+        <span>decision system.</span>
+    </h2>
+
+
+    <div class="booking-grid">
+
+
+        <div class="booking-card">
+
+            <h3>
+                When demand is weak
+            </h3>
+
+            <ul>
+
+                <li>
+                    <strong>1.</strong>
+                    Stimulate demand where appropriate.
+                </li>
+
+                <li>
+                    <strong>2.</strong>
+                    Monitor break-even load factor.
+                </li>
+
+                <li>
+                    <strong>3.</strong>
+                    Avoid adding capacity without demand support.
+                </li>
+
+                <li>
+                    <strong>4.</strong>
+                    Protect contribution margin.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="booking-card">
+
+            <h3>
+                When demand is strong
+            </h3>
+
+            <ul>
+
+                <li>
+                    <strong>1.</strong>
+                    Protect higher-value inventory.
+                </li>
+
+                <li>
+                    <strong>2.</strong>
+                    Monitor capacity constraints.
+                </li>
+
+                <li>
+                    <strong>3.</strong>
+                    Optimize price and yield.
+                </li>
+
+                <li>
+                    <strong>4.</strong>
+                    Maximize profitable revenue.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+</div>
 
 </section>
 
@@ -1970,1275 +1757,127 @@ footer {
 
 <footer>
 
-    RM Analytics Lab · Forecasting Laboratory
+<div class="container footer-inner">
 
-    <br><br>
+    <div>
+        <div class="logo">
+            RM <span>Analytics Lab</span>
+        </div>
 
-    Synthetic analytical environment for Revenue Management education
-    and decision-making experimentation.
+        <p>
+            Revenue Management forecasting and commercial analytics.
+        </p>
+    </div>
+
+
+    <div>
+        <p>
+            Forecasting Laboratory · Demand · Revenue · Profitability
+        </p>
+    </div>
+
+</div>
 
 </footer>
 
 
 <!-- =====================================================
-     JAVASCRIPT
+     RESET SCENARIO
      ===================================================== -->
 
 <script>
 
-/* =========================================================
-   ELEMENT REFERENCES
-   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const methodSelect =
-    document.getElementById("method");
+    const resetButton =
+        document.getElementById("resetScenario");
 
-const capacityInput =
-    document.getElementById("capacity");
+    if (!resetButton) return;
 
-const demandInput =
-    document.getElementById("demand");
+    resetButton.addEventListener("click", () => {
 
-const volatilityInput =
-    document.getElementById("volatility");
+        const method =
+            document.getElementById("forecastMethod");
 
-const trendInput =
-    document.getElementById("trend");
+        const capacity =
+            document.getElementById("aircraftCapacity");
 
+        const demand =
+            document.getElementById("demandLevel");
 
-const capacityValue =
-    document.getElementById("capacityValue");
+        const volatility =
+            document.getElementById("demandVolatility");
 
-const demandValue =
-    document.getElementById("demandValue");
+        const trend =
+            document.getElementById("demandTrend");
 
-const volatilityValue =
-    document.getElementById("volatilityValue");
 
-const trendValue =
-    document.getElementById("trendValue");
-
-
-const forecastMetric =
-    document.getElementById("forecastMetric");
-
-const mapeMetric =
-    document.getElementById("mapeMetric");
-
-const loadMetric =
-    document.getElementById("loadMetric");
-
-const signalMetric =
-    document.getElementById("signalMetric");
-
-
-const insightTitle =
-    document.getElementById("insightTitle");
-
-const insightText =
-    document.getElementById("insightText");
-
-
-const chartSubtitle =
-    document.getElementById("chartSubtitle");
-
-
-const comparisonTable =
-    document.getElementById("comparisonTable");
-
-
-const canvas =
-    document.getElementById("forecastChart");
-
-
-const ctx =
-    canvas.getContext("2d");
-
-
-const runButton =
-    document.getElementById("runButton");
-
-
-const resetButton =
-    document.getElementById("resetButton");
-
-
-/* =========================================================
-   SYNTHETIC HISTORICAL DEMAND
-   ========================================================= */
-
-const baseHistory = [
-    82, 86, 89, 91, 88,
-    94, 96, 93, 98, 101,
-    99, 103, 105, 107, 104,
-    110, 108, 112, 115, 117,
-    114, 119, 121, 118, 124,
-    126, 123, 129, 131, 128
-];
-
-
-/* =========================================================
-   HELPERS
-   ========================================================= */
-
-function average(values) {
-
-    if (!values.length) {
-        return 0;
-    }
-
-    return values.reduce(
-        (sum, value) => sum + value,
-        0
-    ) / values.length;
-}
-
-
-function round(value) {
-    return Math.round(value);
-}
-
-
-function percentage(value) {
-    return `${value.toFixed(1)}%`;
-}
-
-
-function calculateMAPE(actual, predicted) {
-
-    let total = 0;
-    let count = 0;
-
-    for (
-        let i = 0;
-        i < actual.length;
-        i++
-    ) {
-
-        if (actual[i] !== 0) {
-
-            total += Math.abs(
-                (actual[i] - predicted[i]) /
-                actual[i]
-            );
-
-            count++;
-        }
-    }
-
-    return count
-        ? (total / count) * 100
-        : 0;
-}
-
-
-function calculateRMSE(actual, predicted) {
-
-    let total = 0;
-
-    for (
-        let i = 0;
-        i < actual.length;
-        i++
-    ) {
-
-        const error =
-            actual[i] - predicted[i];
-
-        total += error * error;
-    }
-
-    return Math.sqrt(
-        total / actual.length
-    );
-}
-
-
-/* =========================================================
-   FORECAST METHODS
-   ========================================================= */
-
-function naiveForecast(history) {
-
-    return history[
-        history.length - 1
-    ];
-}
-
-
-function movingAverageForecast(history) {
-
-    return average(
-        history.slice(-5)
-    );
-}
-
-
-function exponentialForecast(history) {
-
-    const alpha = 0.35;
-
-    let forecast =
-        history[0];
-
-    for (
-        let i = 1;
-        i < history.length;
-        i++
-    ) {
-
-        forecast =
-            alpha * history[i] +
-            (1 - alpha) * forecast;
-    }
-
-    return forecast;
-}
-
-
-function trendForecast(history) {
-
-    const n =
-        history.length;
-
-    const xMean =
-        (n - 1) / 2;
-
-    const yMean =
-        average(history);
-
-    let numerator = 0;
-    let denominator = 0;
-
-    for (
-        let i = 0;
-        i < n;
-        i++
-    ) {
-
-        numerator +=
-            (i - xMean) *
-            (history[i] - yMean);
-
-        denominator +=
-            Math.pow(
-                i - xMean,
-                2
-            );
-    }
-
-    const slope =
-        denominator
-            ? numerator / denominator
-            : 0;
-
-    return history[n - 1] + slope;
-}
-
-
-/* =========================================================
-   HISTORICAL MODEL FIT
-   ========================================================= */
-
-function generatePredictions(
-    history,
-    type
-) {
-
-    const predictions = [];
-
-    for (
-        let i = 0;
-        i < history.length;
-        i++
-    ) {
-
-        if (i < 5) {
-
-            predictions.push(
-                history[i]
-            );
-
-            continue;
+        if (method) {
+            method.value = "Naive";
         }
 
-        const previous =
-            history.slice(0, i);
-
-        let prediction;
-
-        if (type === "naive") {
-
-            prediction =
-                naiveForecast(previous);
-
+        if (capacity) {
+            capacity.value = 180;
         }
 
-        else if (type === "moving") {
-
-            prediction =
-                movingAverageForecast(previous);
-
+        if (demand) {
+            demand.value = 100;
         }
 
-        else if (type === "exponential") {
-
-            prediction =
-                exponentialForecast(previous);
-
+        if (volatility) {
+            volatility.value = 12;
         }
 
-        else {
-
-            prediction =
-                trendForecast(previous);
+        if (trend) {
+            trend.value = 4;
         }
 
-        predictions.push(
-            prediction
-        );
-    }
 
-    return predictions;
-}
+        document.getElementById(
+            "aircraftCapacityValue"
+        ).textContent = "180";
 
+        document.getElementById(
+            "demandLevelValue"
+        ).textContent = "100";
 
-/* =========================================================
-   FORECAST CALCULATION
-   ========================================================= */
+        document.getElementById(
+            "demandVolatilityValue"
+        ).textContent = "12%";
 
-function calculateForecast(
-    method,
-    demand,
-    volatility,
-    trend,
-    capacity
-) {
-
-    const adjustedHistory =
-        baseHistory.map(
-            (value, index) => {
-
-                const trendFactor =
-                    1 +
-                    (trend / 100) *
-                    (index / baseHistory.length);
-
-                return value *
-                    trendFactor;
-            }
-        );
-
-    let forecast;
-
-    if (method === "naive") {
-
-        forecast =
-            naiveForecast(
-                adjustedHistory
-            );
-    }
-
-    else if (method === "moving") {
-
-        forecast =
-            movingAverageForecast(
-                adjustedHistory
-            );
-    }
-
-    else if (method === "exponential") {
-
-        forecast =
-            exponentialForecast(
-                adjustedHistory
-            );
-    }
-
-    else {
-
-        forecast =
-            trendForecast(
-                adjustedHistory
-            );
-    }
-
-    const currentBase =
-        average(
-            adjustedHistory.slice(-5)
-        );
-
-    const demandFactor =
-        demand / currentBase;
-
-    forecast *=
-        demandFactor;
-
-    forecast *=
-        1 +
-        (volatility / 100) *
-        0.12;
-
-    return Math.min(
-        Math.max(
-            forecast,
-            20
-        ),
-        capacity * 1.25
-    );
-}
+        document.getElementById(
+            "demandTrendValue"
+        ).textContent = "+4%";
 
 
-/* =========================================================
-   MODEL COMPARISON
-   ========================================================= */
-
-function getModelResults(
-    demand,
-    volatility,
-    trend,
-    capacity
-) {
-
-    const methods = [
-
-        {
-            key: "naive",
-            name: "Naive"
-        },
-
-        {
-            key: "moving",
-            name: "Moving Average"
-        },
-
-        {
-            key: "exponential",
-            name: "Exponential Smoothing"
-        },
-
-        {
-            key: "trend",
-            name: "Trend"
+        if (typeof window.runForecast === "function") {
+            window.runForecast();
         }
 
-    ];
+        /*
+         * The forecasting.js engine automatically runs
+         * on page load and when the controls change.
+         */
 
-    return methods.map(
-        model => {
+        const event =
+            new Event("change");
 
-            const predictions =
-                generatePredictions(
-                    baseHistory,
-                    model.key
-                );
-
-            const mape =
-                calculateMAPE(
-                    baseHistory.slice(5),
-                    predictions.slice(5)
-                );
-
-            const rmse =
-                calculateRMSE(
-                    baseHistory.slice(5),
-                    predictions.slice(5)
-                );
-
-            const forecast =
-                calculateForecast(
-                    model.key,
-                    demand,
-                    volatility,
-                    trend,
-                    capacity
-                );
-
-            let interpretation;
-
-            if (mape < 8) {
-                interpretation =
-                    "Strong accuracy";
-            }
-
-            else if (mape < 12) {
-                interpretation =
-                    "Moderate accuracy";
-            }
-
-            else {
-                interpretation =
-                    "Review assumptions";
-            }
-
-            return {
-                ...model,
-                forecast,
-                mape,
-                rmse,
-                interpretation
-            };
-        }
-    );
-}
-
-
-/* =========================================================
-   COMMERCIAL SIGNAL
-   ========================================================= */
-
-function getCommercialSignal(
-    forecast,
-    capacity
-) {
-
-    const load =
-        forecast / capacity;
-
-    if (load >= 1.0) {
-
-        return {
-
-            label: "Constrained",
-
-            explanation:
-                "Forecast demand is at or above aircraft capacity. The commercial priority should shift toward inventory protection, price discipline and careful control of remaining availability."
-        };
-    }
-
-    if (load >= 0.85) {
-
-        return {
-
-            label: "Strong",
-
-            explanation:
-                "Forecast demand is approaching capacity. Revenue Management should monitor pickup closely and consider protecting higher-value inventory as departure approaches."
-        };
-    }
-
-    if (load >= 0.65) {
-
-        return {
-
-            label: "Balanced",
-
-            explanation:
-                "Forecast demand indicates a relatively balanced commercial position. Inventory and pricing can remain responsive while monitoring changes in booking pace."
-        };
-    }
-
-    return {
-
-        label: "Stimulate",
-
-        explanation:
-            "Forecast demand remains comfortably below capacity. Greater attention may be required on stimulation, fare availability or competitive positioning."
-    };
-}
-
-
-/* =========================================================
-   UPDATE DISPLAY VALUES
-   ========================================================= */
-
-function updateLabels() {
-
-    capacityValue.textContent =
-        capacityInput.value;
-
-    demandValue.textContent =
-        demandInput.value;
-
-    volatilityValue.textContent =
-        `${volatilityInput.value}%`;
-
-    const trend =
-        Number(trendInput.value);
-
-    trendValue.textContent =
-        `${trend >= 0 ? "+" : ""}${trend}%`;
-}
-
-
-/* =========================================================
-   DRAW CHART
-   ========================================================= */
-
-function drawChart(
-    historical,
-    forecast,
-    capacity
-) {
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-    const width =
-        Math.max(
-            rect.width,
-            280
-        );
-
-    const height =
-        Math.max(
-            rect.height,
-            240
-        );
-
-    const ratio =
-        window.devicePixelRatio || 1;
-
-    canvas.width =
-        Math.round(
-            width * ratio
-        );
-
-    canvas.height =
-        Math.round(
-            height * ratio
-        );
-
-    ctx.setTransform(
-        ratio,
-        0,
-        0,
-        ratio,
-        0,
-        0
-    );
-
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-    const padding = {
-        top: 25,
-        right: 25,
-        bottom: 40,
-        left: 45
-    };
-
-    const chartWidth =
-        Math.max(
-            1,
-            width -
-            padding.left -
-            padding.right
-        );
-
-    const chartHeight =
-        Math.max(
-            1,
-            height -
-            padding.top -
-            padding.bottom
-        );
-
-    const values = [
-        ...historical,
-        ...forecast,
-        capacity
-    ];
-
-    let maxValue =
-        Math.max(...values) * 1.12;
-
-    let minValue =
-        Math.max(
-            0,
-            Math.min(...values) * 0.82
-        );
-
-    if (
-        maxValue <= minValue
-    ) {
-        maxValue =
-            minValue + 1;
-    }
-
-    function x(index, count) {
-
-        if (count <= 1) {
-            return padding.left;
+        if (method) {
+            method.dispatchEvent(event);
         }
 
-        return padding.left +
-            (index / (count - 1)) *
-            chartWidth;
-    }
+    });
 
-    function y(value) {
-
-        return padding.top +
-            chartHeight -
-            (
-                (value - minValue) /
-                (maxValue - minValue)
-            ) *
-            chartHeight;
-    }
-
-
-    /* GRID */
-
-    ctx.strokeStyle =
-        "#26384b";
-
-    ctx.lineWidth = 1;
-
-    for (
-        let i = 0;
-        i <= 4;
-        i++
-    ) {
-
-        const gy =
-            padding.top +
-            (chartHeight / 4) * i;
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            padding.left,
-            gy
-        );
-
-        ctx.lineTo(
-            width - padding.right,
-            gy
-        );
-
-        ctx.stroke();
-    }
-
-
-    /* Y LABELS */
-
-    ctx.fillStyle =
-        "#9eb0c4";
-
-    ctx.font =
-        "12px Arial";
-
-    for (
-        let i = 0;
-        i <= 4;
-        i++
-    ) {
-
-        const value =
-            maxValue -
-            (
-                (maxValue - minValue) /
-                4
-            ) *
-            i;
-
-        const gy =
-            padding.top +
-            (chartHeight / 4) * i;
-
-        ctx.fillText(
-            Math.round(value),
-            5,
-            gy + 4
-        );
-    }
-
-
-    /* HISTORICAL LINE */
-
-    ctx.strokeStyle =
-        "#8fb9df";
-
-    ctx.lineWidth = 3;
-
-    ctx.beginPath();
-
-    historical.forEach(
-        (value, index) => {
-
-            const px =
-                x(
-                    index,
-                    historical.length +
-                    forecast.length
-                );
-
-            const py =
-                y(value);
-
-            if (index === 0) {
-                ctx.moveTo(
-                    px,
-                    py
-                );
-            }
-
-            else {
-                ctx.lineTo(
-                    px,
-                    py
-                );
-            }
-        }
-    );
-
-    ctx.stroke();
-
-
-    /* FORECAST LINE */
-
-    const totalCount =
-        historical.length +
-        forecast.length;
-
-    ctx.strokeStyle =
-        "#f6a54f";
-
-    ctx.lineWidth = 3;
-
-    ctx.beginPath();
-
-    historical.forEach(
-        (value, index) => {
-
-            const px =
-                x(
-                    index,
-                    totalCount
-                );
-
-            const py =
-                y(value);
-
-            if (index === 0) {
-                ctx.moveTo(
-                    px,
-                    py
-                );
-            }
-
-            else {
-                ctx.lineTo(
-                    px,
-                    py
-                );
-            }
-        }
-    );
-
-    forecast.forEach(
-        (value, index) => {
-
-            const actualIndex =
-                historical.length +
-                index;
-
-            const px =
-                x(
-                    actualIndex,
-                    totalCount
-                );
-
-            const py =
-                y(value);
-
-            ctx.lineTo(
-                px,
-                py
-            );
-        }
-    );
-
-    ctx.stroke();
-
-
-    /* CAPACITY */
-
-    ctx.strokeStyle =
-        "#75c69b";
-
-    ctx.lineWidth = 2;
-
-    ctx.setLineDash([
-        7,
-        5
-    ]);
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        padding.left,
-        y(capacity)
-    );
-
-    ctx.lineTo(
-        width - padding.right,
-        y(capacity)
-    );
-
-    ctx.stroke();
-
-    ctx.setLineDash([]);
-
-
-    /* X LABELS */
-
-    ctx.fillStyle =
-        "#9eb0c4";
-
-    ctx.font =
-        "12px Arial";
-
-    ctx.fillText(
-        "Historical",
-        padding.left,
-        height - 10
-    );
-
-    ctx.textAlign =
-        "right";
-
-    ctx.fillText(
-        "Forecast",
-        width - padding.right,
-        height - 10
-    );
-
-    ctx.textAlign =
-        "left";
-}
-
-
-/* =========================================================
-   RUN FORECAST
-   ========================================================= */
-
-function runForecast() {
-
-    updateLabels();
-
-    const capacity =
-        Number(
-            capacityInput.value
-        );
-
-    const demand =
-        Number(
-            demandInput.value
-        );
-
-    const volatility =
-        Number(
-            volatilityInput.value
-        );
-
-    const trend =
-        Number(
-            trendInput.value
-        );
-
-    const method =
-        methodSelect.value;
-
-
-    const results =
-        getModelResults(
-            demand,
-            volatility,
-            trend,
-            capacity
-        );
-
-
-    const selected =
-        results.find(
-            item =>
-                item.key === method
-        );
-
-
-    const forecast =
-        selected.forecast;
-
-
-    const loadFactor =
-        (forecast / capacity) * 100;
-
-
-    const signal =
-        getCommercialSignal(
-            forecast,
-            capacity
-        );
-
-
-    /* -----------------------------------------------------
-       METRICS
-       ----------------------------------------------------- */
-
-    forecastMetric.textContent =
-        `${round(forecast)} pax`;
-
-    mapeMetric.textContent =
-        percentage(
-            selected.mape
-        );
-
-    loadMetric.textContent =
-        `${Math.round(loadFactor)}%`;
-
-    signalMetric.textContent =
-        signal.label;
-
-
-    /* -----------------------------------------------------
-       INSIGHT
-       ----------------------------------------------------- */
-
-    insightTitle.textContent =
-        `${signal.label} commercial signal`;
-
-    insightText.textContent =
-        `${signal.explanation} Historical forecast accuracy for the selected method is ${percentage(selected.mape)}. The selected method is ${selected.name}.`;
-
-    chartSubtitle.textContent =
-        `${selected.name} forecast · ${round(forecast)} pax`;
-
-
-    /* -----------------------------------------------------
-       FORECAST SERIES
-       ----------------------------------------------------- */
-
-    const forecastSeries = [];
-
-    const current =
-        baseHistory[
-            baseHistory.length - 1
-        ];
-
-    for (
-        let i = 1;
-        i <= 8;
-        i++
-    ) {
-
-        const progress =
-            i / 8;
-
-        const trendEffect =
-            1 +
-            (
-                trend / 100
-            ) *
-            progress;
-
-        const volatilityEffect =
-            1 +
-            (
-                Math.sin(
-                    i * 1.7
-                ) *
-                volatility /
-                100 *
-                0.18
-            );
-
-        const path =
-            current +
-            (
-                forecast -
-                current
-            ) *
-            progress;
-
-        const value =
-            path *
-            trendEffect *
-            volatilityEffect;
-
-        forecastSeries.push(
-
-            Math.min(
-
-                Math.max(
-                    value,
-                    10
-                ),
-
-                capacity * 1.2
-
-            )
-        );
-    }
-
-
-    /* -----------------------------------------------------
-       DRAW
-       ----------------------------------------------------- */
-
-    drawChart(
-        baseHistory,
-        forecastSeries,
-        capacity
-    );
-
-
-    /* -----------------------------------------------------
-       COMPARISON TABLE
-       ----------------------------------------------------- */
-
-    comparisonTable.innerHTML = "";
-
-    results.forEach(
-        result => {
-
-            const row =
-                document.createElement(
-                    "tr"
-                );
-
-            row.innerHTML = `
-
-                <td>
-                    <strong>
-                        ${result.name}
-                    </strong>
-                </td>
-
-                <td>
-                    ${round(result.forecast)} pax
-                </td>
-
-                <td>
-                    ${percentage(result.mape)}
-                </td>
-
-                <td>
-                    ${result.rmse.toFixed(1)}
-                </td>
-
-                <td>
-                    ${result.interpretation}
-                </td>
-
-            `;
-
-            comparisonTable.appendChild(
-                row
-            );
-        }
-    );
-}
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
-
-function resetScenario() {
-
-    methodSelect.value =
-        "naive";
-
-    capacityInput.value =
-        180;
-
-    demandInput.value =
-        100;
-
-    volatilityInput.value =
-        12;
-
-    trendInput.value =
-        2;
-
-    runForecast();
-}
-
-
-/* =========================================================
-   EVENTS
-   ========================================================= */
-
-runButton.addEventListener(
-    "click",
-    runForecast
-);
-
-resetButton.addEventListener(
-    "click",
-    resetScenario
-);
-
-
-[
-    capacityInput,
-    demandInput,
-    volatilityInput,
-    trendInput
-].forEach(
-    element => {
-
-        element.addEventListener(
-            "input",
-            updateLabels
-        );
-
-        element.addEventListener(
-            "change",
-            updateLabels
-        );
-    }
-);
-
-
-methodSelect.addEventListener(
-    "change",
-    runForecast
-);
-
-
-/* =========================================================
-   RESPONSIVE CHART REDRAW
-   ========================================================= */
-
-let resizeTimer;
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        clearTimeout(
-            resizeTimer
-        );
-
-        resizeTimer =
-            setTimeout(
-                () => {
-                    runForecast();
-                },
-                150
-            );
-    }
-);
-
-
-/* =========================================================
-   INITIAL RUN
-   ========================================================= */
-
-updateLabels();
-
-runForecast();
+});
 
 </script>
 
+
+<!-- =====================================================
+     FORECASTING ENGINE
+     ===================================================== -->
+
+<script src="forecasting.js"></script>
 
 </body>
 </html>
