@@ -535,23 +535,6 @@ td strong {
     color: var(--muted);
 }
 
-.booking-card li span {
-    color: var(--text);
-    float: right;
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-    border-top: 1px solid var(--border);
-    padding: 50px 5%;
-    color: var(--muted);
-    text-align: center;
-    font-size: 13px;
-}
-
 /* =========================================================
    RESPONSIVE FIX
    ========================================================= */
@@ -587,10 +570,33 @@ footer {
 
     .chart-card {
         width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .dashboard {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .models,
+    .metrics,
+    .chart-card,
+    .model-comparison {
+        min-width: 0;
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%;
     }
 }
 
-/* Tablet */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 800px) {
 
     nav {
@@ -607,18 +613,33 @@ footer {
 
     .container {
         width: calc(100% - 40px);
+        max-width: 100%;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
     }
 
     .lab-grid {
         grid-template-columns: 1fr;
+        width: 100%;
     }
 
     .controls {
         width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .dashboard {
         width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .models {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .metrics {
@@ -627,6 +648,7 @@ footer {
 
     .chart-title {
         flex-wrap: wrap;
+        gap: 10px;
     }
 
     .chart-title span {
@@ -635,19 +657,62 @@ footer {
 
     .chart-wrapper {
         height: 340px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .chart-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    /* Prevent wide tables from breaking the page */
+    .model-comparison,
+    .table-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 620px;
+    }
+
+    /* Keep sliders inside their panels */
+    input[type="range"] {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }
 
-/* Phone */
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
 @media (max-width: 650px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
 
     nav {
         height: 68px;
         padding: 0 20px;
+        box-sizing: border-box;
     }
 
     .logo {
         font-size: 21px;
+        white-space: nowrap;
     }
 
     .nav-links {
@@ -660,11 +725,10 @@ footer {
 
     .container {
         width: calc(100% - 32px);
-    }
-
-    .models,
-    .metrics {
-        grid-template-columns: 1fr;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
     }
 
     .hero {
@@ -672,30 +736,76 @@ footer {
     }
 
     .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 30px;
+        width: 100%;
+    }
+
+    .hero-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 25px;
     }
 
     h1 {
         font-size: clamp(44px, 14vw, 58px);
+        line-height: 0.98;
+        max-width: 100%;
+        overflow-wrap: break-word;
     }
 
     h2 {
         font-size: clamp(36px, 11vw, 52px);
+        line-height: 1;
+        max-width: 100%;
+        overflow-wrap: break-word;
     }
 
     .lead {
         font-size: 17px;
+        line-height: 1.65;
     }
 
-    .hero-card {
-        padding: 25px;
+    /* Forecasting laboratory layout */
+    .lab-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+        max-width: 100%;
     }
 
     .controls {
+        position: static;
+        width: 100%;
+        max-width: 100%;
         padding: 22px;
+        box-sizing: border-box;
+    }
+
+    .dashboard {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    /* Model cards */
+    .models {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+        width: 100%;
     }
 
     .metric {
+        width: 100%;
+        box-sizing: border-box;
         padding: 18px;
     }
 
@@ -703,12 +813,148 @@ footer {
         font-size: 25px;
     }
 
+    /* Buttons */
+    button,
+    .button,
+    .run-button {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Chart */
     .chart-card {
+        width: 100%;
+        max-width: 100%;
         padding: 18px;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .chart-wrapper {
-        height: 280px;
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .chart-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .chart-title span {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Model comparison table */
+    .model-comparison,
+    .table-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
+    }
+
+    table {
+        min-width: 620px;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+
+    /* Booking layout */
+    .booking-layout {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .booking-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Sliders */
+    input[type="range"] {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Long text */
+    p,
+    li,
+    .interpretation,
+    .description {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    /* Footer */
+    footer {
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    nav {
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    section {
+        padding: 50px 0;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 34px;
+    }
+
+    .hero-card {
+        padding: 20px;
+    }
+
+    .controls {
+        padding: 18px;
+    }
+
+    .chart-card {
+        padding: 14px;
+    }
+
+    .chart-wrapper {
+        height: 260px;
+    }
+
+    .metric {
+        padding: 16px;
+    }
+}        height: 280px;
     }
 
     .table-wrap {
